@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical" android:layout_width="match_parent"
+	android:layout_height="150dp"
+	android:weightSum="1"
+	android:paddingTop="20dp"
+	android:paddingBottom="20dp"
+	android:paddingLeft="75dp"
+	android:paddingRight="75dp">
+	
+	<android.support.constraint.ConstraintLayout
+		android:id="@+id/bottonSheet_workout"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="0.5"
+		android:clickable="true"
+		tools:layout_editor_absoluteX="80dp"
+		tools:layout_editor_absoluteY="20dp">
+		
+		<ImageView
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:layout_marginStart="8dp"
+			android:src="@mipmap/btn_workout"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginEnd="8dp"
+			android:text="운동하기"
+			android:textSize="16sp"
+			android:textColor="#000000"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+	
+	</android.support.constraint.ConstraintLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#d9d9d9"/>
+	
+	<android.support.constraint.ConstraintLayout
+		android:id="@+id/bottonSheet_history"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="0.5"
+		android:clickable="true">
+		
+		<ImageView
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:layout_marginStart="8dp"
+			android:src="@mipmap/btn_history"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginEnd="8dp"
+			android:textColor="#000000"
+			android:text="히스토리"
+			android:textSize="16sp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+	
+	</android.support.constraint.ConstraintLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#d9d9d9"/>
+
+</LinearLayout>
