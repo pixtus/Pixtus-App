@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="56dp">
+		
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:fontFamily="@font/notosans_regular"
+				android:text="히스토리"
+				android:textColor="#000000"
+				android:textSize="20sp" />
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true"
+				android:layout_marginRight="20dp"
+				android:fontFamily="@font/notosans_regular"
+				android:text="취소"
+				android:textColor="#000000"
+				android:textSize="20sp" />
+		</RelativeLayout>
+	</android.support.v7.widget.Toolbar>
+	
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#c4c4c4" />
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+			
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="32dp"
+				android:layout_marginTop="18dp">
+				
+				<ImageView
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:background="@android:color/transparent"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="110dp"
+					android:src="@drawable/btn_left" />
+				
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"
+					android:fontFamily="@font/notosans_regular"
+					android:layout_centerVertical="true"
+					android:text="2019년 6월 23일 - 30일"
+					android:textColor="#5dbb96"
+					android:textSize="12sp" />
+				
+				<ImageView
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:layout_alignParentRight="true"
+					android:background="@android:color/transparent"
+					android:layout_centerVertical="true"
+					android:layout_marginRight="110dp"
+					android:src="@drawable/btn_right" />
+				
+			</RelativeLayout>
+			
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="49dp"
+				android:layout_marginTop="18dp">
+				
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="16dp"
+					android:layout_marginTop="18dp"
+					android:fontFamily="@font/notosans_regular"
+					android:text="총 칼로리"
+					android:textColor="#000000"
+					android:textSize="16sp" />
+				
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentRight="true"
+					android:layout_marginTop="8dp"
+					android:layout_marginRight="16dp"
+					android:fontFamily="@font/notosans_medium"
+					android:text="-2,100Kcal"
+					android:textColor="#5dbb96"
+					android:textSize="24sp" />
+			</RelativeLayout>
+			
+			<android.support.v4.view.ViewPager
+				android:layout_width="match_parent"
+				android:layout_height="270dp" />
+			
+			<ToggleButton
+				android:id="@+id/toggleButton"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="18dp"
+				android:layout_marginTop="20dp"
+				android:text="ToggleButton" />
+			
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="49dp"
+				android:layout_marginTop="8dp">
+				
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="16dp"
+					android:fontFamily="@font/notosans_regular"
+					android:text="총 섭취 칼로리"
+					android:textColor="#000000"
+					android:textSize="16sp" />
+				
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentRight="true"
+					android:layout_centerVertical="true"
+					android:layout_marginRight="16dp"
+					android:fontFamily="@font/notosans_medium"
+					android:text="+2,100Kcal"
+					android:textColor="#000000"
+					android:textSize="16sp" />
+			
+			</RelativeLayout>
+			
+			<View
+				android:layout_width="360dp"
+				android:layout_height="1dp"
+				android:layout_gravity="center"
+				android:background="#c4c4c4" />
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+				
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="28dp">
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_centerVertical="true"
+						android:layout_marginLeft="42dp"
+						android:fontFamily="@font/notosans_regular"
+						android:text="아침"
+						android:textColor="#7c7c7c"
+						android:textSize="16sp" />
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentRight="true"
+						android:layout_centerVertical="true"
+						android:layout_marginRight="14dp"
+						android:fontFamily="@font/notosans_medium"
+						android:text="+2,100Kcal"
+						android:textColor="#5dbb96"
+						android:textSize="12sp" />
+				</RelativeLayout>
+				
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="28dp">
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_centerVertical="true"
+						android:layout_marginLeft="42dp"
+						android:fontFamily="@font/notosans_regular"
+						android:text="점심"
+						android:textColor="#7c7c7c"
+						android:textSize="16sp" />
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentRight="true"
+						android:layout_centerVertical="true"
+						android:layout_marginRight="14dp"
+						android:fontFamily="@font/notosans_medium"
+						android:text="+2,100Kcal"
+						android:textColor="#de9962"
+						android:textSize="12sp" />
+				</RelativeLayout>
+				
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="28dp">
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_centerVertical="true"
+						android:layout_marginLeft="42dp"
+						android:fontFamily="@font/notosans_regular"
+						android:text="저녁"
+						android:textColor="#7c7c7c"
+						android:textSize="16sp" />
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentRight="true"
+						android:layout_centerVertical="true"
+						android:layout_marginRight="14dp"
+						android:fontFamily="@font/notosans_medium"
+						android:text="+2,100Kcal"
+						android:textColor="#9e91ff"
+						android:textSize="12sp" />
+				</RelativeLayout>
+				
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="28dp">
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_centerVertical="true"
+						android:layout_marginLeft="42dp"
+						android:fontFamily="@font/notosans_regular"
+						android:text="야식"
+						android:textColor="#7c7c7c"
+						android:textSize="16sp" />
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentRight="true"
+						android:layout_centerVertical="true"
+						android:layout_marginRight="14dp"
+						android:fontFamily="@font/notosans_medium"
+						android:text="+2,100Kcal"
+						android:textColor="#d1475f"
+						android:textSize="12sp" />
+				</RelativeLayout>
+			</LinearLayout>
+		
+		
+		</LinearLayout>
+	</RelativeLayout>
+
+</LinearLayout>
