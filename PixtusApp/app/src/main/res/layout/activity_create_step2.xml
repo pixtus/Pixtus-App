@@ -60,8 +60,7 @@
 				android:layout_gravity="center_horizontal"
 				android:id="@+id/iv_main"
 				android:layout_width="200dp"
-				android:layout_height="200dp"
-				android:src="@drawable/back_main"/>
+				android:layout_height="200dp" />
 			
 			<TextView
 				android:fontFamily="@font/notosans_medium"

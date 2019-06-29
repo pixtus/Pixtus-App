@@ -4,11 +4,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
 import com.mash.up.pixtus_app.utils.showToastMessageString
 import kotlinx.android.synthetic.main.activity_create_step2.*
 import kotlinx.android.synthetic.main.activity_create_step2.tv_next
+import kotlinx.android.synthetic.main.activity_login.*
 
 class CreateStep2Activity : BaseActivity() {
 
@@ -24,7 +26,7 @@ class CreateStep2Activity : BaseActivity() {
             } else
                 showToastMessageString("정보를 다 입력해주세요.")
         }
-
+        Glide.with(this).asGif().load(R.raw.pixtus_login).into(iv_main)
 
         edit_nickname.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}

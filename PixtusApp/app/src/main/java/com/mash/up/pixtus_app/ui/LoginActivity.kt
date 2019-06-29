@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -16,7 +17,7 @@ import com.mash.up.pixtus_app.ui.create.CreateStep1Activity
 import kotlinx.android.synthetic.main.activity_login.*
 
 
-class   LoginActivity : BaseActivity(), View.OnClickListener {
+class   LoginActivity : BaseActivity() {
     private var RC_SIGN_IN= 1111
     lateinit var gso : GoogleSignInOptions
     val mGoogleSignInClient by lazy {
@@ -30,7 +31,12 @@ class   LoginActivity : BaseActivity(), View.OnClickListener {
             .requestEmail()
             .build()
 
-        sign_in_button.setOnClickListener(this)
+        sign_in_button.setOnClickListener{
+            signIn()
+        }
+
+        Glide.with(this).asGif().load(R.raw.pixtus_login).into(imageView)
+
     }
 
     override fun onStart() {
@@ -39,11 +45,6 @@ class   LoginActivity : BaseActivity(), View.OnClickListener {
         updateUI(account)
     }
 
-    override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.sign_in_button -> signIn()
-        }
-    }
     private fun signIn(){
         val signIntent = mGoogleSignInClient.signInIntent
         startActivityForResult(signIntent, RC_SIGN_IN)
@@ -55,6 +56,8 @@ class   LoginActivity : BaseActivity(), View.OnClickListener {
             val intent = Intent(this, CreateStep1Activity::class.java)
             startActivity(intent)
             finish()
+            var task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
         }
     }
 
