@@ -1,6 +1,7 @@
 package com.mash.up.pixtus_app.ui
 
 import android.content.Intent
+import android.net.Network
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -13,8 +14,15 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
+import com.mash.up.pixtus_app.core.NetworkCore
+import com.mash.up.pixtus_app.core.PixtusApi
 import com.mash.up.pixtus_app.ui.create.CreateStep1Activity
+import com.mash.up.pixtus_app.utils.showToastMessageString
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
+import retrofit2.HttpException
 
 
 class   LoginActivity : BaseActivity() {
@@ -53,12 +61,39 @@ class   LoginActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
-            val intent = Intent(this, CreateStep1Activity::class.java)
-            startActivity(intent)
-            finish()
-            var task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
+
+            NetworkCore.getNetworkCore<PixtusApi>().loginUser(hashMapOf("login" to "yjh54240@naver.com"))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe ({
+                    showCode(it.response()?.code())
+                }, {
+                    if(it is HttpException)
+                        showCode(it.code())
+
+                })
         }
+    }
+
+    private fun showCode(code : Int?){
+        when(code){
+            200 -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            204 ->{
+                val intent = Intent(this, CreateStep1Activity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else -> fail()
+        }
+    }
+
+
+    private fun fail(){
+        showToastMessageString("오류가 발생 했습니다.")
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {

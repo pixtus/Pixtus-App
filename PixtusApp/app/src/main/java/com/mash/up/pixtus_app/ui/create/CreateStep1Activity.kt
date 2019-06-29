@@ -12,6 +12,7 @@ import com.mash.up.pixtus_app.utils.showToastMessageString
 import kotlinx.android.synthetic.main.activity_create_step.*
 import kotlinx.android.synthetic.main.activity_create_step.edit_height
 import kotlinx.android.synthetic.main.activity_create_step.edit_weight
+import kotlinx.android.synthetic.main.fragment_step1.*
 
 class CreateStep1Activity : BaseActivity() {
 
@@ -25,13 +26,14 @@ class CreateStep1Activity : BaseActivity() {
         tv_next.setOnClickListener {
             if (tv_next.isSelected){
                 val intent = Intent(this, CreateStep2Activity::class.java)
-                intent.putExtra("weight",100)
-                intent.putExtra("height",100)
-                intent.putExtra("sex","남")
+                intent.putExtra("weight",edit_weight.text.toString())
+                intent.putExtra("height",edit_height.text.toString())
+                intent.putExtra("sex",checkSex())
                 startActivity(intent)
                 finish()
-            } else
+            } else {
                 showToastMessageString("정보를 다 입력해주세요.")
+            }
         }
 
 
@@ -72,6 +74,13 @@ class CreateStep1Activity : BaseActivity() {
         tv_next.isSelected = boolean
     }
 
+    fun checkSex() : Int{
+        return when {
+            layout_male.isSelected -> 0
+            layout_female.isSelected -> 1
+            else -> 0
+        }
+    }
     fun male(){
         tv_male.isSelected = true
         layout_male.isSelected = true

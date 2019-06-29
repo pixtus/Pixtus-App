@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/notosans_medium"
-            android:text="픽미픽미픽미"
+            android:text="test123"
             android:textColor="@color/colorBlack"
             android:textSize="16sp" />
         
@@ -93,7 +93,7 @@
             android:layout_alignLeft="@+id/stats_bar"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/notosans_regular"
-            android:text="2,300kcal "
+            android:text="710kcal "
             android:textColor="@color/colorPrimary" />
         
         <TextView
@@ -104,7 +104,7 @@
             android:layout_alignRight="@+id/stats_bar"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/notosans_regular"
-            android:text="3,300kcal"
+            android:text="2,130kcal"
             android:textColor="@color/C_d9d9d9" />
         
         <ImageView
@@ -159,7 +159,7 @@
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/notosans_regular"
                     android:padding="4dp"
-                    android:text="2100Kcal"
+                    android:text="100Kcal"
                     android:textColor="@color/colorPrimary" />
                 
                 <View
@@ -180,7 +180,7 @@
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/notosans_medium"
                     android:padding="4dp"
-                    android:text="달리"
+                    android:text="달리기"
                     android:textColor="@color/colorBlack" />
                 
                 <TextView
@@ -190,7 +190,7 @@
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/notosans_regular"
                     android:padding="4dp"
-                    android:text="2100Kcal"
+                    android:text="200Kcal"
                     android:textColor="@color/colorPrimary" />
                 
                 <View
@@ -223,7 +223,7 @@
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/notosans_regular"
                     android:padding="4dp"
-                    android:text="2100Kcal"
+                    android:text="410Kcal"
                     android:textColor="@color/colorPrimary" />
                 
                 <View

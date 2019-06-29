@@ -31,15 +31,12 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             R.id.btn_more ->{
                 anim()
                 com.mash.up.pixtus_app.ui.view.Dialog.BottomSheetDialog().show(supportFragmentManager,"")
-                Toast.makeText(this, "Floating Action Button", Toast.LENGTH_SHORT).show()
             }
             R.id.fab1 -> {
                 anim()
-                Toast.makeText(this, "Button1", Toast.LENGTH_SHORT).show()
             }
             R.id.fab2 -> {
                 anim()
-                Toast.makeText(this, "Button2", Toast.LENGTH_SHORT).show()
             }
         }
     }

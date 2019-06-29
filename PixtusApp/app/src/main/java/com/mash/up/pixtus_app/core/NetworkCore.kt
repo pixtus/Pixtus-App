@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 // init 키워드 , object 키워드, 빌더 패턴, 레트로핏 생성 방법
 object NetworkCore {
     val api: Retrofit
-    val BASE_URL = "http://httpbin.org"
+    val BASE_URL = "http://ec2-13-125-35-79.ap-northeast-2.compute.amazonaws.com:8080"
 
     init {
         var okHttpClient = OkHttpClient()
