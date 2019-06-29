@@ -180,7 +180,7 @@
 							android:layout_width="match_parent"
 							android:layout_marginBottom="4dp"
 							android:layout_marginLeft="4dp"
-							android:layout_height="1dp">
+							android:layout_height="2dp">
 						</View>
 					</RelativeLayout>
 					
@@ -208,7 +208,7 @@
 							android:layout_width="match_parent"
 							android:layout_marginBottom="4dp"
 							android:layout_marginLeft="4dp"
-							android:layout_height="1dp">
+							android:layout_height="2dp">
 						</View>
 					</RelativeLayout>
 				
