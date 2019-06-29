@@ -1,0 +1,112 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mash.up.pixtus_app.ui.create.Step1Fragment">
+    
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/tv_intro_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/notosans_regular"
+        android:text="정확한 계산을 위해\n정보값을 입력해 주세요." />
+    
+    
+    <View
+        android:id="@+id/view"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_below="@+id/tv_intro_1"
+        android:layout_alignLeft="@+id/tv_intro_1"
+        android:layout_marginTop="40dp"
+        android:background="#5dbb96"></View>
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical"
+        android:layout_alignLeft="@+id/tv_intro_1"
+        android:layout_marginTop="54dp">
+        
+        
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <TextView
+                android:fontFamily="@font/notosans_regular"
+                android:text="몸무게"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            
+            
+            <EditText
+                android:id="@+id/edit_weight"
+                android:layout_marginLeft="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
+            
+        </LinearLayout>
+    
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        
+            <TextView
+                android:fontFamily="@font/notosans_regular"
+                android:text="키"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+        
+        
+            <EditText
+                android:id="@+id/edit_height"
+                android:layout_marginLeft="40dp"
+                android:layout_gravity="center_vertical"
+    
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
+    
+        </LinearLayout>
+    
+    
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        
+            <TextView
+                android:fontFamily="@font/notosans_regular"
+                android:text="성별"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+        
+        
+            <EditText
+                android:id="@+id/edit_sex"
+                android:layout_marginLeft="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
+    
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

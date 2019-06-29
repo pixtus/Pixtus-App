@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="com.mash.up.pixtus_app.ui.create.CreateStep1Activity">
+	
+	<android.support.v7.widget.Toolbar
+		android:layout_width="match_parent"
+		android:layout_height="56dp">
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/notosans_medium"
+			android:text="생성하기"
+			android:textColor="#000"
+			android:textSize="20sp" />
+		
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			
+			<TextView
+				android:id="@+id/tv_next"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true"
+				android:layout_marginRight="20dp"
+				android:fontFamily="@font/notosans_medium"
+				android:text="다음"
+				android:textColor="@drawable/bg_text_step"
+				android:textSize="16sp" />
+		</RelativeLayout>
+	
+	</android.support.v7.widget.Toolbar>
+	
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#c4c4c4">
+	
+	</View>
+	
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		
+		<!-- TODO: Update blank fragment layout -->
+		<TextView
+			android:id="@+id/tv_intro_1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="16dp"
+			android:layout_marginTop="16dp"
+			android:fontFamily="@font/notosans_regular"
+			android:text="정확한 계산을 위해\n정보값을 입력해 주세요." />
+		
+		
+		<View
+			android:id="@+id/view"
+			android:layout_width="8dp"
+			android:layout_height="8dp"
+			android:layout_below="@+id/tv_intro_1"
+			android:layout_alignLeft="@+id/tv_intro_1"
+			android:layout_marginTop="40dp"
+			android:background="#5dbb96"></View>
+		
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/view"
+			android:layout_marginRight="16dp"
+			android:orientation="vertical"
+			android:layout_alignLeft="@+id/tv_intro_1"
+			android:layout_marginTop="54dp">
+			
+			
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+				
+				<TextView
+					android:fontFamily="@font/notosans_regular"
+					android:text="몸무게"
+					android:layout_gravity="center_vertical"
+					android:textColor="@color/colorPrimary"
+					android:textSize="16sp"
+					android:layout_width="50dp"
+					android:layout_height="wrap_content" />
+				
+				
+				<EditText
+					android:id="@+id/edit_weight"
+					android:layout_marginLeft="40dp"
+					android:textColorHighlight="@color/C_d9d9d9"
+					android:textSize="16sp"
+					android:hint="몸무게"
+					android:theme="@style/EditTextStyle"
+					android:layout_gravity="center_vertical"
+					android:layout_width="match_parent"
+					android:layout_height="48dp" />
+			
+			</LinearLayout>
+			
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+				
+				<TextView
+					android:fontFamily="@font/notosans_regular"
+					android:text="키"
+					android:layout_gravity="center_vertical"
+					android:textColor="@color/colorPrimary"
+					android:textSize="16sp"
+					android:layout_width="50dp"
+					android:layout_height="wrap_content" />
+				
+				
+				<EditText
+					android:theme="@style/EditTextStyle"
+					android:id="@+id/edit_height"
+					android:hint="키"
+					android:textSize="16sp"
+					android:layout_marginLeft="40dp"
+					android:layout_gravity="center_vertical"
+					android:layout_width="match_parent"
+					android:layout_height="48dp" />
+			
+			</LinearLayout>
+			
+			
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+				
+				<TextView
+					android:fontFamily="@font/notosans_regular"
+					android:text="성별"
+					android:textColor="@color/colorPrimary"
+					android:textSize="16sp"
+					android:layout_gravity="center_vertical"
+					android:layout_width="50dp"
+					android:layout_height="wrap_content" />
+				
+				<LinearLayout
+					android:layout_marginLeft="40dp"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+					
+					
+					<RelativeLayout
+						android:id="@+id/layout_male"
+						android:layout_width="0dp"
+						android:layout_weight="1"
+						android:layout_marginRight="12dp"
+						android:layout_height="48dp">
+						
+						<TextView
+							android:id="@+id/tv_male"
+							android:text="남"
+							android:textSize="16sp"
+							android:layout_marginLeft="4dp"
+							android:textColor="@drawable/bg_text_step"
+							android:layout_centerVertical="true"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content" />
+						<View
+							android:id="@+id/view_male"
+							android:layout_alignParentBottom="true"
+							android:background="@drawable/bg_text_view"
+							android:layout_width="match_parent"
+							android:layout_marginBottom="4dp"
+							android:layout_marginLeft="4dp"
+							android:layout_height="2dp">
+						</View>
+					</RelativeLayout>
+					
+					
+					<RelativeLayout
+						android:id="@+id/layout_female"
+						android:layout_width="0dp"
+						android:layout_weight="1"
+						android:layout_height="48dp">
+						
+						<TextView
+							android:id="@+id/tv_female"
+							android:text="여"
+							android:textSize="16sp"
+							android:layout_marginLeft="4dp"
+							android:textColor="@drawable/bg_text_step"
+							android:layout_centerVertical="true"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content" />
+						
+						<View
+							android:id="@+id/view_female"
+							android:layout_alignParentBottom="true"
+							android:background="@drawable/bg_text_view"
+							android:layout_width="match_parent"
+							android:layout_marginBottom="4dp"
+							android:layout_marginLeft="4dp"
+							android:layout_height="2dp">
+						</View>
+					</RelativeLayout>
+				
+				</LinearLayout>
+				
+				
+				
+			
+			</LinearLayout>
+		</LinearLayout>
+	</RelativeLayout>
+
+</LinearLayout>
