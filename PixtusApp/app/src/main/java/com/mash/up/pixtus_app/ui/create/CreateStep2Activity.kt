@@ -1,5 +1,6 @@
 package com.mash.up.pixtus_app.ui.create
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -7,6 +8,7 @@ import android.text.TextWatcher
 import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
+import com.mash.up.pixtus_app.ui.MainActivity
 import com.mash.up.pixtus_app.utils.showToastMessageString
 import kotlinx.android.synthetic.main.activity_create_step2.*
 import kotlinx.android.synthetic.main.activity_create_step2.tv_next
@@ -22,7 +24,9 @@ class CreateStep2Activity : BaseActivity() {
 
         tv_next.setOnClickListener {
             if (tv_next.isSelected){
-                showToastMessageString("굿.")
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
             } else
                 showToastMessageString("정보를 다 입력해주세요.")
         }
