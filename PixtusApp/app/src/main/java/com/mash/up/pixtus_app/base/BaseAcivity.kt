@@ -14,8 +14,6 @@ import com.mash.up.pixtus_app.R
 
 abstract class BaseActivity : AppCompatActivity(){
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //TODO something
@@ -31,4 +29,5 @@ abstract class BaseActivity : AppCompatActivity(){
     override fun onDestroy() {
         super.onDestroy()
     }
+
 }

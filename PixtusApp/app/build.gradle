@@ -19,10 +19,16 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
     }
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
@@ -30,4 +36,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0' // 레트로핏 라이브러리
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0' // 레트로핏과 rx 같이 쓸수있게 도와주는 라이브러리
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0' // 네트워크 통신을 할때 json을 어떻게 받아올지
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1' // 네트워크할 때 로그를 보기위한 라이브러리
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.0' // rxJava 등록
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1' // rxjava와 안드로이드와 같이 병행할수 있게 도와주는 라이브러리 (안드로이드 스케줄러)
 }
