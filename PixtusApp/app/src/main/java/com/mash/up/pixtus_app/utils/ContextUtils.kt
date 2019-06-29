@@ -11,7 +11,6 @@ fun Context?.showToastMessage(id: Int) {
     Toast.makeText(this.applicationContext, this.resources.getString(id), Toast.LENGTH_SHORT).show()
 }
 
-
 fun Fragment?.showToastMessage(id: Int) {
     if (this == null) return
     Toast.makeText(this.context?.applicationContext, this.resources.getString(id), Toast.LENGTH_SHORT).show()
