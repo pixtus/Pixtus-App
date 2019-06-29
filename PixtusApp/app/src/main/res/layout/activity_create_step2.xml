@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="com.mash.up.pixtus_app.ui.create.CreateStep2Activity">
+	
+	
+	
+	<android.support.v7.widget.Toolbar
+		android:layout_width="match_parent"
+		android:layout_height="56dp">
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/notosans_medium"
+			android:text="생성하기"
+			android:textColor="#000"
+			android:textSize="20sp" />
+		
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			
+			<TextView
+				android:id="@+id/tv_next"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true"
+				android:layout_marginRight="20dp"
+				android:fontFamily="@font/notosans_medium"
+				android:text="다음"
+				android:textColor="@drawable/bg_text_step"
+				android:textSize="16sp" />
+		</RelativeLayout>
+	
+	</android.support.v7.widget.Toolbar>
+	
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#c4c4c4">
+	</View>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		
+		<LinearLayout
+			android:layout_centerInParent="true"
+			android:layout_width="wrap_content"
+			android:orientation="vertical"
+			android:layout_height="wrap_content">
+			
+			<ImageView
+				android:layout_gravity="center_horizontal"
+				android:id="@+id/iv_main"
+				android:layout_width="200dp"
+				android:layout_height="200dp"
+				android:src="@drawable/back_main"/>
+			
+			<TextView
+				android:fontFamily="@font/notosans_medium"
+				android:textStyle="bold"
+				android:layout_gravity="center_horizontal"
+				android:textColor="@color/colorBlack"
+				android:textSize="20sp"
+				android:text="픽터스"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			
+			<TextView
+				android:fontFamily="@font/notosans_medium"
+				android:textStyle="bold"
+				android:layout_gravity="center_horizontal"
+				android:textColor="#525252"
+				android:textSize="12sp"
+				android:layout_marginTop="16dp"
+				android:gravity="center"
+				android:text="곳으로 풀이 이상이 그와 미인을 고행을 쓸쓸하랴?\n이상 풍부하게 같은 소금이라 열매를 있으랴?"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			
+			<EditText
+				android:id="@+id/edit_nickname"
+				android:textSize="16sp"
+				android:hint="픽터스의 이름을 지어주세요."
+				android:layout_marginTop="44dp"
+				android:theme="@style/EditTextStyle"
+				android:layout_gravity="center_horizontal"
+				android:layout_width="200dp"
+				android:layout_height="48dp" />
+			
+		</LinearLayout>
+		
+	</RelativeLayout>
+</LinearLayout>
