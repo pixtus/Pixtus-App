@@ -14,13 +14,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initToolbar(toolbar as Toolbar)
 
-        iv_main.setBackgroundResource(R.drawable.image_run)
     }
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        (iv_main.background as AnimationDrawable)?.start()
-    }
 }
