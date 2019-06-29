@@ -16,7 +16,7 @@ class SplashActivity : BaseActivity() {
 
 
         Handler().postDelayed({
-            val intent = Intent(this, CreateStep1Activity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }, 1500)
