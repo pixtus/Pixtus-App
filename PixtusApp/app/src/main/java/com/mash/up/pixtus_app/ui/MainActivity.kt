@@ -2,6 +2,8 @@ package com.mash.up.pixtus_app.ui
 
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.support.design.widget.BottomSheetDialog
+import android.support.design.widget.BottomSheetDialogFragment
 import android.support.v7.widget.Toolbar
 import com.bumptech.glide.Glide
 import android.view.View
@@ -28,6 +30,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         when(id){
             R.id.btn_more ->{
                 anim()
+                com.mash.up.pixtus_app.ui.view.Dialog.BottomSheetDialog().show(supportFragmentManager,"")
                 Toast.makeText(this, "Floating Action Button", Toast.LENGTH_SHORT).show()
             }
             R.id.fab1 -> {
@@ -46,6 +49,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         initUI()
+
     }
 
 
