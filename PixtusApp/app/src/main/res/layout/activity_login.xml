@@ -48,6 +48,7 @@
             android:inputType="textPersonName"
             android:text="나와 함께 뛰어줄 친구"
             android:textSize="12sp"
+        android:fontFamily="@font/notosans_regular"
             android:gravity="center"
             android:ems="10"
             android:id="@+id/editText" app:layout_constraintEnd_toEndOf="parent"

@@ -2,6 +2,8 @@ package com.mash.up.pixtus_app.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.View
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -10,10 +12,11 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
+import com.mash.up.pixtus_app.ui.create.CreateStep1Activity
 import kotlinx.android.synthetic.main.activity_login.*
 
 
-class LoginActivity : BaseActivity(), View.OnClickListener {
+class   LoginActivity : BaseActivity(), View.OnClickListener {
     private var RC_SIGN_IN= 1111
     lateinit var gso : GoogleSignInOptions
     val mGoogleSignInClient by lazy {
@@ -48,9 +51,10 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) run {
-            var task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
+        if (requestCode == RC_SIGN_IN) {
+            val intent = Intent(this, CreateStep1Activity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -65,7 +69,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun updateUI(acct : GoogleSignInAccount?){
-
 
     }
 }

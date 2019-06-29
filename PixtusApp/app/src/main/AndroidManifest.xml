@@ -10,10 +10,6 @@
             android:supportsRtl="true"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         
-        <activity
-                android:name=".ui.create.CreateStep1Activity"
-                android:label="@string/title_activity_create_step"
-                android:theme="@style/NoActionBar"></activity>
         <activity android:name=".ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -25,6 +21,7 @@
         <activity android:name=".ui.MainActivity"></activity>
         <activity android:name=".ui.LoginActivity"></activity>
         <activity android:name=".ui.create.CreateStep2Activity"></activity>
+        <activity android:name=".ui.create.CreateStep1Activity"></activity>
     </application>
 
 </manifest>
