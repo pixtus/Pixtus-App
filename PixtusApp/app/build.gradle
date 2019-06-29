@@ -28,7 +28,7 @@ android {
 }
 
 dependencies {
-
+    // TODO https://medium.com/@jsuch2362/gradle-dependency-%EB%B6%84%EB%A6%AC%ED%95%98%EA%B8%B0-eb0c7c794b9c 적용
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
