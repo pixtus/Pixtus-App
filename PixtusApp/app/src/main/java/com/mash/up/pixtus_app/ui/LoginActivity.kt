@@ -53,7 +53,8 @@ class   LoginActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
-            val intent = Intent(this, CreateStep1Activity::class.java)
+            //val intent = Intent(this, CreateStep1Activity::class.java)
+            val intent = Intent(this, StoryActivity::class.java)
             startActivity(intent)
             finish()
             var task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)

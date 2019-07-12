@@ -25,9 +25,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         var id = v?.id
         when(id){
             R.id.btn_more ->{
-                anim()
                 com.mash.up.pixtus_app.ui.view.Dialog.BottomSheetDialog().show(supportFragmentManager,"")
-
             }
         }
     }
@@ -37,7 +35,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         initUI()
-
     }
 
 
@@ -46,21 +43,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
         var dateFormat = SimpleDateFormat("MM.dd / EEE")
         tv_date.text = dateFormat.format(Date()).toString()
-
         btn_more.setOnClickListener(this)
-    }
-
-    fun anim(){
-        if(isFabOpen) buttonOpen()
-        else buttonClose()
-    }
-
-    private fun buttonOpen(){
-
-        isFabOpen = false
-    }
-    private fun buttonClose(){
-
-        isFabOpen = true
     }
 }
