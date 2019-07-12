@@ -14,32 +14,25 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_workout_list.*
 
 class WorkoutListActivity : AppCompatActivity() {
-    var list: List<Excercises> = arrayListOf()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout_list)
-        initList()
 
         NetworkCore.getNetworkCore<PixtusApi>()
             .getExcercises()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                list = it
+                rv_workout_list.apply {
+                    layoutManager = LinearLayoutManager(this@WorkoutListActivity)
+                    adapter = RecyclerViewAdapter(it)
+                }
             }, {
                 it.printStackTrace()
             })
 
         btn_workout_back.setOnClickListener {
             finish()
-        }
-    }
-
-    fun initList() {
-        rv_workout_list.apply {
-            layoutManager = LinearLayoutManager(this@WorkoutListActivity)
-            adapter = RecyclerViewAdapter(list)
         }
     }
 }

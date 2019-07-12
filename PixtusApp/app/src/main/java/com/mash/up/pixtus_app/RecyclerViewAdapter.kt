@@ -30,8 +30,7 @@ class RecyclerViewAdapter(val list: List<Excercises>) : RecyclerView.Adapter<Rec
         holder.view.setOnClickListener {
 
             val nextIntent = Intent(holder.view.context, WorkoutDetailActivity::class.java)
-            nextIntent.putExtra("workout_name", list.get(position).name)
-            Log.d("gggggg", list.get(0).name)
+            nextIntent.putExtra("workout_id", list.get(position).exerciseId)
             holder.view.context.startActivity(nextIntent)
         }
     }

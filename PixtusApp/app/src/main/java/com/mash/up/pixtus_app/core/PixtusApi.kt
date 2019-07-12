@@ -22,6 +22,16 @@ interface PixtusApi {
 
     @GET("/exercises") // 리턴타입
     fun getExcercises() : Single<List<Excercises>>
+
+    @POST("/workout")
+    fun sendWork(@Body body: HashMap<String, Any>) : Completable
+    /*
+    * {
+    "exerciseId": "2",
+    "time": "2",
+    "uid": "abcd1234567"
+}
+    * */
 }
 
 data class Excercises(

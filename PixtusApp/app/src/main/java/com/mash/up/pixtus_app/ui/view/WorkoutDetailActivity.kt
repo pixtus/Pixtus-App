@@ -8,17 +8,21 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_workout_detail.*
 import android.support.v4.os.HandlerCompat.postDelayed
+import android.util.Log
+import com.mash.up.pixtus_app.core.NetworkCore
+import com.mash.up.pixtus_app.core.PixtusApi
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
 class WorkoutDetailActivity : AppCompatActivity() {
     var flag = 0
     var handler: Handler? = null
-
     var MillisecondTime: Long  = 0
     var StartTime: Long = 0
     var TimeBuff: Long = 0
     var UpdateTime: Long = 0
-
+    var StopTime : Long = 0
     var Seconds : Long = 0
     var Minutes : Long= 0
     var MilliSeconds : Long= 0
@@ -54,10 +58,26 @@ class WorkoutDetailActivity : AppCompatActivity() {
             } else if(flag == 1) {
                 TimeBuff += MillisecondTime
                 handler?.removeCallbacks(runnable)
+                StopTime = SystemClock.uptimeMillis()
                 btn_timer_start.setImageResource(com.mash.up.pixtus_app.R.drawable.btn_check)
 
             } else if(flag == 2){
+                StopTime = StopTime - StartTime
+                //서버에 시간 요청 보내기
 
+                var params:HashMap<String, Any> = HashMap<String, Any>()
+                params.put("exerciseId", "2")
+                params.put("time", StopTime)
+                params.put("uid", "abcd123456")//일단..
+
+                NetworkCore.getNetworkCore<PixtusApi>()
+                    .sendWork(params)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                    }, {
+                        it.printStackTrace()
+                    })
             }
         }
     }
