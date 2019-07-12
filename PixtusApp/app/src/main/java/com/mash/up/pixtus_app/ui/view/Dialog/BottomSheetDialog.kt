@@ -33,7 +33,7 @@ class BottomSheetDialog : BottomSheetDialogFragment{
                 startActivity(nextIntent)
             }
             bottonSheet_history.setOnClickListener{
-                Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "서비스 준비중 입니다", Toast.LENGTH_SHORT).show()
             }
         }
         return view
