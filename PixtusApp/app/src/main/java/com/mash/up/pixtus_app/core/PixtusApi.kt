@@ -20,7 +20,7 @@ interface PixtusApi {
     fun sendMeal(@Body body: HashMap<String,Any>) : Completable
 
 
-    @GET("/excercises") // 리턴타입
+    @GET("/exercises") // 리턴타입
     fun getExcercises() : Single<List<Excercises>>
 }
 
