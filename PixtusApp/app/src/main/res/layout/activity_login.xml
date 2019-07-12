@@ -5,6 +5,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="#ffffff"
+	android:id="@+id/root_layout"
 	tools:context="com.mash.up.pixtus_app.ui.LoginActivity">
 	
 	

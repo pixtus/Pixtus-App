@@ -21,10 +21,17 @@ interface PixtusApi {
 
 
     @GET("/exercises") // 리턴타입
-    fun getExcercises() : Single<List<Excercises>>
+    fun getExercises() : Single<List<Exercises>>
+
+
+    @POST("/user/sign-in")
+    fun login(@Body body: HashMap<String,Any>) : Completable
+
+    @POST("/user/sign-up")
+    fun register(@Body body: HashMap<String,Any>) : Completable
 }
 
-data class Excercises(
+data class Exercises(
     var exerciseId : Int,
     var name : String,
     var kcal : Int
