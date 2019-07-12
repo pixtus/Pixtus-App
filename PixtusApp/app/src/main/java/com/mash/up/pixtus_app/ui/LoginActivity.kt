@@ -17,7 +17,7 @@ import com.mash.up.pixtus_app.ui.create.CreateStep1Activity
 import kotlinx.android.synthetic.main.activity_login.*
 
 
-class   LoginActivity : BaseActivity() {
+class  LoginActivity : BaseActivity() {
     private var RC_SIGN_IN= 1111
     lateinit var gso : GoogleSignInOptions
     val mGoogleSignInClient by lazy {
