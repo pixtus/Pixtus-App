@@ -45,6 +45,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                //TODO it.characterName 이렇게 참조해주시면 됩니당
+                //TODO 보통 fun setData(model : Main) 이런함수(데이터를 받아서 뷰에다가 뿌려주는 함수)를 만들어서 깔끔하게 네트워크 통신 로직부븐을 정리 할 수있어욤
                 Log.d("main_data", it.toString())
             }, {
                 it.printStackTrace()
