@@ -20,15 +20,12 @@ import java.util.*
 
 class MainActivity : BaseActivity(), View.OnClickListener {
     private var isFabOpen : Boolean = false
-    var fab_open : Animation?= null
-    var fab_close : Animation?= null
 
     override fun onClick(v: View?) {
         var id = v?.id
         when(id){
             R.id.btn_more ->{
                 com.mash.up.pixtus_app.ui.view.Dialog.BottomSheetDialog().show(supportFragmentManager,"")
-                Toast.makeText(this, "Floating Action Button", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -38,7 +35,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         initUI()
-
     }
 
 
@@ -47,10 +43,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
         var dateFormat = SimpleDateFormat("MM.dd / EEE")
         tv_date.text = dateFormat.format(Date()).toString()
-
-        fab_open = AnimationUtils.loadAnimation(this, R.anim.fab_open)
-        fab_close = AnimationUtils.loadAnimation(this, R.anim.fab_close)
-
         btn_more.setOnClickListener(this)
     }
 }

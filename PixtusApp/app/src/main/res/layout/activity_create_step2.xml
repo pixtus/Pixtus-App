@@ -86,13 +86,15 @@
 			
 			<EditText
 				android:id="@+id/edit_nickname"
-				android:textSize="16sp"
-				android:hint="픽터스의 이름을 지어주세요."
-				android:layout_marginTop="44dp"
-				android:theme="@style/EditTextStyle"
-				android:layout_gravity="center_horizontal"
 				android:layout_width="200dp"
-				android:layout_height="48dp" />
+				android:layout_height="48dp"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="44dp"
+				android:hint="픽터스의 이름을 지어주세요."
+				android:inputType="text"
+				android:maxLines="1"
+				android:textSize="16sp"
+				android:theme="@style/EditTextStyle" />
 			
 		</LinearLayout>
 		

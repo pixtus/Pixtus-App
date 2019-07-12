@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="com.mash.up.pixtus_app.ui.create.CreateStep2Activity">
+	
+	<android.support.v7.widget.Toolbar
+		android:layout_width="match_parent"
+		android:layout_height="56dp">
+		
+		<ImageButton
+			android:id="@+id/btn_workout_back"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:backgroundTint="#0000"
+			android:src="@drawable/ic_chevron_left_black_24dp" />
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/notosans_medium"
+			android:text="운동하기"
+			android:textColor="#000"
+			android:textSize="20sp" />
+	
+	</android.support.v7.widget.Toolbar>
+	
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#c4c4c4"></View>
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:weightSum="9">
+		
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/rv_workout_list"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="8"></android.support.v7.widget.RecyclerView>
+		
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#c4c4c4"></View>
+		
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="#f4f4f4">
+			
+			<ImageView
+				android:layout_width="95dp"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:src="@drawable/command_more_workout"
+				android:layout_centerHorizontal="true"
+				android:layout_centerInParent="true"
+				/>
+			
+			
+		</RelativeLayout>
+	</LinearLayout>
+
+</LinearLayout>

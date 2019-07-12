@@ -24,8 +24,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.MainActivity">
-        
+    
             <View
+                android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="156dp"
@@ -33,12 +34,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        
+    
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="wrap_content"
                 android:layout_height="156dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_gif"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -247,5 +250,8 @@
         android:src="@mipmap/btn_more"
         android:elevation="0dp"
         app:borderWidth="0dp"
-        app:elevation="0dp"/>
+        app:elevation="0dp"
+        android:stateListAnimator="@null"
+        android:background="#00000000"
+        />
 </FrameLayout>
