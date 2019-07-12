@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".ui.MainActivity"></activity>
         <activity android:name=".ui.LoginActivity"></activity>
+        <activity android:name=".ui.StoryActivity"></activity>
         <activity android:name=".ui.create.CreateStep2Activity"></activity>
         <activity android:name=".ui.create.CreateStep1Activity"></activity>
     </application>
