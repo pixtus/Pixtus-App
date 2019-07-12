@@ -53,8 +53,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }, {
                 it.printStackTrace()
             })
-
-        initUI()
     }
 
 
