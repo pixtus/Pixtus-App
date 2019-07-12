@@ -10,7 +10,7 @@ import com.mash.up.pixtus_app.WorkOut
 import kotlinx.android.synthetic.main.activity_workout_list.*
 
 class WorkoutListActivity : AppCompatActivity() {
-    val list: MutableList<Any> = arrayListOf()
+    val list: MutableList<WorkOut> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
