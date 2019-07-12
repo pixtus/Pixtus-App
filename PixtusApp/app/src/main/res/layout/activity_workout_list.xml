@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="com.mash.up.pixtus_app.ui.create.CreateStep2Activity">
+	
+	<android.support.v7.widget.Toolbar
+		android:layout_width="match_parent"
+		android:layout_height="56dp">
+		
+		<ImageButton
+			android:id="@+id/btn_workout_back"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/ic_chevron_left_black_24dp"
+			android:backgroundTint="#0000"/>
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/notosans_medium"
+			android:text="운동하기"
+			android:textColor="#000"
+			android:textSize="20sp" />
+	
+	</android.support.v7.widget.Toolbar>
+	
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#c4c4c4">
+	</View>
+	
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/rv_workout_list"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		
+	</android.support.v7.widget.RecyclerView>
+</LinearLayout>
