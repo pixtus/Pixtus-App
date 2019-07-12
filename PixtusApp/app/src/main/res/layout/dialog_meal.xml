@@ -55,7 +55,7 @@
 		tools:layout_editor_absoluteX="-16dp">
 		
 		<ImageButton
-			android:id="@+id/imageButton3"
+			android:id="@+id/btn_dialog_meal_sub"
 			android:layout_width="48dp"
 			android:layout_height="48dp"
 			android:layout_marginEnd="20dp"
@@ -66,7 +66,7 @@
 			app:srcCompat="@mipmap/btn_minus_un" />
 		
 		<ImageButton
-			android:id="@+id/imageButton4"
+			android:id="@+id/btn_dialog_meal_add"
 			android:layout_width="48dp"
 			android:layout_height="48dp"
 			android:layout_marginStart="20dp"

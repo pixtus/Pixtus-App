@@ -250,5 +250,8 @@
         android:src="@mipmap/btn_more"
         android:elevation="0dp"
         app:borderWidth="0dp"
-        app:elevation="0dp"/>
+        app:elevation="0dp"
+        android:stateListAnimator="@null"
+        android:background="#00000000"
+        />
 </FrameLayout>
