@@ -18,30 +18,27 @@ import io.reactivex.schedulers.Schedulers
 class WorkoutDetailActivity : AppCompatActivity() {
     var flag = 0
     var handler: Handler? = null
-    var MillisecondTime: Long  = 0
+    var MillisecondTime: Long = 0
     var StartTime: Long = 0
     var TimeBuff: Long = 0
     var UpdateTime: Long = 0
-    var StopTime : Long = 0
-    var Seconds : Long = 0
-    var Minutes : Long= 0
-    var MilliSeconds : Long= 0
+    var StopTime: Long = 0
+    var Seconds: Long = 0
+    var Minutes: Long = 0
+    var MilliSeconds: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.mash.up.pixtus_app.R.layout.activity_workout_detail)
 
         initUI()
-
-        if (intent.hasExtra("workout_name")) {
-            val str = intent.getStringExtra("workout_name")
-            tool_workout_name.text = str
-            when (str) {
-                //gif파일 바꿔주기
-                "축구" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixel_best).into(iv_workout_detail)
-                "자전거" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixel_best).into(iv_workout_detail)
-                "수영" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixel_best).into(iv_workout_detail)
-            }
+        var str = intent.getStringExtra("workout_id")
+        tool_workout_name.text = intent.getStringExtra("workout_name")
+        when (str) {
+            //gif파일 바꿔주기
+            //"축구" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixel_best).into(iv_workout_detail)
+            //"자전거" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixel_best).into(iv_workout_detail)
+            //"수영" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixel_best).into(iv_workout_detail)
         }
 
         btn_workout_back.setOnClickListener {
@@ -55,18 +52,22 @@ class WorkoutDetailActivity : AppCompatActivity() {
 
                 flag = 1
                 btn_timer_start.setImageResource(com.mash.up.pixtus_app.R.drawable.btn_stop)
-            } else if(flag == 1) {
+            } else if (flag == 1) {
                 TimeBuff += MillisecondTime
                 handler?.removeCallbacks(runnable)
                 StopTime = SystemClock.uptimeMillis()
+                flag = 2
                 btn_timer_start.setImageResource(com.mash.up.pixtus_app.R.drawable.btn_check)
 
-            } else if(flag == 2){
+            } else if (flag == 2) {
+                Log.d("time1", StartTime.toString())
+                Log.d("time2", StopTime.toString())
                 StopTime = StopTime - StartTime
-                //서버에 시간 요청 보내기
+                Log.d("time3", StopTime.toString())
 
-                var params:HashMap<String, Any> = HashMap<String, Any>()
-                params.put("exerciseId", "2")
+                //서버에 시간 요청 보내기
+                var params: HashMap<String, Any> = HashMap<String, Any>()
+                params.put("exerciseId", str)
                 params.put("time", StopTime)
                 params.put("uid", "abcd123456")//일단..
 
