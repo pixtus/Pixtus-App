@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
 import android.support.design.widget.BottomSheetDialogFragment
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import com.bumptech.glide.Glide
 import android.view.View
 import android.view.animation.Animation
@@ -13,6 +14,11 @@ import android.widget.Toast
 import com.google.gson.annotations.SerializedName
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
+import com.mash.up.pixtus_app.core.Main
+import com.mash.up.pixtus_app.core.NetworkCore
+import com.mash.up.pixtus_app.core.PixtusApi
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
@@ -34,7 +40,19 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        NetworkCore.getNetworkCore<PixtusApi>()
+            .getMain()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.d("main_data", it.toString())
+            }, {
+                it.printStackTrace()
+            })
+
         initUI()
+
+
     }
 
 
