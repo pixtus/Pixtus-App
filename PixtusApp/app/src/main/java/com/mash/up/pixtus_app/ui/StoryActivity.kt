@@ -52,11 +52,12 @@ class StoryActivity : BaseActivity() {
             tv_story.setTextColor(Color.parseColor("#5dbb96"))
             tv_story.text = story_string[4]
             Glide.with(this).asGif().load(R.raw.pixtus_story04).into(imageView3)
-            current_step = 5
+            current_step = 4
         }
 
         tv_together.setOnClickListener() {
-            moveNextPage()
+            if(current_step == 4)
+                moveNextPage()
         }
     }
 
