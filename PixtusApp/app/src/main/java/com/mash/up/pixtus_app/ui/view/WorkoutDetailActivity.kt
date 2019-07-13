@@ -34,11 +34,11 @@ class WorkoutDetailActivity : AppCompatActivity() {
         initUI()
         var str = intent.getStringExtra("workout_id")
         tool_workout_name.text = intent.getStringExtra("workout_name")
-        when (str) {
+        when (intent.getStringExtra("workout_name")) {
             //gif파일 바꿔주기
-            //"축구" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixel_best).into(iv_workout_detail)
-            //"자전거" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixel_best).into(iv_workout_detail)
-            //"수영" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixel_best).into(iv_workout_detail)
+            "수영" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixtus_swim).into(iv_workout_detail)//걷기
+            "축구" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixtus_ball_).into(iv_workout_detail)//축구
+            "자전거" -> Glide.with(this).asGif().load(com.mash.up.pixtus_app.R.raw.pixtus_bike_250px).into(iv_workout_detail)//자전거
         }
 
         btn_workout_back.setOnClickListener {
@@ -49,7 +49,6 @@ class WorkoutDetailActivity : AppCompatActivity() {
             if (flag == 0) {
                 StartTime = SystemClock.uptimeMillis()
                 handler?.postDelayed(runnable, 0)
-
                 flag = 1
                 btn_timer_start.setImageResource(com.mash.up.pixtus_app.R.drawable.btn_stop)
             } else if (flag == 1) {
@@ -58,17 +57,14 @@ class WorkoutDetailActivity : AppCompatActivity() {
                 StopTime = SystemClock.uptimeMillis()
                 flag = 2
                 btn_timer_start.setImageResource(com.mash.up.pixtus_app.R.drawable.btn_check)
-
             } else if (flag == 2) {
-                Log.d("time1", StartTime.toString())
-                Log.d("time2", StopTime.toString())
                 StopTime = StopTime - StartTime
-                Log.d("time3", StopTime.toString())
+                Log.d("하하", StopTime.toString())
 
                 //서버에 시간 요청 보내기
                 var params: HashMap<String, Any> = HashMap<String, Any>()
                 params.put("exerciseId", str)
-                params.put("time", StopTime)
+                params.put("time", StopTime/1000)
                 params.put("uid", "abcd123456")//일단..
 
                 NetworkCore.getNetworkCore<PixtusApi>()

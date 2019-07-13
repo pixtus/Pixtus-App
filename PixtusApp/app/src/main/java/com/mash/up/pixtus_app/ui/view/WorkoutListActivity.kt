@@ -3,10 +3,8 @@ package com.mash.up.pixtus_app.ui.view
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.RecyclerViewAdapter
-import com.mash.up.pixtus_app.core.Excercises
 import com.mash.up.pixtus_app.core.NetworkCore
 import com.mash.up.pixtus_app.core.PixtusApi
 import io.reactivex.android.schedulers.AndroidSchedulers
