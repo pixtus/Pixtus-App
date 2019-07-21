@@ -51,173 +51,199 @@
 		android:layout_height="match_parent">
 		
 		<!-- TODO: Update blank fragment layout -->
+		
 		<TextView
 			android:id="@+id/tv_intro_1"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="16dp"
-			android:layout_marginTop="16dp"
+			android:layout_marginTop="32dp"
+			android:fontFamily="@font/notosans_bold"
+			android:text="픽미픽미픽미업"
+			android:textColor="#5dbb96"
+			android:textSize="18sp" />
+		
+		<TextView
+			android:id="@+id/tv_intro_2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignBaseline="@id/tv_intro_1"
+			android:layout_marginTop="32dp"
+			android:layout_toRightOf="@+id/tv_intro_1"
 			android:fontFamily="@font/notosans_regular"
-			android:text="정확한 계산을 위해\n정보값을 입력해 주세요." />
+			android:text="과 함께"
+			android:textColor="#525252"
+			android:textSize="18sp" />
 		
-		
-		<View
-			android:id="@+id/view"
-			android:layout_width="8dp"
-			android:layout_height="8dp"
+		<TextView
+			android:id="@+id/tv_intro_3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
 			android:layout_below="@+id/tv_intro_1"
-			android:layout_alignLeft="@+id/tv_intro_1"
-			android:layout_marginTop="40dp"
-			android:background="#5dbb96"></View>
+			android:layout_alignBaseline="@id/tv_intro_1"
+			android:layout_alignLeft="@id/tv_intro_1"
+			android:fontFamily="@font/notosans_regular"
+			android:text="\n운동 할 당신은 어떤 사람 인가요?"
+			android:textColor="#525252"
+			android:textSize="18sp" />
+		
+		
+		<TextView
+			android:id="@+id/tv_intro_4"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/tv_intro_3"
+			android:layout_marginLeft="16dp"
+			android:layout_marginTop="8dp"
+			android:fontFamily="@font/notosans_regular"
+			android:text="정확한 계산을 위해 정보를 입력해 주세요."
+			android:textSize="12sp" />
 		
 		
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_below="@+id/view"
-			android:layout_marginRight="16dp"
-			android:orientation="vertical"
+			android:layout_below="@+id/tv_intro_4"
 			android:layout_alignLeft="@+id/tv_intro_1"
-			android:layout_marginTop="54dp">
+			android:layout_marginTop="38dp"
+			android:layout_marginRight="16dp"
+			android:orientation="vertical">
 			
 			
 			<LinearLayout
-				android:orientation="horizontal"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
 				
 				<TextView
+					android:layout_width="50dp"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
 					android:fontFamily="@font/notosans_regular"
 					android:text="몸무게"
-					android:layout_gravity="center_vertical"
 					android:textColor="@color/colorPrimary"
-					android:textSize="16sp"
-					android:layout_width="50dp"
-					android:layout_height="wrap_content" />
+					android:textSize="16sp" />
 				
 				
 				<EditText
 					android:id="@+id/edit_weight"
+					android:layout_width="match_parent"
+					android:layout_height="48dp"
+					android:layout_gravity="center_vertical"
 					android:layout_marginLeft="40dp"
-					android:textColorHighlight="@color/C_d9d9d9"
-					android:textSize="16sp"
 					android:hint="몸무게"
 					android:inputType="number"
-					android:theme="@style/EditTextStyle"
-					android:layout_gravity="center_vertical"
-					android:layout_width="match_parent"
-					android:layout_height="48dp" />
+					android:textColorHighlight="@color/C_d9d9d9"
+					android:textSize="16sp"
+					android:theme="@style/EditTextStyle" />
 			
 			</LinearLayout>
 			
 			<LinearLayout
-				android:orientation="horizontal"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
 				
 				<TextView
+					android:layout_width="50dp"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
 					android:fontFamily="@font/notosans_regular"
 					android:text="키"
-					android:layout_gravity="center_vertical"
 					android:textColor="@color/colorPrimary"
-					android:textSize="16sp"
-					android:layout_width="50dp"
-					android:layout_height="wrap_content" />
+					android:textSize="16sp" />
 				
 				
 				<EditText
-					android:theme="@style/EditTextStyle"
 					android:id="@+id/edit_height"
-					android:hint="키"
-					android:textSize="16sp"
-					android:inputType="number"
-					android:layout_marginLeft="40dp"
-					android:layout_gravity="center_vertical"
 					android:layout_width="match_parent"
-					android:layout_height="48dp" />
+					android:layout_height="48dp"
+					android:layout_gravity="center_vertical"
+					android:layout_marginLeft="40dp"
+					android:hint="키"
+					android:inputType="number"
+					android:textSize="16sp"
+					android:theme="@style/EditTextStyle" />
 			
 			</LinearLayout>
 			
 			
 			<LinearLayout
-				android:orientation="horizontal"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
 				
 				<TextView
+					android:layout_width="50dp"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
 					android:fontFamily="@font/notosans_regular"
 					android:text="성별"
 					android:textColor="@color/colorPrimary"
-					android:textSize="16sp"
-					android:layout_gravity="center_vertical"
-					android:layout_width="50dp"
-					android:layout_height="wrap_content" />
+					android:textSize="16sp" />
 				
 				<LinearLayout
-					android:layout_marginLeft="40dp"
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content">
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="40dp">
 					
 					
 					<RelativeLayout
 						android:id="@+id/layout_male"
 						android:layout_width="0dp"
-						android:layout_weight="1"
+						android:layout_height="48dp"
 						android:layout_marginRight="12dp"
-						android:layout_height="48dp">
+						android:layout_weight="1">
 						
 						<TextView
 							android:id="@+id/tv_male"
-							android:text="남"
-							android:textSize="16sp"
-							android:layout_marginLeft="4dp"
-							android:textColor="@drawable/bg_text_step"
-							android:layout_centerVertical="true"
 							android:layout_width="wrap_content"
-							android:layout_height="wrap_content" />
+							android:layout_height="wrap_content"
+							android:layout_centerVertical="true"
+							android:layout_marginLeft="4dp"
+							android:text="남"
+							android:textColor="@drawable/bg_text_step"
+							android:textSize="16sp" />
+						
 						<View
 							android:id="@+id/view_male"
-							android:layout_alignParentBottom="true"
-							android:background="@drawable/bg_text_view"
 							android:layout_width="match_parent"
-							android:layout_marginBottom="4dp"
+							android:layout_height="2dp"
+							android:layout_alignParentBottom="true"
 							android:layout_marginLeft="4dp"
-							android:layout_height="2dp">
-						</View>
+							android:layout_marginBottom="4dp"
+							android:background="@drawable/bg_text_view"></View>
 					</RelativeLayout>
 					
 					
 					<RelativeLayout
 						android:id="@+id/layout_female"
 						android:layout_width="0dp"
-						android:layout_weight="1"
-						android:layout_height="48dp">
+						android:layout_height="48dp"
+						android:layout_weight="1">
 						
 						<TextView
 							android:id="@+id/tv_female"
-							android:text="여"
-							android:textSize="16sp"
-							android:layout_marginLeft="4dp"
-							android:textColor="@drawable/bg_text_step"
-							android:layout_centerVertical="true"
 							android:layout_width="wrap_content"
-							android:layout_height="wrap_content" />
+							android:layout_height="wrap_content"
+							android:layout_centerVertical="true"
+							android:layout_marginLeft="4dp"
+							android:text="여"
+							android:textColor="@drawable/bg_text_step"
+							android:textSize="16sp" />
 						
 						<View
 							android:id="@+id/view_female"
-							android:layout_alignParentBottom="true"
-							android:background="@drawable/bg_text_view"
 							android:layout_width="match_parent"
-							android:layout_marginBottom="4dp"
+							android:layout_height="2dp"
+							android:layout_alignParentBottom="true"
 							android:layout_marginLeft="4dp"
-							android:layout_height="2dp">
-						</View>
+							android:layout_marginBottom="4dp"
+							android:background="@drawable/bg_text_view"></View>
 					</RelativeLayout>
 				
 				</LinearLayout>
-				
-				
-				
+			
 			
 			</LinearLayout>
 		</LinearLayout>

@@ -4,12 +4,14 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat.startActivity
+import android.view.View
 import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
 import com.mash.up.pixtus_app.ui.create.CreateStep1Activity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_story.*
+import kotlinx.android.synthetic.main.activity_story.view.*
 
 class StoryActivity : BaseActivity() {
 
@@ -38,7 +40,7 @@ class StoryActivity : BaseActivity() {
                         tv_narration.text = "PIXTUS"
                     }
                     5->{
-                        tv_together.setTextColor(Color.parseColor("#5dbb96"))
+                        tv_together.setVisibility(View.VISIBLE)
                     }
                 }
             }
@@ -49,7 +51,7 @@ class StoryActivity : BaseActivity() {
 
         skip_btn.setOnClickListener {
             tv_narration.text = "PIXTUS"
-            tv_together.setTextColor(Color.parseColor("#5dbb96"))
+            tv_together.setVisibility(View.VISIBLE)
             tv_story.setTextColor(Color.parseColor("#5dbb96"))
             tv_story.text = story_string[5]
             Glide.with(this).asGif().load(R.raw.pixtus_story04).into(imageView3)
