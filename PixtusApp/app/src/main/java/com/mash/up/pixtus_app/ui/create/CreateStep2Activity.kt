@@ -24,7 +24,8 @@ class CreateStep2Activity : BaseActivity() {
 
         tv_next.setOnClickListener {
             if (tv_next.isSelected){
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, CreateStep3Activity::class.java)
+                intent.putExtra("name", edit_nickname.text.toString())
                 startActivity(intent)
                 finish()
             } else
