@@ -26,6 +26,7 @@
         <activity android:name=".ui.StoryActivity"></activity>
         <activity android:name=".ui.create.CreateStep2Activity"></activity>
         <activity android:name=".ui.create.CreateStep1Activity"></activity>
+        <activity android:name=".ui.MealActivity"></activity>
     </application>
 
 </manifest>
