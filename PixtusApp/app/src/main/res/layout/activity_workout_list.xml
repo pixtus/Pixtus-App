@@ -13,10 +13,10 @@
 		
 		<ImageButton
 			android:id="@+id/btn_workout_back"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:backgroundTint="#0000"
-			android:src="@drawable/ic_chevron_left_black_24dp" />
+			android:layout_width="32dp"
+			android:layout_height="32dp"
+			android:src="@drawable/btn_left"
+			android:background="@android:color/transparent"/>
 		
 		<TextView
 			android:layout_width="wrap_content"
