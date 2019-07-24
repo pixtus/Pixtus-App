@@ -1,5 +1,9 @@
 package com.mash.up.pixtus_app.ui.view
 
+import android.content.Context
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -10,13 +14,12 @@ import kotlinx.android.synthetic.main.activity_workout_detail.*
 import android.view.View
 import android.widget.*
 import com.mash.up.pixtus_app.R
-import com.mash.up.pixtus_app.core.NetworkCore
-import com.mash.up.pixtus_app.core.PixtusApi
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 
-class WorkoutDetailActivity : AppCompatActivity() {
+class WorkoutDetailActivity : AppCompatActivity(), SensorEventListener {
+    var sensorManager: android.hardware.SensorManager? = null
+    var stepDetectorSensor: Sensor? = null
+
     var handler: Handler? = null
     var hour: TextView? = null
     var minute: TextView? = null
@@ -24,7 +27,6 @@ class WorkoutDetailActivity : AppCompatActivity() {
 
     internal var MillisecondTime: Long = 0
     internal var StartTime: Long = 0
-    internal var LastTime: Long = 0
     internal var TimeBuff: Long = 0
     internal var UpdateTime = 0L
 
@@ -55,17 +57,44 @@ class WorkoutDetailActivity : AppCompatActivity() {
     }
 
     fun initUI() {
+        /*
         Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
         if (intent.hasExtra("workout_name")) {
             val str = intent.getStringExtra("workout_name")
             tool_workout_name.text = str
-            when (str) {
+            when (str) {//운동에 따른 이미지
                 "축구" -> Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
                 "자전거" -> Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
                 "수영" -> Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
             }
-        }
+        }*/
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as android.hardware.SensorManager
+        stepDetectorSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR)
+
+        if(stepDetectorSensor == null) Toast.makeText(this, "No Step Detect Sensor", Toast.LENGTH_SHORT).show()
         bindViews()
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+    }
+
+    override fun onSensorChanged(event: SensorEvent?) {
+        if(event!!.sensor.type == Sensor.TYPE_STEP_DETECTOR){
+            if (event.values[0] == 1.0f){
+                Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
+                handler?.postDelayed(setImage, 2500)
+            }
+        }
+    }
+
+    override fun onResume() {//활성화
+        super.onResume()
+        sensorManager?.registerListener(this, stepDetectorSensor, android.hardware.SensorManager.SENSOR_DELAY_UI)
+    }
+
+    override fun onPause() {//중지
+        super.onPause()
+        sensorManager?.unregisterListener(this)
     }
 
     private fun bindViews() {
@@ -91,7 +120,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
                     handler?.removeCallbacks(runnable)//
                     false
                 }
-                else -> {//3번째 상태
+                else -> {
                     pauseButton?.setImageResource(R.drawable.btn_workout_pause)
                     handler?.postDelayed(runnable, 0)
                     true
@@ -110,17 +139,15 @@ class WorkoutDetailActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, (MillisecondTime/1000).toString(), Toast.LENGTH_SHORT).show()
             //TODO 경험치창 보여주기
 
-            //TODO 이후 3초 있다가 화면 없애기
-            handler?.postDelayed(finish, 3000)
+            //TODO 이후 2.5초 있다가 화면 없애기
+            handler?.postDelayed(finish, 2500)
         }
         handler = Handler()
     }
 
-    private var finish : Runnable = object : Runnable{
-        override fun run() {
-            finish()
-        }
-    }
+    private var setImage : Runnable = Runnable { iv_workout_detail.setImageResource(R.drawable.img_soccer) }
+
+    private var finish : Runnable = Runnable { finish() }
 
     private var runnable: Runnable = object : Runnable {
         override fun run() {
@@ -128,7 +155,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
             UpdateTime = TimeBuff + MillisecondTime
             Seconds = (UpdateTime / 1000).toInt()
             Minutes = Seconds / 60
-            Seconds = Seconds % 60
+            Seconds %= 60
             if (Minutes.toString().length < 2) {
                 minute?.text = "0" + Minutes.toString()
             } else {
