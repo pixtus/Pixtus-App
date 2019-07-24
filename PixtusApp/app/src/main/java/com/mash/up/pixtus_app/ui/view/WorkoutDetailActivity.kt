@@ -24,6 +24,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
 
     internal var MillisecondTime: Long = 0
     internal var StartTime: Long = 0
+    internal var LastTime: Long = 0
     internal var TimeBuff: Long = 0
     internal var UpdateTime = 0L
 
@@ -92,7 +93,6 @@ class WorkoutDetailActivity : AppCompatActivity() {
                 }
                 else -> {//3번째 상태
                     pauseButton?.setImageResource(R.drawable.btn_workout_pause)
-                    //StartTime = SystemClock.uptimeMillis()
                     handler?.postDelayed(runnable, 0)
                     true
                 }
@@ -105,15 +105,24 @@ class WorkoutDetailActivity : AppCompatActivity() {
             buttonSet?.visibility = View.INVISIBLE
             buttonDoneAct?.visibility = View.VISIBLE
             showExp?.visibility = View.VISIBLE
-        }
 
-        buttonDoneAct?.setOnClickListener {
-            //TODO 서버로 시간 보내기, 경험치창 보여주기(받아온 결과로)
+            //TODO 서버로 시간 보내기
+            Toast.makeText(applicationContext, (MillisecondTime/1000).toString(), Toast.LENGTH_SHORT).show()
+            //TODO 경험치창 보여주기
+
+            //TODO 이후 3초 있다가 화면 없애기
+            handler?.postDelayed(finish, 3000)
         }
         handler = Handler()
     }
 
-    var runnable: Runnable = object : Runnable {
+    private var finish : Runnable = object : Runnable{
+        override fun run() {
+            finish()
+        }
+    }
+
+    private var runnable: Runnable = object : Runnable {
         override fun run() {
             MillisecondTime = SystemClock.uptimeMillis() - StartTime
             UpdateTime = TimeBuff + MillisecondTime
