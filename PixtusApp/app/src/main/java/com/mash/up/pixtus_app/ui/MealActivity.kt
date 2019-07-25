@@ -33,7 +33,7 @@ class MealActivity : BaseActivity() {
                 meal_blur.visibility = View.VISIBLE
                 showToastMessageString(mealCnt.toString())
 
-                //mealCnt, uid 담은 Request Body POST
+                //TODO mealCnt, uid 담은 Request Body POST
 
                 Handler().postDelayed({
                     val intent = Intent(this, MainActivity::class.java)
@@ -45,6 +45,9 @@ class MealActivity : BaseActivity() {
             }
         }
 
+        btn_meal_back.setOnClickListener {
+            finish()
+        }
 
         layout_breakfast.setOnClickListener {
             layout_breakfast.isSelected = !layout_breakfast.isSelected
