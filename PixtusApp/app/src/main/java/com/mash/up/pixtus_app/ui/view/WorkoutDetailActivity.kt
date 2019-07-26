@@ -55,9 +55,9 @@ class WorkoutDetailActivity : AppCompatActivity() {
             val str = intent.getStringExtra("workout_name")
             tool_workout_name.text = str
             when (str) {//운동에 따른 이미지
-                "축구" -> Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
-                "자전거" -> Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
-                "수영" -> Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
+                "축구" -> Glide.with(this).asGif().load(R.raw.soccer_level1).into(iv_workout_detail)
+                "자전거" -> Glide.with(this).asGif().load(R.raw.bike_level1).into(iv_workout_detail)
+                "수영" -> Glide.with(this).asGif().load(R.raw.swim_level1).into(iv_workout_detail)
             }
         }
         bindViews()
