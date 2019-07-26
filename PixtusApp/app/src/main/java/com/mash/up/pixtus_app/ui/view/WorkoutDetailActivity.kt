@@ -1,9 +1,5 @@
 package com.mash.up.pixtus_app.ui.view
 
-import android.content.Context
-import android.hardware.Sensor
-import android.hardware.SensorEvent
-import android.hardware.SensorEventListener
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -16,10 +12,7 @@ import android.widget.*
 import com.mash.up.pixtus_app.R
 
 
-class WorkoutDetailActivity : AppCompatActivity(), SensorEventListener {
-    var sensorManager: android.hardware.SensorManager? = null
-    var stepDetectorSensor: Sensor? = null
-
+class WorkoutDetailActivity : AppCompatActivity() {
     var handler: Handler? = null
     var hour: TextView? = null
     var minute: TextView? = null
@@ -57,7 +50,6 @@ class WorkoutDetailActivity : AppCompatActivity(), SensorEventListener {
     }
 
     fun initUI() {
-        /*
         Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
         if (intent.hasExtra("workout_name")) {
             val str = intent.getStringExtra("workout_name")
@@ -67,34 +59,8 @@ class WorkoutDetailActivity : AppCompatActivity(), SensorEventListener {
                 "자전거" -> Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
                 "수영" -> Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
             }
-        }*/
-        sensorManager = getSystemService(Context.SENSOR_SERVICE) as android.hardware.SensorManager
-        stepDetectorSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR)
-
-        if(stepDetectorSensor == null) Toast.makeText(this, "No Step Detect Sensor", Toast.LENGTH_SHORT).show()
-        bindViews()
-    }
-
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-    }
-
-    override fun onSensorChanged(event: SensorEvent?) {
-        if(event!!.sensor.type == Sensor.TYPE_STEP_DETECTOR){
-            if (event.values[0] == 1.0f){
-                Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
-                handler?.postDelayed(setImage, 2500)
-            }
         }
-    }
-
-    override fun onResume() {//활성화
-        super.onResume()
-        sensorManager?.registerListener(this, stepDetectorSensor, android.hardware.SensorManager.SENSOR_DELAY_UI)
-    }
-
-    override fun onPause() {//중지
-        super.onPause()
-        sensorManager?.unregisterListener(this)
+        bindViews()
     }
 
     private fun bindViews() {
@@ -145,7 +111,6 @@ class WorkoutDetailActivity : AppCompatActivity(), SensorEventListener {
         handler = Handler()
     }
 
-    private var setImage : Runnable = Runnable { iv_workout_detail.setImageResource(R.drawable.img_soccer) }
 
     private var finish : Runnable = Runnable { finish() }
 
