@@ -4,12 +4,14 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat.startActivity
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
 import com.mash.up.pixtus_app.ui.create.CreateStep1Activity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_story.*
+import kotlinx.android.synthetic.main.item_workout.*
 
 class StoryActivity : BaseActivity() {
 
@@ -23,7 +25,12 @@ class StoryActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_story)
 
-        Glide.with(this).asGif().load(R.raw.pixtus_story01).into(imageView3)
+        //Glide.with(this).asGif().load(R.raw.pixtus_story01).into(imageView3)
+        val animationView = findViewById<LottieAnimationView>(R.id.animationView)
+
+        animationView.setAnimation("pixtus_story_01.json")
+        animationView.loop(true)
+        animationView.playAnimation()
 
         story_next_btn.setOnClickListener {
             current_step++
