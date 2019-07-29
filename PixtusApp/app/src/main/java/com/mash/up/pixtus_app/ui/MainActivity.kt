@@ -4,13 +4,16 @@ import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
 import android.support.design.widget.BottomSheetDialogFragment
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import com.bumptech.glide.Glide
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.LinearLayout
 import android.widget.Toast
 import com.google.gson.annotations.SerializedName
+import com.mash.up.pixtus_app.ExerciseAdapter
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -33,6 +36,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        recycler_exercise.adapter = ExerciseAdapter()
+        recycler_exercise.layoutManager= LinearLayoutManager(this)
 
         initUI()
     }
