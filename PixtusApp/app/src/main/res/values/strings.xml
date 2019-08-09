@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">Pixtus-App</string>
+	<string name="app_name">Pixtus</string>
 	<string name="title_activity_create_step">CreateStepActivity</string>
 	
 	<!-- TODO: Remove or change this placeholder text -->
