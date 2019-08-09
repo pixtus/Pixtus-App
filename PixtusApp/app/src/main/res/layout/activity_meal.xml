@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:id="@+id/layout_meal"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+		
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/meal_toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="56dp">
+			
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+				
+				<ImageView
+					android:id="@+id/btn_meal_back"
+					android:layout_width="32dp"
+					android:layout_height="32dp"
+					android:layout_centerVertical="true"
+					android:src="@drawable/btn_cancle" />
+				
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="12dp"
+					android:layout_toRightOf="@+id/btn_meal_back"
+					android:fontFamily="@font/notosans_medium"
+					android:text="식사하기"
+					android:textColor="#000000"
+					android:textSize="20sp" />
+			</RelativeLayout>
+		</android.support.v7.widget.Toolbar>
+		
+		<View
+			android:id="@+id/view12"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:layout_below="@id/meal_toolbar"
+			android:background="#c4c4c4" />
+		
+		<TextView
+			android:id="@+id/tv_meal1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/view12"
+			android:layout_marginStart="24dp"
+			android:layout_marginTop="24dp"
+			android:fontFamily="@font/notosans_regular"
+			android:text="13월 32일"
+			android:textColor="#5dbb96"
+			android:textSize="12sp" />
+		
+		<TextView
+			android:id="@+id/tv_meal2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/tv_meal1"
+			android:layout_marginStart="24dp"
+			android:layout_marginTop="2dp"
+			android:fontFamily="@font/notosans_medium"
+			android:text="당신의 식사는 어땠나요?"
+			android:textColor="#000000"
+			android:textSize="16sp" />
+		
+		<TextView
+			android:id="@+id/tv_meal3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/tv_meal2"
+			android:layout_marginStart="24dp"
+			android:layout_marginTop="12dp"
+			android:fontFamily="@font/notosans_regular"
+			android:text="더욱 정확한 칼로리 계산을 위해\n오늘 하루 몇 끼를 섭취했는지 알려주세요."
+			android:textColor="#8a000000"
+			android:textSize="12sp" />
+		
+		<View
+			android:id="@id/view13"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:layout_below="@id/tv_meal3"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="21dp"
+			android:layout_marginEnd="16dp"
+			android:background="#9d9d9d" />
+		
+		<RelativeLayout
+			android:id="@+id/layout_breakfast"
+			android:layout_width="match_parent"
+			android:layout_height="64dp"
+			android:layout_below="@id/view13"
+			android:layout_marginTop="16dp">
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_marginStart="24dp"
+				android:fontFamily="@font/notosans_medium"
+				android:text="아침"
+				android:textColor="#000"
+				android:textSize="14sp" />
+			
+			<ImageView
+				android:id="@+id/btn_breakfast"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				android:layout_alignParentEnd="true"
+				android:layout_centerVertical="true"
+				android:layout_marginEnd="24dp"
+				android:src="@drawable/meal_check" />
+		
+		
+		</RelativeLayout>
+		
+		<RelativeLayout
+			android:id="@+id/layout_lunch"
+			android:layout_width="match_parent"
+			android:layout_height="64dp"
+			android:layout_below="@id/layout_breakfast"
+			android:layout_marginTop="8dp">
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_marginStart="24dp"
+				android:fontFamily="@font/notosans_medium"
+				android:text="점심"
+				android:textColor="#000"
+				android:textSize="14sp" />
+			
+			<ImageView
+				android:id="@+id/btn_lunch"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				android:layout_alignParentEnd="true"
+				android:layout_centerVertical="true"
+				android:layout_marginEnd="24dp"
+				android:src="@drawable/meal_check" />
+		
+		
+		</RelativeLayout>
+		
+		<RelativeLayout
+			android:id="@+id/layout_dinner"
+			android:layout_width="match_parent"
+			android:layout_height="64dp"
+			android:layout_below="@id/layout_lunch"
+			android:layout_marginTop="8dp">
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_marginStart="24dp"
+				android:fontFamily="@font/notosans_medium"
+				android:text="저녁"
+				android:textColor="#000"
+				android:textSize="14sp" />
+			
+			<ImageView
+				android:id="@+id/btn_dinner"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				android:layout_alignParentEnd="true"
+				android:layout_centerVertical="true"
+				android:layout_marginEnd="24dp"
+				android:src="@drawable/meal_check" />
+		
+		
+		</RelativeLayout>
+		
+		<RelativeLayout
+			android:id="@+id/layout_nightmeal"
+			android:layout_width="match_parent"
+			android:layout_height="64dp"
+			android:layout_below="@id/layout_dinner"
+			android:layout_marginTop="8dp">
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_marginStart="24dp"
+				android:fontFamily="@font/notosans_medium"
+				android:text="야식"
+				android:textColor="#000"
+				android:textSize="14sp" />
+			
+			<ImageView
+				android:id="@+id/btn_nightmeal"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				android:layout_alignParentEnd="true"
+				android:layout_centerVertical="true"
+				android:layout_marginEnd="24dp"
+				android:src="@drawable/meal_check" />
+		
+		
+		</RelativeLayout>
+		
+		
+		<android.support.constraint.ConstraintLayout
+			android:id="@+id/layout_next"
+			android:layout_width="match_parent"
+			android:layout_height="56dp"
+			android:layout_alignParentBottom="true"
+			android:background="@drawable/meal_next">
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/notosans_bold"
+				android:text="완료"
+				android:textColor="#ffffff"
+				android:textSize="20sp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+		
+		
+		</android.support.constraint.ConstraintLayout>
+	
+	
+	</RelativeLayout>
+	
+	<RelativeLayout
+		android:id="@+id/meal_blur"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#a6000000"
+		android:visibility="gone"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+		
+		<ImageView
+			android:layout_width="80dp"
+			android:layout_height="80dp"
+			android:layout_centerInParent="true"
+			android:src="@drawable/group_2" />
+	
+	
+	</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

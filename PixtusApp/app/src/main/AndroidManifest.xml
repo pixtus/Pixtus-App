@@ -19,21 +19,26 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <activity android:name=".ui.SplashActivity" />
+        <activity android:name=".ui.SplashActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+        
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".ui.view.WorkoutDetailActivity" />
         <activity android:name=".ui.view.WorkoutListActivity" />
-        <activity android:name=".ui.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.MainActivity" />
+
+
+
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.StoryActivity" />
         <activity android:name=".ui.create.CreateStep2Activity" />
         <activity android:name=".ui.create.CreateStep1Activity" />
         <activity android:name=".ui.create.CreateStep3Activity" />
+        <activity android:name=".ui.MealActivity"></activity>
+
     </application>
 
 </manifest>
