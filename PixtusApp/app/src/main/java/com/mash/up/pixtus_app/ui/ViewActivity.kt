@@ -1,5 +1,6 @@
 package com.mash.up.pixtus_app.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -13,6 +14,7 @@ import android.widget.TextView
 import com.example.stepcount.Fragment1
 import com.example.stepcount.Fragment2
 import com.mash.up.pixtus_app.R
+import com.mash.up.pixtus_app.ui.create.CreateStep1Activity
 import kotlinx.android.synthetic.main.activity_view.*
 
 
@@ -26,10 +28,20 @@ class ViewActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
     private val fragment4 = Fragment2()
     private val mOnNavigationItemSelectedListener = object : BottomNavigationView.OnNavigationItemSelectedListener {
         override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-            viewPager!!.currentItem = p0.order
+            when(p0.getItemId()){
+                R.id.navigation_home -> viewPager?.currentItem = 0
+                R.id.navigation_exercise -> viewPager?.currentItem = 1
+                R.id.navigation_record -> viewPager?.currentItem = 2
+                R.id.navigation_food -> {
+                    val intent = Intent(this@ViewActivity, MealActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            //viewPager!!.currentItem = p0.order
             return true
         }
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

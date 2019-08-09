@@ -36,7 +36,7 @@ class MealActivity : BaseActivity() {
                 //TODO mealCnt, uid 담은 Request Body POST
 
                 Handler().postDelayed({
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, ViewActivity::class.java)
                     startActivity(intent)
                     finish()
                 }, 1000)
