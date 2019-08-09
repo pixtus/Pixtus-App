@@ -6,10 +6,14 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+
 import android.os.Handler
-import android.util.Log
-import android.widget.Toast
 import com.bumptech.glide.Glide
+
+import android.support.v7.widget.LinearLayoutManager
+
+import com.mash.up.pixtus_app.ExerciseAdapter
+
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,6 +31,9 @@ class MainActivity : BaseActivity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        recycler_exercise.adapter = ExerciseAdapter()
+        recycler_exercise.layoutManager= LinearLayoutManager(this)
 
         initUI()
     }
