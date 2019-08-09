@@ -10,10 +10,6 @@ import kotlinx.android.synthetic.main.activity_workout_detail.*
 import android.view.View
 import android.widget.*
 import com.mash.up.pixtus_app.R
-import com.mash.up.pixtus_app.core.NetworkCore
-import com.mash.up.pixtus_app.core.PixtusApi
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 
 class WorkoutDetailActivity : AppCompatActivity() {
@@ -58,10 +54,10 @@ class WorkoutDetailActivity : AppCompatActivity() {
         if (intent.hasExtra("workout_name")) {
             val str = intent.getStringExtra("workout_name")
             tool_workout_name.text = str
-            when (str) {
-                "축구" -> Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
-                "자전거" -> Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
-                "수영" -> Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
+            when (str) {//운동에 따른 이미지
+                "축구" -> Glide.with(this).asGif().load(R.raw.soccer_level1).into(iv_workout_detail)
+                "자전거" -> Glide.with(this).asGif().load(R.raw.bike_level1).into(iv_workout_detail)
+                "수영" -> Glide.with(this).asGif().load(R.raw.swim_level1).into(iv_workout_detail)
             }
         }
         bindViews()
@@ -90,9 +86,8 @@ class WorkoutDetailActivity : AppCompatActivity() {
                     handler?.removeCallbacks(runnable)//
                     false
                 }
-                else -> {//3번째 상태
+                else -> {
                     pauseButton?.setImageResource(R.drawable.btn_workout_pause)
-                    //StartTime = SystemClock.uptimeMillis()
                     handler?.postDelayed(runnable, 0)
                     true
                 }
@@ -105,21 +100,27 @@ class WorkoutDetailActivity : AppCompatActivity() {
             buttonSet?.visibility = View.INVISIBLE
             buttonDoneAct?.visibility = View.VISIBLE
             showExp?.visibility = View.VISIBLE
-        }
 
-        buttonDoneAct?.setOnClickListener {
-            //TODO 서버로 시간 보내기, 경험치창 보여주기(받아온 결과로)
+            //TODO 서버로 시간 보내기
+            Toast.makeText(applicationContext, (MillisecondTime/1000).toString(), Toast.LENGTH_SHORT).show()
+            //TODO 경험치창 보여주기
+
+            //TODO 이후 2.5초 있다가 화면 없애기
+            handler?.postDelayed(finish, 2500)
         }
         handler = Handler()
     }
 
-    var runnable: Runnable = object : Runnable {
+
+    private var finish : Runnable = Runnable { finish() }
+
+    private var runnable: Runnable = object : Runnable {
         override fun run() {
             MillisecondTime = SystemClock.uptimeMillis() - StartTime
             UpdateTime = TimeBuff + MillisecondTime
             Seconds = (UpdateTime / 1000).toInt()
             Minutes = Seconds / 60
-            Seconds = Seconds % 60
+            Seconds %= 60
             if (Minutes.toString().length < 2) {
                 minute?.text = "0" + Minutes.toString()
             } else {
