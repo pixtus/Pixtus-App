@@ -8,8 +8,6 @@ import android.util.Log
 import com.mash.up.pixtus_app.base.BaseActivity
 import com.mash.up.pixtus_app.core.NetworkCore
 import com.mash.up.pixtus_app.core.PixtusApi
-import com.mash.up.pixtus_app.ui.create.CreateStep1Activity
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
