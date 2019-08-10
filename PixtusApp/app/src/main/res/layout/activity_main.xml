@@ -29,7 +29,7 @@
 					android:id="@+id/view2"
 					android:layout_width="match_parent"
 					android:layout_height="2dp"
-					android:layout_marginTop="156dp"
+					android:layout_marginTop="240dp"
 					android:background="#5dbb96"
 					app:layout_constraintEnd_toEndOf="parent"
 					app:layout_constraintStart_toStartOf="parent"
@@ -37,15 +37,13 @@
 				
 				<ImageView
 					android:id="@+id/imageView11"
-					android:layout_width="wrap_content"
-					android:layout_height="156dp"
-					android:layout_marginBottom="8dp"
+					android:layout_width="match_parent"
+					android:layout_height="200dp"
 					android:scaleType="fitXY"
-					app:layout_constraintBottom_toBottomOf="@+id/iv_gif"
 					app:layout_constraintEnd_toEndOf="parent"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintTop_toTopOf="parent"
-					app:srcCompat="@drawable/rectangle" />
+					app:srcCompat="@drawable/background_cloud" />
 				
 				<ImageView
 					android:id="@+id/iv_gif"
@@ -76,27 +74,17 @@
 					android:id="@+id/tv_title"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_centerInParent="true"
+					android:layout_alignParentTop="true"
+					android:layout_centerHorizontal="true"
+					android:layout_marginTop="0dp"
 					android:fontFamily="@font/notosans_medium"
 					android:text="픽미픽미픽미"
 					android:textColor="@color/colorBlack"
 					android:textSize="16sp" />
 				
-				<ImageView
-					android:layout_width="10dp"
-					android:layout_height="20dp"
-					android:layout_centerVertical="true"
-					android:layout_marginEnd="16dp"
-					android:layout_toStartOf="@+id/tv_title"
-					android:src="@drawable/icon_bracket_left" />
 				
-				<ImageView
-					android:layout_width="10dp"
-					android:layout_height="20dp"
-					android:layout_centerVertical="true"
-					android:layout_marginStart="16dp"
-					android:layout_toEndOf="@+id/tv_title"
-					android:src="@drawable/icon_bracket_right" />
+				
+				
 			
 			</RelativeLayout>
 			

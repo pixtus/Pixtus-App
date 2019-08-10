@@ -5,27 +5,22 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.MenuItem
-import android.widget.TextView
-import com.example.stepcount.Fragment1
-import com.example.stepcount.Fragment2
+import com.example.stepcount.MainFragment
+import com.example.stepcount.WorkoutFragment
 import com.mash.up.pixtus_app.R
-import com.mash.up.pixtus_app.ui.create.CreateStep1Activity
-import kotlinx.android.synthetic.main.activity_view.*
 
 
 class ViewActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
 
     private var navigation: BottomNavigationView? = null
     private var viewPager: ViewPager? = null
-    private val fragment1 = Fragment1()
-    private val fragment2 = Fragment2()
-    private val fragment3 = Fragment1()
-    private val fragment4 = Fragment2()
+    private val fragment1 = MainFragment()
+    private val fragment2 = WorkoutFragment()
+    private val fragment3 = MainFragment()
+    private val fragment4 = WorkoutFragment()
     private val mOnNavigationItemSelectedListener = object : BottomNavigationView.OnNavigationItemSelectedListener {
         override fun onNavigationItemSelected(p0: MenuItem): Boolean {
             when(p0.getItemId()){

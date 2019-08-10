@@ -17,9 +17,6 @@ class WorkoutListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_workout_list)
         initList()
 
-        btn_workout_back.setOnClickListener {
-            finish()
-        }
     }
 
     fun initList() {
