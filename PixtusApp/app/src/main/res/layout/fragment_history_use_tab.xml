@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="#FFFFFF">
+	
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginTop="16dp"
+		android:orientation="horizontal">
+		
+		<ImageView
+			android:id="@+id/btn_left"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/btn_left" />
+		
+		<TextView
+			android:id="@+id/tv_week"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="top"
+			android:layout_marginHorizontal="16dp"
+			android:fontFamily="@font/notosans_regular"
+			android:text="2019년 6월 23일 - 30일"
+			android:layout_marginBottom="4dp"
+			android:textColor="#80000000"
+			android:textSize="12dp" />
+		
+		<ImageView
+			android:id="@+id/btn_right"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/btn_right" />
+	
+	</LinearLayout>
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="218dp"
+		android:layout_marginTop="12dp"
+		android:orientation="horizontal"
+		android:background="#f8f8f8"
+		>
+		
+		<RelativeLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_gravity="bottom"
+			android:layout_weight="1"
+			>
+			
+			<LinearLayout
+				android:layout_width="24dp"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_marginBottom="3dp"
+				android:orientation="vertical"
+				android:layout_alignParentBottom="true"
+				android:layout_gravity="center_horizontal">
+				
+				<ImageView
+					android:id="@+id/tv_sun_walk"
+					android:layout_width="24dp"
+					android:layout_height="53dp"
+					android:layout_marginTop="0.5dp"
+					android:src="@color/colorPrimary" />
+				
+				<ImageView
+					android:id="@+id/tv_sun_swim"
+					android:layout_width="24dp"
+					android:layout_height="40dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp"/>
+				
+				<ImageView
+					android:id="@+id/tv_sun_run"
+					android:layout_width="24dp"
+					android:layout_height="31dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp"/>
+				
+				<ImageView
+					android:id="@+id/tv_sun_bike"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp"/>
+			
+			</LinearLayout>
+			
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:layout_centerHorizontal="true"
+				>
+				<ImageView
+					android:layout_width="8dp"
+					android:layout_height="8dp"
+					android:src="@drawable/history_dot"
+					/>
+			</RelativeLayout>
+			
+			
+		</RelativeLayout>
+		
+		<RelativeLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_gravity="bottom"
+			android:layout_weight="1">
+			
+			<LinearLayout
+				android:layout_width="24dp"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_marginBottom="3dp"
+				android:orientation="vertical"
+				android:layout_alignParentBottom="true"
+				android:layout_gravity="center_horizontal">
+				
+				<ImageView
+					android:id="@+id/tv_mon_walk"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp"
+					/>
+				
+				<ImageView
+					android:id="@+id/tv_mon_swim"
+					android:layout_width="24dp"
+					android:layout_height="40dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_mon_run"
+					android:layout_width="24dp"
+					android:layout_height="31dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_mon_bike"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp"/>
+			
+			</LinearLayout>
+			
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:layout_centerHorizontal="true"
+				>
+				<ImageView
+					android:layout_width="8dp"
+					android:layout_height="8dp"
+					android:src="@drawable/history_dot"
+					/>
+			</RelativeLayout>
+		
+		</RelativeLayout>
+		
+		<RelativeLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_gravity="bottom"
+			android:layout_weight="1"
+			>
+			
+			<LinearLayout
+				android:layout_width="24dp"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:layout_centerHorizontal="true"
+				android:layout_marginBottom="3dp"
+				android:orientation="vertical"
+				android:layout_gravity="center_horizontal">
+				
+				<ImageView
+					android:id="@+id/tv_tues_walk"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_tues_swim"
+					android:layout_width="24dp"
+					android:layout_height="40dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_tues_run"
+					android:layout_width="24dp"
+					android:layout_height="10dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_tues_bike"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+			
+			</LinearLayout>
+			
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:layout_centerHorizontal="true"
+				>
+				<ImageView
+					android:layout_width="8dp"
+					android:layout_height="8dp"
+					android:src="@drawable/history_dot"
+					/>
+			</RelativeLayout>
+		
+		</RelativeLayout>
+		
+		<RelativeLayout
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom"
+			android:layout_weight="1"
+			>
+			
+			<LinearLayout
+				android:layout_width="24dp"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_marginBottom="3dp"
+				android:orientation="vertical"
+				android:layout_alignParentBottom="true"
+				android:layout_gravity="center_horizontal">
+				
+				<ImageView
+					android:id="@+id/tv_wedns_walk"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_wedns_swim"
+					android:layout_width="24dp"
+					android:layout_height="40dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_wedns_run"
+					android:layout_width="24dp"
+					android:layout_height="31dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_wedns_bike"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+			
+			</LinearLayout>
+			
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:layout_centerHorizontal="true"
+				>
+				<ImageView
+					android:layout_width="8dp"
+					android:layout_height="8dp"
+					android:src="@drawable/history_dot"
+					/>
+			</RelativeLayout>
+		
+		</RelativeLayout>
+		
+		<RelativeLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_gravity="bottom"
+			android:layout_weight="1"
+			>
+			
+			<LinearLayout
+				android:layout_width="24dp"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_marginBottom="3dp"
+				android:orientation="vertical"
+				android:layout_alignParentBottom="true"
+				android:layout_gravity="center_horizontal">
+				
+				<ImageView
+					android:id="@+id/tv_thurs_walk"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_thurs_swim"
+					android:layout_width="24dp"
+					android:layout_height="40dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_thurs_run"
+					android:layout_width="24dp"
+					android:layout_height="31dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp"/>
+				
+				<ImageView
+					android:id="@+id/tv_thurs_bike"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+			
+			</LinearLayout>
+			
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:layout_centerHorizontal="true"
+				>
+				<ImageView
+					android:layout_width="8dp"
+					android:layout_height="8dp"
+					android:src="@drawable/history_dot"
+					/>
+			</RelativeLayout>
+		
+		</RelativeLayout>
+		
+		<RelativeLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_gravity="bottom"
+			android:layout_weight="1"
+			>
+			
+			<LinearLayout
+				android:layout_width="24dp"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_marginBottom="3dp"
+				android:layout_alignParentBottom="true"
+				android:orientation="vertical"
+				android:layout_gravity="center_horizontal">
+				
+				<ImageView
+					android:id="@+id/tv_fri_walk"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_fri_swim"
+					android:layout_width="24dp"
+					android:layout_height="40dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_fri_run"
+					android:layout_width="24dp"
+					android:layout_height="31dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_fri_bike"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+			
+			</LinearLayout>
+			
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:layout_centerHorizontal="true"
+				>
+				<ImageView
+					android:layout_width="8dp"
+					android:layout_height="8dp"
+					android:src="@drawable/history_dot"
+					/>
+			</RelativeLayout>
+			
+		</RelativeLayout>
+		
+		<RelativeLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_gravity="bottom"
+			android:layout_weight="1"
+			>
+			
+			<LinearLayout
+				android:layout_width="24dp"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_marginBottom="3dp"
+				android:layout_alignParentBottom="true"
+				android:orientation="vertical"
+				android:layout_gravity="center_horizontal">
+				
+				<ImageView
+					android:id="@+id/tv_satur_walk"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_satur_swim"
+					android:layout_width="24dp"
+					android:layout_height="40dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_satur_run"
+					android:layout_width="24dp"
+					android:layout_height="31dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+				
+				<ImageView
+					android:id="@+id/tv_satur_bike"
+					android:layout_width="24dp"
+					android:layout_height="57dp"
+					android:src="@color/colorPrimary"
+					android:layout_marginTop="0.5dp" />
+			
+			</LinearLayout>
+			
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:layout_centerHorizontal="true"
+				>
+				<ImageView
+					android:layout_width="8dp"
+					android:layout_height="8dp"
+					android:src="@drawable/history_dot"
+					/>
+			</RelativeLayout>
+		
+		</RelativeLayout>
+	</LinearLayout>
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="4dp"
+		android:orientation="horizontal">
+		
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="일"
+			android:layout_weight="1"
+			android:fontFamily="@font/notosans_regular"
+			android:textSize="10sp"
+			android:gravity="center_horizontal"/>
+		
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="월"
+			android:layout_weight="1"
+			android:fontFamily="@font/notosans_regular"
+			android:textSize="10sp"
+			android:gravity="center_horizontal"/>
+		
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="화"
+			android:layout_weight="1"
+			android:fontFamily="@font/notosans_regular"
+			android:textSize="10sp"
+			android:gravity="center_horizontal"/>
+		
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="수"
+			android:layout_weight="1"
+			android:fontFamily="@font/notosans_regular"
+			android:textSize="10sp"
+			android:gravity="center_horizontal"/>
+		
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="목"
+			android:layout_weight="1"
+			android:fontFamily="@font/notosans_regular"
+			android:textSize="10sp"
+			android:gravity="center_horizontal"/>
+		
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="금"
+			android:layout_weight="1"
+			android:fontFamily="@font/notosans_regular"
+			android:textSize="10sp"
+			android:gravity="center_horizontal"/>
+		
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="토"
+			android:layout_weight="1"
+			android:fontFamily="@font/notosans_regular"
+			android:textSize="10sp"
+			android:gravity="center_horizontal"/>
+	
+	
+	</LinearLayout>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="40dp"
+		android:layout_marginHorizontal="24dp"
+		android:layout_marginTop="16dp">
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="총 소비 칼로리"
+			android:textSize="16sp"
+			android:textColor="#000000"
+			android:fontFamily="@font/notosans_medium"
+			android:layout_centerVertical="true" />
+		
+		<TextView
+			android:id="@+id/tv_total_spend_kcal"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="- 2,100Kcal"
+			android:textSize="16sp"
+			android:textColor="#000000"
+			android:layout_centerVertical="true"
+			android:layout_alignParentRight="true"
+			android:fontFamily="@font/notosans_medium"/>
+	
+	</RelativeLayout>
+	
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#d9d9d9"/>
+	
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="36dp"
+		android:layout_marginTop="6dp"
+		android:layout_marginHorizontal="16dp">
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="걷기"
+			android:layout_centerVertical="true"
+			android:textSize="12sp"
+			android:layout_marginStart="8dp"
+			android:textColor="#727272"
+			android:fontFamily="@font/notosans_medium"
+			/>
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_marginEnd="8dp"
+			android:fontFamily="@font/notosans_medium"
+			android:text="204Kcal"
+			android:layout_centerVertical="true"
+			android:textColor="#727272"
+			android:textSize="12sp" />
+		
+		<View
+			android:visibility="gone"
+			android:layout_alignParentBottom="true"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#5dbb96"/>
+	
+	</RelativeLayout>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="36dp"
+		android:layout_marginTop="6dp"
+		android:layout_marginHorizontal="16dp">
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:layout_marginStart="8dp"
+			android:fontFamily="@font/notosans_medium"
+			android:text="수영"
+			android:textColor="#727272"
+			android:textSize="12sp" />
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="204Kcal"
+			android:layout_centerVertical="true"
+			android:textSize="12sp"
+			android:layout_alignParentRight="true"
+			android:layout_marginEnd="8dp"
+			android:fontFamily="@font/notosans_medium"
+			android:textColor="#727272"
+			/>
+		
+		<View
+			android:visibility="gone"
+			android:layout_alignParentBottom="true"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#5dbb96"/>
+	
+	</RelativeLayout>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="36dp"
+		android:layout_marginTop="6dp"
+		android:layout_marginHorizontal="16dp">
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:layout_marginLeft="40dp"
+			android:fontFamily="@font/notosans_medium"
+			android:text="달리기"
+			android:layout_marginStart="8dp"
+			android:textColor="#727272"
+			android:textSize="12sp" />
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="204Kcal"
+			android:layout_centerVertical="true"
+			android:textSize="12sp"
+			android:fontFamily="@font/notosans_medium"
+			android:textColor="#727272"
+			android:layout_alignParentRight="true"
+			android:layout_marginEnd="8dp"
+			/>
+		
+		<View
+			android:visibility="gone"
+			android:layout_alignParentBottom="true"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#5dbb96"/>
+	
+	</RelativeLayout>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="36dp"
+		android:layout_marginTop="6dp"
+		android:layout_marginHorizontal="16dp">
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="자전거"
+			android:layout_marginStart="8dp"
+			android:layout_centerVertical="true"
+			android:textSize="12sp"
+			android:layout_marginLeft="40dp"
+			android:textColor="#727272"
+			android:fontFamily="@font/notosans_medium"
+			/>
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="204Kcal"
+			android:layout_centerVertical="true"
+			android:textSize="12sp"
+			android:fontFamily="@font/notosans_medium"
+			android:textColor="#727272"
+			android:layout_alignParentRight="true"
+			android:layout_marginEnd="8dp"
+			/>
+		
+		<View
+			android:visibility="gone"
+			android:layout_alignParentBottom="true"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#5dbb96"/>
+	
+	</RelativeLayout>
+
+</LinearLayout>
