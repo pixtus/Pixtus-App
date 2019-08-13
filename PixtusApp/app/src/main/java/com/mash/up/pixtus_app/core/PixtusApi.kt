@@ -1,9 +1,12 @@
 package com.mash.up.pixtus_app.core
 
+import com.mash.up.pixtus_app.WorkOut
+import com.mash.up.pixtus_app.data.Exercise
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 
@@ -21,11 +24,7 @@ interface PixtusApi {
 
 
     @GET("/exercises") // 리턴타입
-    fun getExcercises() : Single<List<Excercises>>
+    fun getExcercises(
+        @Header("Authorization") authorization: String
+    ) : Single<List<Exercise>>
 }
-
-data class Excercises(
-    var exerciseId : Int,
-    var name : String,
-    var kcal : Int
-)
