@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.LinearLayout
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
 import com.mash.up.pixtus_app.utils.showToastMessageString
@@ -12,6 +13,7 @@ import com.mash.up.pixtus_app.utils.showToastMessageString
 import kotlinx.android.synthetic.main.activity_create_step.*
 import kotlinx.android.synthetic.main.activity_create_step.edit_height
 import kotlinx.android.synthetic.main.activity_create_step.edit_weight
+import kotlinx.android.synthetic.main.activity_create_step.view.*
 
 class CreateStep1Activity : BaseActivity() {
 
@@ -76,20 +78,28 @@ class CreateStep1Activity : BaseActivity() {
         tv_male.isSelected = true
         layout_male.isSelected = true
         view_male.isSelected = true
+        (layout_male.layoutParams as LinearLayout.LayoutParams).weight = 5.0f
 
         tv_female.isSelected = false
         layout_female.isSelected = false
         view_female.isSelected = false
+        (layout_female.layoutParams as LinearLayout.LayoutParams).weight = 1.0f
+
+        ll_sex.requestLayout()
     }
 
     fun female(){
         tv_female.isSelected = true
         layout_female.isSelected = true
         view_female.isSelected = true
+        (layout_female.layoutParams as LinearLayout.LayoutParams).weight = 5.0f
 
         tv_male.isSelected = false
         layout_male.isSelected = false
         view_male.isSelected = false
+        (layout_male.layoutParams as LinearLayout.LayoutParams).weight = 1.0f
+
+        ll_sex.requestLayout()
     }
 
 }

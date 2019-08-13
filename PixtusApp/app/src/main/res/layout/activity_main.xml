@@ -1,257 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.MainActivity">
-    
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        
-        
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2">
-    
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.MainActivity">
-    
-            <View
-                android:id="@+id/view2"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="156dp"
-                android:background="#5dbb96"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-    
-            <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="wrap_content"
-                android:layout_height="156dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_gif"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/rectangle" />
-        
-            <ImageView
-                android:id="@+id/iv_gif"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="60dp"
-                android:scaleType="fitXY"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-    
-    
-        </android.support.constraint.ConstraintLayout>
-    </LinearLayout>
-    
-    
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3">
-        
-        <TextView
-            android:layout_marginTop="6dp"
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/notosans_medium"
-            android:text="픽미픽미픽미"
-            android:textColor="@color/colorBlack"
-            android:textSize="16sp" />
-        
-        
-        <ImageView
-            android:id="@+id/stats_bar"
-            android:layout_width="250dp"
-            android:layout_height="16dp"
-            android:layout_below="@+id/tv_title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_test" />
-        
-        <TextView
-            android:id="@+id/tv_calorie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/stats_bar"
-            android:layout_alignLeft="@+id/stats_bar"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/notosans_regular"
-            android:text="2,300kcal "
-            android:textColor="@color/colorPrimary" />
-        
-        <TextView
-            android:id="@+id/tv_total_calorie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/stats_bar"
-            android:layout_alignRight="@+id/stats_bar"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/notosans_regular"
-            android:text="3,300kcal"
-            android:textColor="@color/C_d9d9d9" />
-        
-        <ImageView
-            android:id="@+id/view_dot"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_below="@+id/tv_calorie"
-            android:layout_alignLeft="@+id/stats_bar"
-            android:layout_alignRight="@+id/stats_bar"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/line_dot"
-            android:layerType="software"></ImageView>
-    
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/view_dot"
-            android:layout_alignLeft="@+id/stats_bar"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/notosans_medium"
-            android:text="06.30 /sun"
-            android:textColor="@color/colorPrimary" />
-        
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_date"
-            android:layout_alignLeft="@+id/stats_bar"
-            android:layout_alignRight="@+id/stats_bar"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-            
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/notosans_medium"
-                    android:padding="4dp"
-                    android:text="걷기"
-                    android:textColor="@color/colorBlack" />
-                
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/notosans_regular"
-                    android:padding="4dp"
-                    android:text="2100Kcal"
-                    android:textColor="@color/colorPrimary" />
-                
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/C_d9d9d9"></View>
-            </RelativeLayout>
-            
-            <RelativeLayout
-                android:layout_marginTop="4dp"
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/notosans_medium"
-                    android:padding="4dp"
-                    android:text="달리"
-                    android:textColor="@color/colorBlack" />
-                
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/notosans_regular"
-                    android:padding="4dp"
-                    android:text="2100Kcal"
-                    android:textColor="@color/colorPrimary" />
-                
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/C_d9d9d9"></View>
-            
-            
-            </RelativeLayout>
-            
-            <RelativeLayout
-                android:layout_marginTop="4dp"
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/notosans_medium"
-                    android:padding="4dp"
-                    android:text="자전거"
-                    android:textColor="@color/colorBlack" />
-                
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/notosans_regular"
-                    android:padding="4dp"
-                    android:text="2100Kcal"
-                    android:textColor="@color/colorPrimary" />
-                
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/C_d9d9d9"></View>
-            </RelativeLayout>
-        </LinearLayout>
-    </RelativeLayout>
-    
-    </LinearLayout>
-    
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btn_more"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="15sp"
-        android:backgroundTint="#ffffff"
-        android:src="@mipmap/btn_more"
-        android:elevation="0dp"
-        app:borderWidth="0dp"
-        app:elevation="0dp"
-        android:stateListAnimator="@null"
-        android:background="#00000000"
-        />
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".ui.MainActivity">
+	
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+		
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="2">
+			
+			<android.support.constraint.ConstraintLayout
+				android:id="@+id/linearLayout"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				tools:context=".ui.MainActivity">
+				
+				<View
+					android:id="@+id/view2"
+					android:layout_width="match_parent"
+					android:layout_height="2dp"
+					android:layout_marginTop="240dp"
+					android:background="#5dbb96"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
+				
+				<ImageView
+					android:id="@+id/imageView11"
+					android:layout_width="match_parent"
+					android:layout_height="200dp"
+					android:scaleType="fitXY"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					app:srcCompat="@drawable/background_cloud" />
+				
+				<ImageView
+					android:id="@+id/iv_gif"
+					android:layout_width="200dp"
+					android:layout_height="200dp"
+					android:layout_marginTop="60dp"
+					android:scaleType="fitXY"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
+			
+			
+			</android.support.constraint.ConstraintLayout>
+		</LinearLayout>
+		
+		
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="3">
+			
+			<RelativeLayout
+				android:id="@+id/layout_name"
+				android:layout_width="match_parent"
+				android:layout_height="52dp">
+				
+				<TextView
+					android:id="@+id/tv_title"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentTop="true"
+					android:layout_centerHorizontal="true"
+					android:layout_marginTop="0dp"
+					android:fontFamily="@font/notosans_medium"
+					android:text="픽미픽미픽미"
+					android:textColor="@color/colorBlack"
+					android:textSize="16sp" />
+				
+				
+				
+				
+			
+			</RelativeLayout>
+			
+			<ImageView
+				android:id="@+id/stats_bar"
+				android:layout_width="250dp"
+				android:layout_height="16dp"
+				android:layout_below="@+id/layout_name"
+				android:layout_centerHorizontal="true"
+				android:layout_marginTop="16dp"
+				android:background="@drawable/bg_test" />
+			
+			<TextView
+				android:id="@+id/tv_calorie"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/stats_bar"
+				android:layout_alignLeft="@+id/stats_bar"
+				android:layout_marginStart="8dp"
+				android:layout_marginTop="8dp"
+				android:fontFamily="@font/notosans_regular"
+				android:text="2,300"
+				android:textColor="@color/colorPrimary"
+				android:textSize="14sp" />
+			
+			<TextView
+				android:id="@+id/tv_EXP1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignBaseline="@id/tv_calorie"
+				android:layout_marginStart="4dp"
+				android:layout_marginBottom="2dp"
+				android:layout_toEndOf="@+id/tv_calorie"
+				android:fontFamily="@font/notosans_bold"
+				android:text="EXP"
+				android:textColor="@color/colorPrimary"
+				android:textSize="8sp" />
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignBaseline="@id/tv_calorie"
+				android:layout_marginEnd="4dp"
+				android:layout_toStartOf="@+id/tv_EXP2"
+				android:fontFamily="@font/notosans_regular"
+				android:text="5,300"
+				android:textColor="@color/C_d9d9d9"
+				android:textSize="14sp" />
+			
+			<TextView
+				android:id="@+id/tv_EXP2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/stats_bar"
+				android:layout_alignBaseline="@id/tv_EXP1"
+				android:layout_alignRight="@+id/stats_bar"
+				android:layout_marginEnd="8dp"
+				android:fontFamily="@font/notosans_bold"
+				android:text="EXP"
+				android:textColor="@color/C_d9d9d9"
+				android:textSize="8sp" />
+			
+			<TextView
+				android:id="@+id/tv_date"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/tv_calorie"
+				android:layout_alignLeft="@+id/tv_calorie"
+				android:layout_marginTop="32dp"
+				android:fontFamily="@font/notosans_medium"
+				android:text="06.30 /sun"
+				android:textColor="@color/colorPrimary"
+				android:textSize="16sp" />
+			
+			<View
+				android:id="@+id/view25"
+				android:layout_width="wrap_content"
+				android:layout_height="1dp"
+				android:layout_below="@id/tv_date"
+				android:layout_alignLeft="@id/stats_bar"
+				android:layout_alignRight="@id/stats_bar"
+				android:layout_marginTop="7dp"
+				android:background="@color/colorPrimary" />
+			
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/recycler_exercise"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_below="@+id/view25"
+				android:layout_marginTop="8dp"
+				android:scrollbars="vertical">
+			
+			</android.support.v7.widget.RecyclerView>
+			
+			<ImageView
+				android:layout_width="match_parent"
+				android:layout_height="100dp"
+				android:layout_alignParentBottom="true"
+				android:src="@drawable/overlay_whitegradient" />
+		
+		</RelativeLayout>
+	
+	</LinearLayout>
+	
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/btn_more"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|end"
+		android:layout_margin="15sp"
+		android:background="#00000000"
+		android:backgroundTint="#ffffff"
+		android:elevation="0dp"
+		android:src="@mipmap/btn_more"
+		android:stateListAnimator="@null"
+		app:borderWidth="0dp"
+		app:elevation="0dp" />
 </FrameLayout>

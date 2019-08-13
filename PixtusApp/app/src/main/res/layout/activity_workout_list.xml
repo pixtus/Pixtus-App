@@ -11,13 +11,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="56dp">
 		
-		<ImageButton
-			android:id="@+id/btn_workout_back"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:backgroundTint="#0000"
-			android:src="@drawable/ic_chevron_left_black_24dp" />
-		
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -44,29 +37,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_weight="8"></android.support.v7.widget.RecyclerView>
-		
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#c4c4c4"></View>
-		
-		<RelativeLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:background="#f4f4f4">
-			
-			<ImageView
-				android:layout_width="95dp"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:src="@drawable/command_more_workout"
-				android:layout_centerHorizontal="true"
-				android:layout_centerInParent="true"
-				/>
-			
-			
-		</RelativeLayout>
 	</LinearLayout>
 
 </LinearLayout>
