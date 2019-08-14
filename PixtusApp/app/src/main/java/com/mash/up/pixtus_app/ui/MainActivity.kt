@@ -32,9 +32,6 @@ class MainActivity : BaseActivity(), SensorEventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recycler_exercise.adapter = ExerciseAdapter()
-        recycler_exercise.layoutManager= LinearLayoutManager(this)
-
         initUI()
     }
 
