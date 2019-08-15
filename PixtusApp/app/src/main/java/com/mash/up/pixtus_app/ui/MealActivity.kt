@@ -3,12 +3,19 @@ package com.mash.up.pixtus_app.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
+import com.mash.up.pixtus_app.Meal
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
+import com.mash.up.pixtus_app.core.NetworkCore
+import com.mash.up.pixtus_app.core.PixtusApi
 import com.mash.up.pixtus_app.utils.showToastMessageString
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_meal.*
+import kotlinx.android.synthetic.main.activity_meal.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -31,9 +38,21 @@ class MealActivity : BaseActivity() {
         layout_next.setOnClickListener {
             if (layout_next.isSelected) {
                 meal_blur.visibility = View.VISIBLE
-                showToastMessageString(mealCnt.toString())
+                //showToastMessageString(mealCnt.toString())
+                var meal = Meal(layout_breakfast.isSelected,layout_lunch.isSelected, layout_dinner.isSelected, layout_nightmeal.isSelected)
 
-                //TODO mealCnt, uid 담은 Request Body POST
+                NetworkCore.getNetworkCore<PixtusApi>()
+                    .postMeal(
+                        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY",
+                        meal
+                    )
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        Log.d("list_data", it.toString())
+                    }, {
+                        Log.d("list_data", Log.getStackTraceString(it))
+                    })
 
                 Handler().postDelayed({
                     val intent = Intent(this, ViewActivity::class.java)
