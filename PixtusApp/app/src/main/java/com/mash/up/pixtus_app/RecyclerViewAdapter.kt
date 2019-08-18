@@ -19,6 +19,15 @@ class RecyclerViewAdapter(val list: List<Exercise>) : RecyclerView.Adapter<Recyc
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(Exercise: Exercise) {
+            if (Exercise.name.equals("축구")){
+                view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(R.drawable.work_soccer)
+            }else if(Exercise.name.equals("수영")){
+                view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(R.drawable.workout_swim)
+            }else if(Exercise.name.equals("자전거")){
+                view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(R.drawable.workout_bike)
+            }else {
+                view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(R.drawable.img_walk1)
+            }
 //            view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(WorkOut.image)
             view.findViewById<TextView>(R.id.tv_workout_name).text = Exercise.name
             view.findViewById<TextView>(R.id.tv_workout_kcal).text = Exercise.kcal.toString()
