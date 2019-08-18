@@ -10,17 +10,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.mash.up.pixtus_app.data.Exercise
 import com.mash.up.pixtus_app.ui.view.WorkoutDetailActivity
 
-class RecyclerViewAdapter(val list: MutableList<WorkOut>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RecyclerViewAdapter(val list: List<Exercise>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(WorkOut: WorkOut) {
-            view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(WorkOut.image)
-            view.findViewById<TextView>(R.id.tv_workout_name).text = WorkOut.name
-            view.findViewById<TextView>(R.id.tv_workout_kcal).text = WorkOut.kcal
+        fun bind(Exercise: Exercise) {
+//            view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(WorkOut.image)
+            view.findViewById<TextView>(R.id.tv_workout_name).text = Exercise.name
+            view.findViewById<TextView>(R.id.tv_workout_kcal).text = Exercise.kcal.toString()
         }
     }
 
@@ -33,7 +34,7 @@ class RecyclerViewAdapter(val list: MutableList<WorkOut>) : RecyclerView.Adapter
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolder).bind(list[position] as WorkOut)
+        (holder as ViewHolder).bind(list[position] as Exercise)
         holder.view.setOnClickListener {
 
             val nextIntent = Intent(holder.view.context, WorkoutDetailActivity::class.java)
