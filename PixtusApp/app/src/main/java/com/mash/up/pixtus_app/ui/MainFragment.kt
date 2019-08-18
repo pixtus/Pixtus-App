@@ -79,13 +79,11 @@ class MainFragment : Fragment(), SensorEventListener {
         Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
         var dateFormat = SimpleDateFormat("MM.dd / EEE")
         root!!.tv_date.text = dateFormat.format(Date()).toString()
+        var exercise_recycler : RecyclerView
 
-        if (recycler_exercise != null){
-            recycler_exercise.adapter = ExerciseAdapter()
-            recycler_exercise.layoutManager = LinearLayoutManager(context)
-
-        }
+        exercise_recycler = root!!.findViewById(R.id.recycler_exercise) as RecyclerView
+        exercise_recycler.adapter = ExerciseAdapter()
+        exercise_recycler.layoutManager = LinearLayoutManager(activity)
         return root
-
     }
 }
