@@ -30,9 +30,8 @@ class MainFragment : Fragment(), SensorEventListener {
     var sensorManager: SensorManager? = null
     var stepCounterSensor: Sensor? = null
     var count = 0f
-    var start_count: Float? = null
-    var stop_count: Float? = null
-    var root: View ?= null
+    var root: View? = null
+    var recoard: Float = 0f
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -40,11 +39,8 @@ class MainFragment : Fragment(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event!!.sensor.type == Sensor.TYPE_STEP_COUNTER) {
-            if(event.values[0] - count > 0) {
-                count = event.values[0]
-                Glide.with(this).asGif().load(R.raw.walk1).into(iv_gif)
-                handler?.postDelayed(setImage, 2500)
-            }
+            Glide.with(this).asGif().load(R.raw.walk1).into(iv_gif)
+            handler?.postDelayed(setImage, 2500)
         }
     }
 
@@ -58,20 +54,8 @@ class MainFragment : Fragment(), SensorEventListener {
         //TODO background에서 돈 결과 서버로 보내주기
         //저장된 start_count가져오기
         //서버에 count - start_count보내기
-        stop_count = count
     }
 
-    override fun onPause() {
-        super.onPause()
-//        sensorManager?.unregisterListener(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        //TODO 어플 꺼지는 시점 걸음수 서버에 보내기
-        start_count = count//start_count저장해두기
-        //서버에 event.value - stop_count 보내기
-    }
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
@@ -79,7 +63,7 @@ class MainFragment : Fragment(), SensorEventListener {
         Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
         var dateFormat = SimpleDateFormat("MM.dd / EEE")
         root!!.tv_date.text = dateFormat.format(Date()).toString()
-        var exercise_recycler : RecyclerView
+        var exercise_recycler: RecyclerView
 
         exercise_recycler = root!!.findViewById(R.id.recycler_exercise) as RecyclerView
         exercise_recycler.adapter = ExerciseAdapter()
