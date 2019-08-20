@@ -1,18 +1,15 @@
 package com.mash.up.pixtus_app.ui.create
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
-import com.mash.up.pixtus_app.ui.MainActivity
 import com.mash.up.pixtus_app.utils.showToastMessageString
 import kotlinx.android.synthetic.main.activity_create_step2.*
-import kotlinx.android.synthetic.main.activity_create_step2.tv_next
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_create_step2.tv_nextExp
 
 class CreateStep2Activity : BaseActivity() {
 
@@ -20,10 +17,10 @@ class CreateStep2Activity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_step2)
 
-        tv_next.isSelected = validateStep()
+        tv_nextExp.isSelected = validateStep()
 
-        tv_next.setOnClickListener {
-            if (tv_next.isSelected){
+        tv_nextExp.setOnClickListener {
+            if (tv_nextExp.isSelected){
                 val intent = Intent(this, CreateStep3Activity::class.java)
                 intent.putExtra("name", edit_nickname.text.toString())
                 startActivity(intent)
@@ -43,7 +40,7 @@ class CreateStep2Activity : BaseActivity() {
     }
 
     fun statusText(boolean: Boolean) {
-        tv_next.isSelected = boolean
+        tv_nextExp.isSelected = boolean
     }
 
     fun validateStep() : Boolean = edit_nickname.text.isNotEmpty()

@@ -2,7 +2,6 @@ package com.mash.up.pixtus_app.ui.create
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.LinearLayout
@@ -13,7 +12,6 @@ import com.mash.up.pixtus_app.utils.showToastMessageString
 import kotlinx.android.synthetic.main.activity_create_step.*
 import kotlinx.android.synthetic.main.activity_create_step.edit_height
 import kotlinx.android.synthetic.main.activity_create_step.edit_weight
-import kotlinx.android.synthetic.main.activity_create_step.view.*
 
 class CreateStep1Activity : BaseActivity() {
 
@@ -22,10 +20,10 @@ class CreateStep1Activity : BaseActivity() {
         setContentView(R.layout.activity_create_step)
 
 
-        tv_next.isSelected = validateStep()
+        tv_nextExp.isSelected = validateStep()
 
-        tv_next.setOnClickListener {
-            if (tv_next.isSelected){
+        tv_nextExp.setOnClickListener {
+            if (tv_nextExp.isSelected){
                 val intent = Intent(this, CreateStep2Activity::class.java)
                 intent.putExtra("weight",100)
                 intent.putExtra("height",100)
@@ -71,7 +69,7 @@ class CreateStep1Activity : BaseActivity() {
     fun validateStep() : Boolean = edit_height.text.isNotEmpty() && (layout_male.isSelected || layout_female.isSelected)
 
     fun statusText(boolean: Boolean) {
-        tv_next.isSelected = boolean
+        tv_nextExp.isSelected = boolean
     }
 
     fun male(){

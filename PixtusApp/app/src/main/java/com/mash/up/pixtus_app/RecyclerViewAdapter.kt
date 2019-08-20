@@ -45,7 +45,6 @@ class RecyclerViewAdapter(val list: List<Exercise>) : RecyclerView.Adapter<Recyc
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as ViewHolder).bind(list[position] as Exercise)
         holder.view.setOnClickListener {
-
             val nextIntent = Intent(holder.view.context, WorkoutDetailActivity::class.java)
             nextIntent.putExtra("workout_name", list.get(position).name)
             holder.view.context.startActivity(nextIntent)

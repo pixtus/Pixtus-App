@@ -1,6 +1,7 @@
 package com.mash.up.pixtus_app.core
 
 import com.mash.up.pixtus_app.data.Exercise
+import com.mash.up.pixtus_app.data.MainData
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.Body
@@ -26,4 +27,9 @@ interface PixtusApi {
     fun getExcercises(
         @Header("Authorization") authorization: String
     ) : Single<List<Exercise>>
+
+    @GET("/main") // 리턴타입
+    fun getMainData(
+        @Header("Authorization") authorization: String
+    ) : Single<MainData>
 }
