@@ -14,11 +14,10 @@ import android.view.ViewGroup
 import android.support.annotation.Nullable
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.text.Layout
+import android.util.Log
 import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.ExerciseAdapter
 import com.mash.up.pixtus_app.R
-import com.mash.up.pixtus_app.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import java.text.SimpleDateFormat
@@ -26,36 +25,50 @@ import java.util.*
 
 
 class MainFragment : Fragment(), SensorEventListener {
-    var handler: Handler? = null
     var sensorManager: SensorManager? = null
-    var stepCounterSensor: Sensor? = null
-    var count = 0f
+    var stepDetectorSensor: Sensor? = null
+    var handler: Handler? = null
     var root: View? = null
-    var recoard: Float = 0f
+
+    fun initUI() {
+        sensorManager = this.activity!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        stepDetectorSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR)
+
+    }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-        if (event!!.sensor.type == Sensor.TYPE_STEP_COUNTER) {
-            Glide.with(this).asGif().load(R.raw.walk1).into(iv_gif)
-            handler?.postDelayed(setImage, 2500)
+        Glide.with(this).asGif().load(R.raw.nomal1).into(iv_gif)
+        if(event!!.sensor.type == Sensor.TYPE_STEP_DETECTOR){
+            if (event.values[0] == 1.0f){
+                //TODO 로티 삽입
+                Log.d("하하하", "들어옴")
+                Glide.with(this).asGif().load(R.raw.walk1).into(root!!.iv_gif)
+                handler?.postDelayed(Runnable { Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif) }, 2500)
+                Log.d("하하하", "나감")
+            }
+            Log.d("하하하", "나옴")
         }
     }
 
-    private var setImage: Runnable = Runnable {
-        Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
+    var setImage : Runnable = Runnable {
+        Glide.with(this).asGif().load(R.raw.nomal1).into(iv_gif)
     }
+
 
     override fun onResume() {
         super.onResume()
-        sensorManager?.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_UI)
-        //TODO background에서 돈 결과 서버로 보내주기
-        //저장된 start_count가져오기
-        //서버에 count - start_count보내기
+        sensorManager?.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_UI)
     }
 
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initUI()
+    }
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
