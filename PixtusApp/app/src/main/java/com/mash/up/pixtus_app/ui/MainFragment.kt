@@ -18,7 +18,6 @@ import android.util.Log
 import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.ExerciseAdapter
 import com.mash.up.pixtus_app.R
-import com.mash.up.pixtus_app.RecyclerViewAdapter
 import com.mash.up.pixtus_app.core.MainResponse
 import com.mash.up.pixtus_app.core.NetworkCore
 import com.mash.up.pixtus_app.core.PixtusApi
@@ -26,30 +25,31 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.activity_workout_list.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MainFragment : Fragment(), SensorEventListener {
     var handler: Handler? = null
     var sensorManager: SensorManager? = null
-    var stepCounterSensor: Sensor? = null
+    var stepDetectorSensor: Sensor? = null
     var count = 0f
-    var start_count: Float? = null
-    var stop_count: Float? = null
-    var root: View ?= null
+    var root: View? = null
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-        if (event!!.sensor.type == Sensor.TYPE_STEP_COUNTER) {
-            if(event.values[0] - count > 0) {
-                count = event.values[0]
-                Glide.with(this).asGif().load(R.raw.walk1).into(iv_gif)
-                handler?.postDelayed(setImage, 2500)
+        if (event!!.sensor.type == Sensor.TYPE_STEP_DETECTOR) {
+            if (event.values[0] == 1.0f) {
+                count++
+                //TODO 로티 삽입
+                Log.d("하하하", "들어옴")
+                Glide.with(this).asGif().load(R.raw.walk1).into(root!!.iv_gif)
+                handler?.postDelayed(Runnable { Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif) }, 3000)
+                Log.d("하하하", "나감")
+                //view!!.tv_title.text = count.toString()
             }
+            Log.d("하하하", "나옴")
         }
     }
 
@@ -59,29 +59,19 @@ class MainFragment : Fragment(), SensorEventListener {
 
     override fun onResume() {
         super.onResume()
-        sensorManager?.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_UI)
-        //TODO background에서 돈 결과 서버로 보내주기
-        //저장된 start_count가져오기
-        //서버에 count - start_count보내기
-        stop_count = count
+        sensorManager?.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_UI)
     }
 
-    override fun onPause() {
-        super.onPause()
-//        sensorManager?.unregisterListener(this)
-    }
 
-    override fun onStop() {
-        super.onStop()
-        //TODO 어플 꺼지는 시점 걸음수 서버에 보내기
-        start_count = count//start_count저장해두기
-        //서버에 event.value - stop_count 보내기
+    override fun onDestroy() {
+        super.onDestroy()
+        //TODO서버 보내
     }
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
         root = inflater.inflate(R.layout.activity_main, container, false)
-        Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
+        //Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
         var dateFormat = SimpleDateFormat("MM.dd / EEE")
         root!!.tv_date.text = dateFormat.format(Date()).toString()
 
@@ -98,27 +88,34 @@ class MainFragment : Fragment(), SensorEventListener {
                 Log.d("list_data", Log.getStackTraceString(it))
             })
 
+        initUI()
+
         return root
     }
+
+    fun initUI() {
+        sensorManager = this.activity!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        stepDetectorSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR)
+    }
+
 
     fun setData(model: MainResponse) {
         tv_title.text = model.characterName
         tv_calorie.text = model.exp.toString()
         tv_next_calorie.text = model.nextExp.toString()
-        when(model.level){
-            1 ->{
-                Glide.with(this).asGif().load(R.raw.pixtus_ani_01_walk).into(iv_gif)
+        when (model.level) {
+            1 -> {
+                Glide.with(this).asGif().load(R.raw.nomal1).into(iv_gif)
             }
-            2 ->{
+            2 -> {
                 Glide.with(this).asGif().load(R.raw.pixtus_ani_02_walk).into(iv_gif)
             }
-            3->{
+            3 -> {
                 Glide.with(this).asGif().load(R.raw.pixtus_ani_03_walk).into(iv_gif)
             }
         }
 
         var sortedList = model.workouts.sortedWith(compareByDescending { it.totalKcal })
-        
 
         var exercise_recycler = root!!.findViewById(R.id.recycler_exercise) as RecyclerView
         exercise_recycler.adapter = ExerciseAdapter(sortedList)
