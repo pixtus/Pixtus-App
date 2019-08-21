@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.ExerciseAdapter
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.RecyclerViewAdapter
+import com.mash.up.pixtus_app.core.MainResponse
 import com.mash.up.pixtus_app.core.NetworkCore
 import com.mash.up.pixtus_app.core.PixtusApi
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -29,64 +30,52 @@ import kotlinx.android.synthetic.main.activity_workout_list.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class MainFragment : Fragment(), SensorEventListener {
-    private var sensorManager: SensorManager? = null
-    var stepDetectorSensor: Sensor? = null
     var handler: Handler? = null
-    var root: View? = null
-    var count = 0
-
-    fun initUI() {
-        sensorManager = this.activity!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        stepDetectorSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR)
-
-    }
+    var sensorManager: SensorManager? = null
+    var stepCounterSensor: Sensor? = null
+    var count = 0f
+    var start_count: Float? = null
+    var stop_count: Float? = null
+    var root: View ?= null
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-        Glide.with(this).asGif().load(R.raw.nomal1).into(iv_gif)
-        if (event!!.sensor.type == Sensor.TYPE_STEP_DETECTOR) {
-            if (event.values[0] == 1.0f) {
-                count++
-                //TODO 로티 삽입
-                Log.d("하하하", "들어옴")
-                Glide.with(this).asGif().load(R.raw.walk1).into(root!!.iv_gif)
-                handler?.postDelayed(Runnable { Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif) }, 2500)
-                Log.d("하하하", "나감")
-                view!!.tv_title.text = count.toString()
+        if (event!!.sensor.type == Sensor.TYPE_STEP_COUNTER) {
+            if(event.values[0] - count > 0) {
+                count = event.values[0]
+                Glide.with(this).asGif().load(R.raw.walk1).into(iv_gif)
+                handler?.postDelayed(setImage, 2500)
             }
-            Log.d("하하하", "나옴")
         }
     }
 
+    private var setImage: Runnable = Runnable {
+        Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
+    }
 
     override fun onResume() {
         super.onResume()
-        sensorManager?.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_UI)
+        sensorManager?.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_UI)
+        //TODO background에서 돈 결과 서버로 보내주기
+        //저장된 start_count가져오기
+        //서버에 count - start_count보내기
+        stop_count = count
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initUI()
-        getData()
+    override fun onPause() {
+        super.onPause()
+//        sensorManager?.unregisterListener(this)
     }
 
-    fun getData() {
-        NetworkCore.getNetworkCore<PixtusApi>()
-            .getMainData("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY")
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                root!!.tv_title.text = it.characterName
-                root!!.tv_exp.text = it.exp.toString()
-                root!!.tv_nextExp.text = it.nextExp.toString()
-            }, {
-                it.printStackTrace()
-            })
+    override fun onStop() {
+        super.onStop()
+        //TODO 어플 꺼지는 시점 걸음수 서버에 보내기
+        start_count = count//start_count저장해두기
+        //서버에 event.value - stop_count 보내기
     }
 
     @Nullable
@@ -95,11 +84,44 @@ class MainFragment : Fragment(), SensorEventListener {
         Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
         var dateFormat = SimpleDateFormat("MM.dd / EEE")
         root!!.tv_date.text = dateFormat.format(Date()).toString()
-        var exerciseRecycler = root!!.findViewById(R.id.recycler_exercise) as RecyclerView
 
-        exerciseRecycler.adapter = ExerciseAdapter()
-        exerciseRecycler.layoutManager = LinearLayoutManager(activity)
+        NetworkCore.getNetworkCore<PixtusApi>()
+            .getMain(
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY"
+            )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                setData(it)
+                Log.d("list_data", it.toString())
+            }, {
+                Log.d("list_data", Log.getStackTraceString(it))
+            })
 
         return root
+    }
+
+    fun setData(model: MainResponse) {
+        tv_title.text = model.characterName
+        tv_calorie.text = model.exp.toString()
+        tv_next_calorie.text = model.nextExp.toString()
+        when(model.level){
+            1 ->{
+                Glide.with(this).asGif().load(R.raw.pixtus_ani_01_walk).into(iv_gif)
+            }
+            2 ->{
+                Glide.with(this).asGif().load(R.raw.pixtus_ani_02_walk).into(iv_gif)
+            }
+            3->{
+                Glide.with(this).asGif().load(R.raw.pixtus_ani_03_walk).into(iv_gif)
+            }
+        }
+
+        var sortedList = model.workouts.sortedWith(compareByDescending { it.totalKcal })
+        
+
+        var exercise_recycler = root!!.findViewById(R.id.recycler_exercise) as RecyclerView
+        exercise_recycler.adapter = ExerciseAdapter(sortedList)
+        exercise_recycler.layoutManager = LinearLayoutManager(activity)
     }
 }

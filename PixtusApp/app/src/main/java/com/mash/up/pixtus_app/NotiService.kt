@@ -2,18 +2,13 @@ package com.mash.up.pixtus_app
 
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
-import android.os.IBinder
-import android.os.PowerManager
 import android.support.v4.app.NotificationCompat
 import android.util.Log
-import android.widget.Toast
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.mash.up.pixtus_app.ui.MainActivity
 import com.mash.up.pixtus_app.ui.view.WorkoutListActivity
 
 class NotiService : FirebaseMessagingService() {

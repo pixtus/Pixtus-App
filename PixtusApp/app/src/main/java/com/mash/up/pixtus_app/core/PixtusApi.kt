@@ -28,8 +28,8 @@ interface PixtusApi {
         @Header("Authorization") authorization: String
     ) : Single<List<Exercise>>
 
-    @GET("/main") // 리턴타입
-    fun getMainData(
+    @GET("/main")
+    fun getMain(
         @Header("Authorization") authorization: String
-    ) : Single<MainData>
+    ) : Single<MainResponse>
 }

@@ -81,10 +81,10 @@
 					android:text="픽미픽미픽미"
 					android:textColor="@color/colorBlack"
 					android:textSize="16sp" />
-				
-				
-				
-				
+			
+			
+			
+			
 			
 			</RelativeLayout>
 			
@@ -98,7 +98,7 @@
 				android:background="@drawable/bg_test" />
 			
 			<TextView
-				android:id="@+id/tv_exp"
+				android:id="@+id/tv_calorie"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_below="@+id/stats_bar"
@@ -114,20 +114,20 @@
 				android:id="@+id/tv_EXP1"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_alignBaseline="@id/tv_exp"
+				android:layout_alignBaseline="@id/tv_calorie"
 				android:layout_marginStart="4dp"
 				android:layout_marginBottom="2dp"
-				android:layout_toEndOf="@+id/tv_exp"
+				android:layout_toEndOf="@+id/tv_calorie"
 				android:fontFamily="@font/notosans_bold"
 				android:text="EXP"
 				android:textColor="@color/colorPrimary"
 				android:textSize="8sp" />
 			
 			<TextView
-				android:id="@+id/tv_nextExp"
+				android:id="@+id/tv_next_calorie"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_alignBaseline="@id/tv_exp"
+				android:layout_alignBaseline="@id/tv_calorie"
 				android:layout_marginEnd="4dp"
 				android:layout_toStartOf="@+id/tv_EXP2"
 				android:fontFamily="@font/notosans_regular"
@@ -152,8 +152,8 @@
 				android:id="@+id/tv_date"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/tv_exp"
-				android:layout_alignLeft="@+id/tv_exp"
+				android:layout_below="@+id/tv_calorie"
+				android:layout_alignLeft="@+id/tv_calorie"
 				android:layout_marginTop="32dp"
 				android:fontFamily="@font/notosans_medium"
 				android:text="06.30 /sun"

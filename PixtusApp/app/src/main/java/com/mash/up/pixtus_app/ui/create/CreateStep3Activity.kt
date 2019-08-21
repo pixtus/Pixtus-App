@@ -2,15 +2,11 @@ package com.mash.up.pixtus_app.ui.create
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Html
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
-import com.mash.up.pixtus_app.ui.MainActivity
-import kotlinx.android.synthetic.main.activity_create_step2.*
+import com.mash.up.pixtus_app.ui.ViewActivity
 import kotlinx.android.synthetic.main.activity_create_step3.*
-import kotlinx.android.synthetic.main.activity_story.*
 
 class CreateStep3Activity : BaseActivity() {
 
@@ -31,7 +27,7 @@ class CreateStep3Activity : BaseActivity() {
         */
 
         complete_btn.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, ViewActivity::class.java)
             startActivity(intent)
             finish()
         }
