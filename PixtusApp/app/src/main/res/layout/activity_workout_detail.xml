@@ -15,9 +15,9 @@
 			android:id="@+id/btn_workout_back"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/btn_cancle"
+			android:background="#00000000"
 			android:paddingRight="20dp"
-			android:background="#00000000"/>
+			android:src="@drawable/btn_cancle" />
 		
 		<TextView
 			android:id="@+id/tool_workout_name"
@@ -84,16 +84,15 @@
 					app:layout_constraintTop_toTopOf="parent"
 					app:srcCompat="@drawable/rectangle" />
 				
-				<ImageView
-					android:id="@+id/iv_workout_detail"
+				<com.airbnb.lottie.LottieAnimationView
+					android:id="@+id/lottie_workout_detail"
 					android:layout_width="200dp"
 					android:layout_height="200dp"
 					android:layout_marginTop="60dp"
-					android:scaleType="fitXY"
+					android:scaleType="centerCrop"
 					app:layout_constraintEnd_toEndOf="parent"
 					app:layout_constraintStart_toStartOf="parent"
-					app:layout_constraintTop_toTopOf="parent"
-					android:src="@drawable/img_soccer"/>
+					app:layout_constraintTop_toTopOf="parent" />
 			
 			
 			</android.support.constraint.ConstraintLayout>

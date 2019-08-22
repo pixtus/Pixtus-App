@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_workout_detail.*
 import android.view.View
 import android.widget.*
+import com.airbnb.lottie.LottieAnimationView
 import com.mash.up.pixtus_app.R
 
 
@@ -50,15 +51,18 @@ class WorkoutDetailActivity : AppCompatActivity() {
     }
 
     fun initUI() {
-        Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
+        val animationView = findViewById<LottieAnimationView>(R.id.lottie_workout_detail)
+        //Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
         if (intent.hasExtra("workout_name")) {
             val str = intent.getStringExtra("workout_name")
             tool_workout_name.text = str
             when (str) {//운동에 따른 이미지
-                "축구" -> Glide.with(this).asGif().load(R.raw.soccer_level1).into(iv_workout_detail)
-                "자전거" -> Glide.with(this).asGif().load(R.raw.bike_level1).into(iv_workout_detail)
-                "수영" -> Glide.with(this).asGif().load(R.raw.swim_level1).into(iv_workout_detail)
+                "축구" -> animationView.setAnimation("ic_check.json")
+                "자전거" -> animationView.setAnimation("pixtus_workout_bicycle.json")
+                "수영" -> animationView.setAnimation("pixtus_workout_swim.json")
             }
+            animationView.loop(true)
+            animationView.playAnimation()
         }
         bindViews()
     }
