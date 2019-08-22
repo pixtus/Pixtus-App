@@ -55,8 +55,6 @@ class MealActivity : BaseActivity() {
                     })
 
                 Handler().postDelayed({
-                    val intent = Intent(this, ViewActivity::class.java)
-                    startActivity(intent)
                     finish()
                 }, 1000)
             } else {
