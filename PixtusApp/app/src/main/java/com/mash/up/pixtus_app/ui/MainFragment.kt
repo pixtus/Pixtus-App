@@ -1,6 +1,7 @@
 package com.example.stepcount
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -36,46 +37,18 @@ class MainFragment : Fragment(), SensorEventListener {
     var count = 0f
     var root: View? = null
     var stepData = StepData(count, 1)
+    var preferences:SharedPreferences ?= null
+    var editor: SharedPreferences.Editor ?= null
 
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onSensorChanged(event: SensorEvent?) {
-        if (event!!.sensor.type == Sensor.TYPE_STEP_DETECTOR) {
-            if (event.values[0] == 1.0f) {
-                count++
-                //TODO 로티 삽입
-                Glide.with(this).asGif().load(R.raw.walk1).into(root!!.iv_gif)
-                handler?.postDelayed(Runnable { Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif) }, 3000)
-                //view!!.tv_title.text = count.toString()
-            }
-            stepData!!.amount = count
-        }
-    }
+        preferences = context!!.getSharedPreferences("STEP_COUNT", Context.MODE_PRIVATE)
+        editor = preferences!!.edit()
 
-    private var setImage: Runnable = Runnable {
-        Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        sensorManager?.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_UI)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        NetworkCore.getNetworkCore<PixtusApi>()
-            .sendStep(
-                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY",
-                stepData
-            )
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                Log.d("send_step", "success")
-            }, {
-                Log.d("send_step", "fail")
-            })
+        val getStep = preferences!!.getFloat("stepCount", 0.0f)
+        Log.d("stepCount", getStep.toString())
+        sendData()
     }
 
     @Nullable
@@ -84,6 +57,7 @@ class MainFragment : Fragment(), SensorEventListener {
         //Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
         var dateFormat = SimpleDateFormat("MM.dd / EEE")
         root!!.tv_date.text = dateFormat.format(Date()).toString()
+        sendData()
 
         NetworkCore.getNetworkCore<PixtusApi>()
             .getMain(
@@ -99,21 +73,47 @@ class MainFragment : Fragment(), SensorEventListener {
             })
 
         initUI()
-
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sensorManager?.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_UI)
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d("onpause", "")
+
+        editor!!.putFloat("stepCount", count)
+        editor!!.commit()
     }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+    }
+
+    override fun onSensorChanged(event: SensorEvent?) {
+        if (event!!.sensor.type == Sensor.TYPE_STEP_DETECTOR) {
+            if (event.values[0] == 1.0f) {
+                count++
+                //TODO 로티 삽입
+//                Glide.with(this).asGif().load(R.raw.walk1).into(root!!.iv_gif)
+//                handler?.postDelayed(setImage, 3000)
+                //view!!.tv_title.text = count.toString()
+            }
+            stepData!!.amount = count
+        }
+    }
+
+    private var setImage: Runnable = Runnable {
+        Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
+    }
+
 
     fun initUI() {
         sensorManager = this.activity!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         stepDetectorSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR)
 
     }
-
 
     fun setData(model: MainResponse) {
         tv_title.text = model.characterName
@@ -130,11 +130,25 @@ class MainFragment : Fragment(), SensorEventListener {
                 Glide.with(this).asGif().load(R.raw.pixtus_ani_03_walk).into(iv_gif)
             }
         }
-
         var sortedList = model.workouts.sortedWith(compareByDescending { it.totalKcal })
-
         var exercise_recycler = root!!.findViewById(R.id.recycler_exercise) as RecyclerView
         exercise_recycler.adapter = ExerciseAdapter(sortedList)
         exercise_recycler.layoutManager = LinearLayoutManager(activity)
+    }
+
+    fun sendData(){
+       //TODO db에 저장된 값 가져오기
+        NetworkCore.getNetworkCore<PixtusApi>()
+            .sendStep(
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY",
+                stepData
+            )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.d("send_step", "success")
+            }, {
+                Log.d("send_step", "fail")
+            })
     }
 }
