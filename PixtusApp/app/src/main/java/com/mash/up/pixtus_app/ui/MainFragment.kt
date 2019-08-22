@@ -21,6 +21,7 @@ import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.core.MainResponse
 import com.mash.up.pixtus_app.core.NetworkCore
 import com.mash.up.pixtus_app.core.PixtusApi
+import com.mash.up.pixtus_app.data.StepData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,6 +35,7 @@ class MainFragment : Fragment(), SensorEventListener {
     var stepDetectorSensor: Sensor? = null
     var count = 0f
     var root: View? = null
+    var stepData = StepData(count, 1)
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
     }
@@ -43,13 +45,11 @@ class MainFragment : Fragment(), SensorEventListener {
             if (event.values[0] == 1.0f) {
                 count++
                 //TODO 로티 삽입
-                Log.d("하하하", "들어옴")
                 Glide.with(this).asGif().load(R.raw.walk1).into(root!!.iv_gif)
                 handler?.postDelayed(Runnable { Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif) }, 3000)
-                Log.d("하하하", "나감")
                 //view!!.tv_title.text = count.toString()
             }
-            Log.d("하하하", "나옴")
+            stepData!!.amount = count
         }
     }
 
@@ -62,10 +62,20 @@ class MainFragment : Fragment(), SensorEventListener {
         sensorManager?.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_UI)
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
-        //TODO서버 보내
+        NetworkCore.getNetworkCore<PixtusApi>()
+            .sendStep(
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY",
+                stepData
+            )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.d("send_step", "success")
+            }, {
+                Log.d("send_step", "fail")
+            })
     }
 
     @Nullable
@@ -93,9 +103,15 @@ class MainFragment : Fragment(), SensorEventListener {
         return root
     }
 
+    override fun onPause() {
+        super.onPause()
+        Log.d("onpause", "")
+    }
+
     fun initUI() {
         sensorManager = this.activity!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         stepDetectorSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR)
+
     }
 
 

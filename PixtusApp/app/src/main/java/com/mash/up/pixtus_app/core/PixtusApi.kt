@@ -2,6 +2,7 @@ package com.mash.up.pixtus_app.core
 
 import com.mash.up.pixtus_app.data.Exercise
 import com.mash.up.pixtus_app.data.MainData
+import com.mash.up.pixtus_app.data.StepData
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.Body
@@ -21,6 +22,19 @@ interface PixtusApi {
     //Any == object
     @POST("/meal")
     fun sendMeal(@Body body: HashMap<String,Any>) : Completable
+
+    @POST("/workout")
+    fun sendStep(
+        @Header("Authorization") authorization: String,
+        @Body body: StepData
+    ) : Completable
+    /*
+    * {
+    * "amount": 0,
+  "exerciseId": 0
+
+}
+    * */
 
 
     @GET("/exercises") // 리턴타입
