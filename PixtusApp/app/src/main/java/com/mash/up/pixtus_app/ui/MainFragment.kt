@@ -47,9 +47,11 @@ class MainFragment : Fragment(), SensorEventListener {
                 count++
                 //TODO 로티 삽입 / To 채원 {혹시 로티 애니메이션을 멈추고 싶으면 pauseAnimation() 사용하면 됨!!}
                 val animationView = root!!.findViewById<LottieAnimationView>(R.id.lottie_main)
-                animationView.setAnimation("pixtus_walk_senior.json")
+                animationView.setAnimation("pixtus_walk_junior.json")
                 animationView.loop(true)
                 animationView.playAnimation()
+                handler?.postDelayed(Runnable { animationView.pauseAnimation() }, 3000)
+
                 /*
                 Glide.with(this).asGif().load(R.raw.walk1).into(root!!.iv_gif)
                 handler?.postDelayed(Runnable { Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif) }, 3000)
@@ -61,7 +63,7 @@ class MainFragment : Fragment(), SensorEventListener {
     }
 
     private var setImage: Runnable = Runnable {
-        //Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
+
     }
 
     override fun onResume() {
@@ -139,7 +141,8 @@ class MainFragment : Fragment(), SensorEventListener {
             }
         }
         animationView.loop(true)
-        animationView.playAnimation()
+        animationView.pauseAnimation()
+//        animationView.playAnimation()
         var sortedList = model.workouts.sortedWith(compareByDescending { it.totalKcal })
 
         var exercise_recycler = root!!.findViewById(R.id.recycler_exercise) as RecyclerView
