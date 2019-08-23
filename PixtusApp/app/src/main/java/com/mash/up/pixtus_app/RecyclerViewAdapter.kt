@@ -30,7 +30,7 @@ class RecyclerViewAdapter(val list: List<Exercise>) : RecyclerView.Adapter<Recyc
             }
 //            view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(WorkOut.image)
             view.findViewById<TextView>(R.id.tv_workout_name).text = Exercise.name
-            view.findViewById<TextView>(R.id.tv_workout_kcal).text = Exercise.kcal.toString()
+            view.findViewById<TextView>(R.id.tv_workout_kcal).text = (Exercise.kcal * 60).toString() + "kcal"
         }
     }
 
