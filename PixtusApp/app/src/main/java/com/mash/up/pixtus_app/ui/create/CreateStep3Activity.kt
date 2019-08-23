@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
 import com.mash.up.pixtus_app.ui.MainActivity
+import com.mash.up.pixtus_app.ui.StoryActivity
 import kotlinx.android.synthetic.main.activity_create_step2.*
 import kotlinx.android.synthetic.main.activity_create_step3.*
 import kotlinx.android.synthetic.main.activity_story.*
@@ -31,7 +32,7 @@ class CreateStep3Activity : BaseActivity() {
         */
 
         complete_btn.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, StoryActivity::class.java)
             startActivity(intent)
             finish()
         }

@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_create_step.*
 import kotlinx.android.synthetic.main.activity_create_step.edit_height
 import kotlinx.android.synthetic.main.activity_create_step.edit_weight
 import kotlinx.android.synthetic.main.activity_create_step.view.*
+import org.jetbrains.anko.startActivity
 
 class CreateStep1Activity : BaseActivity() {
 
@@ -26,11 +27,23 @@ class CreateStep1Activity : BaseActivity() {
 
         tv_next.setOnClickListener {
             if (tv_next.isSelected){
-                val intent = Intent(this, CreateStep2Activity::class.java)
-                intent.putExtra("weight",100)
-                intent.putExtra("height",100)
-                intent.putExtra("sex","남")
-                startActivity(intent)
+                var uid = intent.getStringExtra("uid")
+                var email= intent.getStringExtra("email")
+                var name = intent.getStringExtra("name")
+//                val intent = Intent(this, CreateStep2Activity::class.java)
+//                intent.putExtra("weight",edit_weight.text.toString())
+//                intent.putExtra("height",edit_height.text.toString())
+                var sex = ""
+                if(layout_male.isSelected == true)
+                    sex = "M"
+                else
+                    sex = "W"
+//                intent.putExtra("sex",sex)
+//                startActivity(intent)
+
+
+                startActivity<CreateStep2Activity>("uid" to uid, "email" to email, "weight" to edit_weight.text.toString(), "height" to edit_height.text.toString(),
+                    "sex" to sex, "name" to name)
                 finish()
             } else
                 showToastMessageString("정보를 다 입력해주세요.")

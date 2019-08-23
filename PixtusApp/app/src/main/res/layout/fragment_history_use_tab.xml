@@ -98,6 +98,7 @@
 				android:layout_centerHorizontal="true"
 				>
 				<ImageView
+					android:id="@+id/total_get_kcal_sunday"
 					android:layout_width="8dp"
 					android:layout_height="8dp"
 					android:src="@drawable/history_dot"
@@ -160,6 +161,7 @@
 				android:layout_centerHorizontal="true"
 				>
 				<ImageView
+					android:id="@+id/total_get_kcal_monday"
 					android:layout_width="8dp"
 					android:layout_height="8dp"
 					android:src="@drawable/history_dot"
@@ -221,6 +223,7 @@
 				android:layout_centerHorizontal="true"
 				>
 				<ImageView
+					android:id="@+id/total_get_kcal_tuesday"
 					android:layout_width="8dp"
 					android:layout_height="8dp"
 					android:src="@drawable/history_dot"
@@ -282,6 +285,7 @@
 				android:layout_centerHorizontal="true"
 				>
 				<ImageView
+					android:id="@+id/total_get_kcal_wends"
 					android:layout_width="8dp"
 					android:layout_height="8dp"
 					android:src="@drawable/history_dot"
@@ -343,6 +347,7 @@
 				android:layout_centerHorizontal="true"
 				>
 				<ImageView
+					android:id="@+id/total_get_kcal_thurs"
 					android:layout_width="8dp"
 					android:layout_height="8dp"
 					android:src="@drawable/history_dot"
@@ -404,6 +409,7 @@
 				android:layout_centerHorizontal="true"
 				>
 				<ImageView
+					android:id="@+id/total_get_kcal_friday"
 					android:layout_width="8dp"
 					android:layout_height="8dp"
 					android:src="@drawable/history_dot"
@@ -465,6 +471,7 @@
 				android:layout_centerHorizontal="true"
 				>
 				<ImageView
+					android:id="@+id/total_get_kcal_saturday"
 					android:layout_width="8dp"
 					android:layout_height="8dp"
 					android:src="@drawable/history_dot"
@@ -598,13 +605,14 @@
 			/>
 		
 		<TextView
+			android:id="@+id/tv_total_walk"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
 			android:layout_marginEnd="8dp"
 			android:fontFamily="@font/notosans_medium"
 			android:text="204Kcal"
-			android:layout_centerVertical="true"
 			android:textColor="#727272"
 			android:textSize="12sp" />
 		
@@ -634,6 +642,7 @@
 			android:textSize="12sp" />
 		
 		<TextView
+			android:id="@+id/tv_total_swim"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="204Kcal"
@@ -672,6 +681,7 @@
 			android:textSize="12sp" />
 		
 		<TextView
+			android:id="@+id/tv_total_run"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="204Kcal"
@@ -711,6 +721,7 @@
 			/>
 		
 		<TextView
+			android:id="@+id/tv_total_bike"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="204Kcal"

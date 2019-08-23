@@ -59,7 +59,7 @@
 			android:layout_marginLeft="16dp"
 			android:layout_marginTop="32dp"
 			android:fontFamily="@font/notosans_bold"
-			android:text="픽미픽미픽미업"
+			android:text="픽터스"
 			android:textColor="#5dbb96"
 			android:textSize="18sp" />
 		
@@ -108,7 +108,6 @@
 			android:layout_marginTop="38dp"
 			android:layout_marginRight="16dp"
 			android:orientation="vertical">
-			
 			
 			<LinearLayout
 				android:layout_width="match_parent"
