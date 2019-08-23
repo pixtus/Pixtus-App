@@ -34,7 +34,9 @@ import java.util.*
 class MainFragment : Fragment(), SensorEventListener {
     var handler: Handler? = null
     var sensorManager: SensorManager? = null
+    var sensorManagerShake: SensorManager ?= null
     var stepDetectorSensor: Sensor? = null
+    var shakeSensor: Sensor? = null
     var count = 0f
     var root: View? = null
     var stepData = StepData(count, 1)
@@ -72,7 +74,6 @@ class MainFragment : Fragment(), SensorEventListener {
             }, {
                 Log.d("list_data", Log.getStackTraceString(it))
             })
-
         initUI()
         return root
     }
@@ -80,6 +81,8 @@ class MainFragment : Fragment(), SensorEventListener {
     override fun onResume() {
         super.onResume()
         sensorManager?.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_UI)
+        sensorManagerShake?.registerListener(this, shakeSensor, SensorManager.SENSOR_DELAY_UI)
+
     }
 
     override fun onPause() {
@@ -96,19 +99,15 @@ class MainFragment : Fragment(), SensorEventListener {
         if (event!!.sensor.type == Sensor.TYPE_STEP_DETECTOR) {
             if (event.values[0] == 1.0f) {
                 count++
-                val animationView = root!!.findViewById<LottieAnimationView>(R.id.lottie_main)
-                animationView.setAnimation("pixtus_walk_junior.json")
-                animationView.loop(true)
-                animationView.playAnimation()
-                handler?.postDelayed(Runnable { animationView.pauseAnimation() }, 3000)
-
-                /*
-                Glide.with(this).asGif().load(R.raw.walk1).into(root!!.iv_gif)
-                handler?.postDelayed(Runnable { Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif) }, 3000)
-                */
-                //view!!.tv_title.text = count.toString()
             }
             stepData!!.amount = count
+        }else if (event!!.sensor.getType() == Sensor.TYPE_ACCELEROMETER){//TYPE_ACCELEROMETER
+            val animationView = root!!.findViewById<LottieAnimationView>(R.id.lottie_main)
+            animationView.setAnimation("pixtus_walk_junior.json")
+            if(event.values[0] > 2){
+                animationView.playAnimation()
+                Log.d("TTTTTTTTTTT", event.values[0].toString())
+            }
         }
     }
 
@@ -116,6 +115,9 @@ class MainFragment : Fragment(), SensorEventListener {
     fun initUI() {
         sensorManager = this.activity!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         stepDetectorSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR)
+
+        sensorManagerShake = this.activity!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        shakeSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 
     }
 
@@ -136,7 +138,8 @@ class MainFragment : Fragment(), SensorEventListener {
             }
         }
 
-        animationView.loop(true)
+//        animationView.loop(true)
+        animationView.playAnimation()
         animationView.pauseAnimation()
 //        animationView.playAnimation()
         var sortedList = model.workouts.sortedWith(compareByDescending { it.totalKcal })
@@ -146,7 +149,6 @@ class MainFragment : Fragment(), SensorEventListener {
     }
 
     fun sendData(){
-       //TODO db에 저장된 값 가져오기
         NetworkCore.getNetworkCore<PixtusApi>()
             .sendStep(
                 "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY",
