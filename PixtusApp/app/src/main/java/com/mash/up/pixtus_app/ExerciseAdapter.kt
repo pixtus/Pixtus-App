@@ -3,15 +3,19 @@ package com.mash.up.pixtus_app
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.mash.up.pixtus_app.data.Workout
 import kotlinx.android.synthetic.main.item_workout_main.view.*
 
-class ExerciseAdapter : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>(){
+class ExerciseAdapter(sortedList : List<Workout>) : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>(){
 
-    var items:MutableList<WorkOutMain> = mutableListOf(WorkOutMain("걷기", "2300"),
+    var items : List<Workout> = sortedList
+    /*
+    var items : MutableList<WorkOutMain> = mutableListOf(WorkOutMain("걷기", "2300"),
         WorkOutMain("달리기", "3300"),WorkOutMain("수영", "4300"),
         WorkOutMain("축구", "5300"),WorkOutMain("자전거", "6300"),
         WorkOutMain("축구", "5300"),WorkOutMain("자전거", "6300"),
         WorkOutMain("축구", "5300"),WorkOutMain("자전거", "6300"))
+    */
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = ExerciseViewHolder(parent)
 
@@ -20,8 +24,8 @@ class ExerciseAdapter : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         items[position].let{item->
             with(holder){
-                tv_workout_name_main.text=item.name
-                tv_workout_name_kcal.text=item.kcal.toString()
+                tv_workout_name_main.text=item.exerciseName
+                tv_workout_name_kcal.text=item.totalKcal.toString()
             }
         }
     }

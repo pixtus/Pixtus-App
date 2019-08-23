@@ -20,7 +20,7 @@ class SplashActivity : BaseActivity() {
 
 
         NetworkCore.getNetworkCore<PixtusApi>()
-            .getExcercises()
+            .getExcercises("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

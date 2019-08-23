@@ -15,9 +15,9 @@
 			android:id="@+id/btn_workout_back"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/btn_cancle"
+			android:background="#00000000"
 			android:paddingRight="20dp"
-			android:background="#00000000"/>
+			android:src="@drawable/btn_cancle" />
 		
 		<TextView
 			android:id="@+id/tool_workout_name"
@@ -84,16 +84,14 @@
 					app:layout_constraintTop_toTopOf="parent"
 					app:srcCompat="@drawable/rectangle" />
 				
-				<ImageView
-					android:id="@+id/iv_workout_detail"
-					android:layout_width="200dp"
-					android:layout_height="200dp"
-					android:layout_marginTop="60dp"
-					android:scaleType="fitXY"
+				<com.airbnb.lottie.LottieAnimationView
+					android:id="@+id/lottie_workout_detail"
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:scaleType="centerCrop"
 					app:layout_constraintEnd_toEndOf="parent"
 					app:layout_constraintStart_toStartOf="parent"
-					app:layout_constraintTop_toTopOf="parent"
-					android:src="@drawable/img_soccer"/>
+					app:layout_constraintTop_toTopOf="parent" />
 			
 			
 			</android.support.constraint.ConstraintLayout>
@@ -232,9 +230,12 @@
 				
 				<ProgressBar
 					android:id="@+id/bar_workout_exp"
-					style="?android:attr/progressBarStyleHorizontal"
+					android:max="100"
+					android:progress="50"
+					style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+					android:progressDrawable="@drawable/progressbar_progressbar1"
 					android:layout_width="220dp"
-					android:layout_height="20dp"
+					android:layout_height="12dp"
 					android:layout_marginTop="20dp"
 					app:layout_constraintEnd_toEndOf="parent"
 					app:layout_constraintStart_toStartOf="parent"

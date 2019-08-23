@@ -10,17 +10,27 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.mash.up.pixtus_app.data.Exercise
 import com.mash.up.pixtus_app.ui.view.WorkoutDetailActivity
 
-class RecyclerViewAdapter(val list: MutableList<WorkOut>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RecyclerViewAdapter(val list: List<Exercise>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(WorkOut: WorkOut) {
-            view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(WorkOut.image)
-            view.findViewById<TextView>(R.id.tv_workout_name).text = WorkOut.name
-            view.findViewById<TextView>(R.id.tv_workout_kcal).text = WorkOut.kcal
+        fun bind(Exercise: Exercise) {
+            if (Exercise.name.equals("축구")){
+                view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(R.drawable.workout_soccer)
+            }else if(Exercise.name.equals("수영")){
+                view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(R.drawable.workout_swim)
+            }else if(Exercise.name.equals("자전거")){
+                view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(R.drawable.workout_bike)
+            }else {
+                view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(R.drawable.img_walk1)
+            }
+//            view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(WorkOut.image)
+            view.findViewById<TextView>(R.id.tv_workout_name).text = Exercise.name
+            view.findViewById<TextView>(R.id.tv_workout_kcal).text = (Exercise.kcal * 60).toString() + "kcal"
         }
     }
 
@@ -33,9 +43,8 @@ class RecyclerViewAdapter(val list: MutableList<WorkOut>) : RecyclerView.Adapter
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolder).bind(list[position] as WorkOut)
+        (holder as ViewHolder).bind(list[position] as Exercise)
         holder.view.setOnClickListener {
-
             val nextIntent = Intent(holder.view.context, WorkoutDetailActivity::class.java)
             nextIntent.putExtra("workout_name", list.get(position).name)
             holder.view.context.startActivity(nextIntent)

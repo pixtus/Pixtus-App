@@ -5,11 +5,17 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.SystemClock
 import android.support.constraint.ConstraintLayout
+import android.util.Log
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_workout_detail.*
 import android.view.View
 import android.widget.*
+import com.airbnb.lottie.LottieAnimationView
 import com.mash.up.pixtus_app.R
+import com.mash.up.pixtus_app.core.NetworkCore
+import com.mash.up.pixtus_app.core.PixtusApi
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
 class WorkoutDetailActivity : AppCompatActivity() {
@@ -34,6 +40,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
     var buttonDone : ImageButton? = null
     var buttonDoneAct : ImageButton? = null
     var showExp : ConstraintLayout? = null
+    var bar_workout_exp : ProgressBar ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,20 +52,24 @@ class WorkoutDetailActivity : AppCompatActivity() {
         buttonDone = findViewById(R.id.btn_workout_done)
         buttonDoneAct = findViewById(R.id.btn_workout_done_act)
         showExp = findViewById(R.id.workout_exp)
+        bar_workout_exp = findViewById(R.id.bar_workout_exp)
 
         initUI()
     }
 
     fun initUI() {
-        Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
+        val animationView = findViewById<LottieAnimationView>(R.id.lottie_workout_detail)
+        //Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
         if (intent.hasExtra("workout_name")) {
             val str = intent.getStringExtra("workout_name")
             tool_workout_name.text = str
             when (str) {//운동에 따른 이미지
-                "축구" -> Glide.with(this).asGif().load(R.raw.soccer_level1).into(iv_workout_detail)
-                "자전거" -> Glide.with(this).asGif().load(R.raw.bike_level1).into(iv_workout_detail)
-                "수영" -> Glide.with(this).asGif().load(R.raw.swim_level1).into(iv_workout_detail)
+                "축구" -> animationView.setAnimation("ic_check.json")
+                "자전거" -> animationView.setAnimation("pixtus_workout_bicycle.json")
+                "수영" -> animationView.setAnimation("pixtus_workout_swim.json")
             }
+            animationView.loop(true)
+            animationView.playAnimation()
         }
         bindViews()
     }
@@ -102,6 +113,20 @@ class WorkoutDetailActivity : AppCompatActivity() {
             showExp?.visibility = View.VISIBLE
 
             //TODO 서버로 시간 보내기
+            NetworkCore.getNetworkCore<PixtusApi>()
+                .sendStep(
+                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY",
+                    (MillisecondTime/1000)
+                )
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+//                    getData()
+                }, {
+                    Log.d("send_step", "fail")
+                })
+
+
             Toast.makeText(applicationContext, (MillisecondTime/1000).toString(), Toast.LENGTH_SHORT).show()
             //TODO 경험치창 보여주기
 
@@ -109,6 +134,10 @@ class WorkoutDetailActivity : AppCompatActivity() {
             handler?.postDelayed(finish, 2500)
         }
         handler = Handler()
+    }
+
+    fun sendData(){
+
     }
 
 

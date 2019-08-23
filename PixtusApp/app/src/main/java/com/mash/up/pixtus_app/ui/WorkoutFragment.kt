@@ -17,6 +17,10 @@ import com.mash.up.pixtus_app.ExerciseAdapter
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.RecyclerViewAdapter
 import com.mash.up.pixtus_app.WorkOut
+import com.mash.up.pixtus_app.core.NetworkCore
+import com.mash.up.pixtus_app.core.PixtusApi
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.activity_main.view.recycler_exercise
@@ -33,20 +37,23 @@ class WorkoutFragment : Fragment() {
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
         root = inflater.inflate(R.layout.activity_workout_list, container, false)
-        initList()
+        getExcerciseList()
 
         return root
     }
 
-    fun initList() {
-        list.add(WorkOut(R.drawable.workout_soccer, "축구", "1234kcal"))
-        list.add(WorkOut(R.drawable.workout_bike, "자전거", "1234kcal"))
-        list.add(WorkOut(R.drawable.workout_swim, "수영", "1234kcal"))
-
-        root!!.rv_workout_list.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = RecyclerViewAdapter(list)
-        }
-
+    fun getExcerciseList() {
+        NetworkCore.getNetworkCore<PixtusApi>()
+            .getExcercises("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                root!!.rv_workout_list.apply {
+                    layoutManager = LinearLayoutManager(context)
+                    adapter = RecyclerViewAdapter(it)
+                }
+            }, {
+                it.printStackTrace()
+            })
     }
 }

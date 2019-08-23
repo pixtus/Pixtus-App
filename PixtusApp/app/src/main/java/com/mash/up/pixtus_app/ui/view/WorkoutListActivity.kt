@@ -15,19 +15,8 @@ class WorkoutListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout_list)
-        initList()
 
     }
 
-    fun initList() {
-        list.add(WorkOut(R.drawable.workout_soccer, "축구", "1234kcal"))
-        list.add(WorkOut(R.drawable.workout_bike, "자전거", "1234kcal"))
-        list.add(WorkOut(R.drawable.workout_swim, "수영", "1234kcal"))
 
-        rv_workout_list.apply {
-            layoutManager = LinearLayoutManager(this@WorkoutListActivity)
-            adapter = RecyclerViewAdapter(list)
-        }
-
-    }
 }
