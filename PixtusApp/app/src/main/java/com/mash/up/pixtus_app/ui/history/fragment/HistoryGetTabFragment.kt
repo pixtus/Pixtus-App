@@ -15,6 +15,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_history_get_tab.*
 import com.mash.up.pixtus_app.utils.DateUtils
+import com.mash.up.pixtus_app.utils.SharedPreferenceController
+import org.jetbrains.anko.support.v4.toast
 import kotlin.collections.ArrayList
 
 
@@ -24,10 +26,14 @@ import kotlin.collections.ArrayList
 class HistoryGetTabFragment : Fragment() {
 
     private var prevWeek: Int = 0
-    private var presentWeek: String? = ""
     private val d: Float by lazy { context!!.resources.displayMetrics.density }
     lateinit var historyResponse: HistoryResponse
+    private var presentWeek: String? = ""
+    private var saturday: String? = ""
+    private var sunday: String? = ""
 
+    private var saturDay: String = ""
+    private var sunDay: String = ""
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -36,7 +42,24 @@ class HistoryGetTabFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setOnClickListener()
-        getHistory(2)
+        setOnClickListener()
+        var dateUtils = DateUtils()
+        presentWeek = dateUtils.getWeek()
+        saturday = dateUtils.getSaturday(
+            presentWeek!!.substring(0, 4),
+            presentWeek!!.substring(4, 6),
+            presentWeek!!.substring(6)
+        )
+        sunday = dateUtils.getSunday(
+            presentWeek!!.substring(0, 4),
+            presentWeek!!.substring(4, 6),
+            presentWeek!!.substring(6)
+        )
+        tv_week.text = "${sunday!!.substring(0, 4)}년 ${sunday!!.substring(
+            4,
+            6
+        )}월 ${sunday!!.substring(6)}일 - ${saturday!!.substring(6)}일"
+        getHistory(0)
         initPresentWeekTv()
 //        val historyResponse = HistoryResponse(
 //            listOf(
@@ -186,7 +209,7 @@ class HistoryGetTabFragment : Fragment() {
     private fun getHistory(preweek: Int) {
         NetworkCore.getNetworkCore<HistoryApi>()
             .getHistory(
-                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY",
+                SharedPreferenceController.getAuthorization(context!!),
                 preweek
             )
             .subscribeOn(Schedulers.io())
@@ -195,7 +218,11 @@ class HistoryGetTabFragment : Fragment() {
                 // 성공했을 때
                 Log.d("list_data", it.toString())
                 historyResponse = it
-                reformHistoryResponse(historyResponse)
+                initView()
+                if (historyResponse.mealHistory.isEmpty())
+                    toast("섭취한 칼로리가 없군요...!")
+                else
+                    reformHistoryResponse(historyResponse)
             }, {
                 // 실패했을 때
                 Log.d("list_data", Log.getStackTraceString(it))
@@ -204,20 +231,49 @@ class HistoryGetTabFragment : Fragment() {
 
     private fun setOnClickListener() {
         btn_left.setOnClickListener {
+            saturday = DateUtils().get7DayAgoDate(
+                saturday!!.substring(0, 4).toInt(),
+                saturday!!.substring(4, 6).toInt(),
+                saturday!!.substring(6).toInt()
+            )
+            sunday = DateUtils().get7DayAgoDate(
+                sunday!!.substring(0, 4).toInt(),
+                sunday!!.substring(4, 6).toInt(),
+                sunday!!.substring(6).toInt()
+            )
+            tv_week.text = "${sunday!!.substring(0, 4)}년 ${sunday!!.substring(
+                4,
+                6
+            )}월 ${sunday!!.substring(6)}일 - ${saturday!!.substring(6)}일"
             prevWeek++
-            tv_week.text = presentWeek
+            getHistory(prevWeek)
         }
-
         btn_right.setOnClickListener {
-            if (prevWeek > 0)
+            if (prevWeek > 0) {
+                saturday = DateUtils().get7DayGoDate(
+                    saturday!!.substring(0, 4).toInt(),
+                    saturday!!.substring(4, 6).toInt(),
+                    saturday!!.substring(6).toInt()
+                )
+                sunday = DateUtils().get7DayGoDate(
+                    sunday!!.substring(0, 4).toInt(),
+                    sunday!!.substring(4, 6).toInt(),
+                    sunday!!.substring(6).toInt()
+                )
+                tv_week.text = "${sunday!!.substring(0, 4)}년 ${sunday!!.substring(
+                    4,
+                    6
+                )}월 ${sunday!!.substring(6)}일 - ${saturday!!.substring(6)}일"
                 prevWeek--
-            tv_week.text = DateUtils().getWeek(prevWeek)
+                getHistory(prevWeek)
+            }
+
         }
     }
 
     private fun initPresentWeekTv() {
-        presentWeek = DateUtils().getWeek(prevWeek)
-        tv_week.text = DateUtils().getWeek(prevWeek)
+//        presentWeek = DateUtils().getWeek(prevWeek)
+//        tv_week.text = DateUtils().getWeek(prevWeek)
     }
 
     /**
@@ -378,11 +434,11 @@ class HistoryGetTabFragment : Fragment() {
      * History 데이터를 받아서 그래프에 뿌리기
      */
     private fun setGraph(history: History) {
-        tv_total_get_kcal.text = history.totalGetKcal.toString()
-        tv_total_breakfast.text = history.totalBreakFastKcal.toString()
-        tv_total_lunch.text = history.totalLunchKcal.toString()
-        tv_total_dinner.text = history.totalDinnerKcal.toString()
-        tv_total_yasic.text = history.totalYasikKcal.toString()
+        tv_total_get_kcal.text = "${history.totalGetKcal} Kcal "
+        tv_total_breakfast.text = "${history.totalBreakFastKcal} Kcal "
+        tv_total_lunch.text = "${history.totalLunchKcal} Kcal "
+        tv_total_dinner.text = "${history.totalDinnerKcal} Kcal "
+        tv_total_yasic.text = "${history.totalYasikKcal} Kcal "
 
 
         var index = 0
@@ -391,37 +447,79 @@ class HistoryGetTabFragment : Fragment() {
                 // 일
                 0 -> {
                     setBottomMargin(total_use_kcal_sunday, dayKcalItem.dayTotalUseKacl)
-                    setStickGraph(tv_sun_breakfast, tv_sun_lunch, tv_sun_dinner, tv_sun_midnight_snack, dayKcalItem.mealHistoryList)
+                    setStickGraph(
+                        tv_sun_breakfast,
+                        tv_sun_lunch,
+                        tv_sun_dinner,
+                        tv_sun_midnight_snack,
+                        dayKcalItem.mealHistoryList
+                    )
                 }
                 // 월
                 1 -> {
                     setBottomMargin(total_use_kcal_monday, dayKcalItem.dayTotalUseKacl)
-                    setStickGraph(tv_mon_breakfast, tv_mon_lunch, tv_mon_dinner, tv_mon_midnight_snack, dayKcalItem.mealHistoryList)
+                    setStickGraph(
+                        tv_mon_breakfast,
+                        tv_mon_lunch,
+                        tv_mon_dinner,
+                        tv_mon_midnight_snack,
+                        dayKcalItem.mealHistoryList
+                    )
                 }
                 // 화
                 2 -> {
                     setBottomMargin(total_use_kcal_tuesday, dayKcalItem.dayTotalUseKacl)
-                    setStickGraph(tv_tues_breakfast, tv_tues_lunch, tv_tues_dinner, tv_tues_midnight_snack, dayKcalItem.mealHistoryList)
+                    setStickGraph(
+                        tv_tues_breakfast,
+                        tv_tues_lunch,
+                        tv_tues_dinner,
+                        tv_tues_midnight_snack,
+                        dayKcalItem.mealHistoryList
+                    )
                 }
                 // 수
                 3 -> {
                     setBottomMargin(total_use_kcal_wedns_day, dayKcalItem.dayTotalUseKacl)
-                    setStickGraph(tv_wedns_breakfast, tv_wedns_lunch, tv_wedns_dinner, tv_wedns_midnight_snack, dayKcalItem.mealHistoryList)
+                    setStickGraph(
+                        tv_wedns_breakfast,
+                        tv_wedns_lunch,
+                        tv_wedns_dinner,
+                        tv_wedns_midnight_snack,
+                        dayKcalItem.mealHistoryList
+                    )
                 }
                 // 목
                 4 -> {
                     setBottomMargin(total_use_kcal_thursday, dayKcalItem.dayTotalUseKacl)
-                    setStickGraph(tv_thurs_breakfast, tv_thurs_lunch, tv_thurs_dinner, tv_thurs_midnight_snack, dayKcalItem.mealHistoryList)
+                    setStickGraph(
+                        tv_thurs_breakfast,
+                        tv_thurs_lunch,
+                        tv_thurs_dinner,
+                        tv_thurs_midnight_snack,
+                        dayKcalItem.mealHistoryList
+                    )
                 }
                 // 금
                 5 -> {
                     setBottomMargin(total_use_kcal_friday, dayKcalItem.dayTotalUseKacl)
-                    setStickGraph(tv_fri_breakfast, tv_fri_lunch, tv_fri_dinner, tv_fri_midnight_snack, dayKcalItem.mealHistoryList)
+                    setStickGraph(
+                        tv_fri_breakfast,
+                        tv_fri_lunch,
+                        tv_fri_dinner,
+                        tv_fri_midnight_snack,
+                        dayKcalItem.mealHistoryList
+                    )
                 }
                 // 토
                 6 -> {
                     setBottomMargin(total_use_kcal_saturday, dayKcalItem.dayTotalUseKacl)
-                    setStickGraph(tv_satur_breakfast, tv_satur_lunch, tv_satur_dinner, tv_satur_midnight_snack, dayKcalItem.mealHistoryList)
+                    setStickGraph(
+                        tv_satur_breakfast,
+                        tv_satur_lunch,
+                        tv_satur_dinner,
+                        tv_satur_midnight_snack,
+                        dayKcalItem.mealHistoryList
+                    )
                 }
             }
             index++
@@ -494,5 +592,69 @@ class HistoryGetTabFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun initView() {
+        tv_sun_breakfast.visibility = View.GONE
+        tv_sun_lunch.visibility = View.GONE
+        tv_sun_dinner.visibility = View.GONE
+        tv_sun_midnight_snack.visibility = View.GONE
+
+        tv_mon_breakfast.visibility = View.GONE
+        tv_mon_lunch.visibility = View.GONE
+        tv_mon_dinner.visibility = View.GONE
+        tv_mon_midnight_snack.visibility = View.GONE
+
+        tv_tues_breakfast.visibility = View.GONE
+        tv_tues_lunch.visibility = View.GONE
+        tv_tues_dinner.visibility = View.GONE
+        tv_tues_midnight_snack.visibility = View.GONE
+
+        tv_wedns_breakfast.visibility = View.GONE
+        tv_wedns_lunch.visibility = View.GONE
+        tv_wedns_dinner.visibility = View.GONE
+        tv_wedns_midnight_snack.visibility = View.GONE
+
+        tv_thurs_breakfast.visibility = View.GONE
+        tv_thurs_lunch.visibility = View.GONE
+        tv_thurs_dinner.visibility = View.GONE
+        tv_thurs_midnight_snack.visibility = View.GONE
+
+        tv_fri_breakfast.visibility = View.GONE
+        tv_fri_lunch.visibility = View.GONE
+        tv_fri_dinner.visibility = View.GONE
+        tv_fri_midnight_snack.visibility = View.GONE
+
+        tv_satur_breakfast.visibility = View.GONE
+        tv_satur_lunch.visibility = View.GONE
+        tv_satur_dinner.visibility = View.GONE
+        tv_satur_midnight_snack.visibility = View.GONE
+
+        tv_total_get_kcal.text = "0 Kcal"
+        tv_total_breakfast.text = "0 Kcal"
+        tv_total_lunch.text = "0 Kcal"
+        tv_total_dinner.text = "0 Kcal"
+        tv_total_yasic.text = "0 Kcal"
+
+        setBottomMargin(total_use_kcal_sunday, 0)
+        setBottomMargin(total_use_kcal_monday, 0)
+        setBottomMargin(total_use_kcal_tuesday, 0)
+        setBottomMargin(total_use_kcal_wedns_day, 0)
+        setBottomMargin(total_use_kcal_thursday, 0)
+        setBottomMargin(total_use_kcal_friday, 0)
+        setBottomMargin(total_use_kcal_saturday, 0)
+
+    }
+
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         * @return A new instance of fragment HistoryFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance() =
+            HistoryGetTabFragment()
     }
 }

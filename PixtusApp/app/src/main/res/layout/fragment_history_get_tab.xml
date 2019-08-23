@@ -14,7 +14,7 @@
 		
 		<ImageView
 			android:id="@+id/btn_left"
-			android:layout_width="17dp"
+			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:src="@drawable/btn_left" />
 		
@@ -36,7 +36,7 @@
 		<ImageView
 			android:id="@+id/btn_right"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
 			android:layout_toRightOf="@+id/tv_week"
 			android:src="@drawable/btn_right" />
 	
@@ -593,7 +593,7 @@
 			android:layout_alignParentRight="true"
 			android:layout_centerVertical="true"
 			android:fontFamily="@font/notosans_medium"
-			android:text="- 2,100Kcal"
+			android:text="0"
 			android:textColor="#000000"
 			android:textSize="16sp" />
 	
@@ -629,7 +629,7 @@
 			android:layout_centerVertical="true"
 			android:layout_marginEnd="8dp"
 			android:fontFamily="@font/notosans_medium"
-			android:text="204Kcal"
+			android:text="0"
 			android:textColor="#727272"
 			android:textSize="12sp" />
 		
@@ -666,7 +666,7 @@
 			android:layout_centerVertical="true"
 			android:layout_marginEnd="8dp"
 			android:fontFamily="@font/notosans_medium"
-			android:text="204Kcal"
+			android:text="0"
 			android:textColor="#727272"
 			android:textSize="12sp" />
 		
@@ -704,7 +704,7 @@
 			android:layout_centerVertical="true"
 			android:layout_marginEnd="8dp"
 			android:fontFamily="@font/notosans_medium"
-			android:text="204Kcal"
+			android:text="0"
 			android:textColor="#727272"
 			android:textSize="12sp" />
 		
@@ -742,7 +742,7 @@
 			android:layout_centerVertical="true"
 			android:layout_marginEnd="8dp"
 			android:fontFamily="@font/notosans_medium"
-			android:text="204Kcal"
+			android:text="0"
 			android:textColor="#727272"
 			android:textSize="12sp" />
 		

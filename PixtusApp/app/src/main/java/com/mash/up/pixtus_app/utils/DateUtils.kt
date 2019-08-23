@@ -15,15 +15,15 @@ import java.util.*
  */
 class DateUtils {
 
-    fun getWeek(preWeek: Int) : String{
+    fun getWeek() : String{
 
 //        val sundayCalendar = Calendar.getInstance()
 //        val saturdayCalendar = Calendar.getInstance()
 
         var cal = Calendar.getInstance(SimpleTimeZone(0x1ee6280, "KST"))
-        cal.add(Calendar.DATE, -7 * preWeek)
         var weekago = cal.time
         val fomatter = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+        cal.clear()
         return fomatter.format(weekago)
 //        var y= Integer.parseInt(fomatter.format(weekago).substring(0,4))
 //        var m = Integer.parseInt(fomatter.format(weekago).substring(4,6))
@@ -55,6 +55,36 @@ class DateUtils {
 //        return sundayToSaturdayString
     }
 
+//    fun get7DayAgo(preWeek: Int): String? {
+//        var cal = Calendar.getInstance(SimpleTimeZone(0x1ee6280, "KST"))
+//        cal.add(Calendar.DATE, -7 * preWeek)
+//        var weekago = cal.time
+//        val fomatter = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+//        return fomatter.format(weekago)
+//    }
+
+    fun get7DayAgoDate(year: Int,month : Int,day : Int) : String{
+        var cal = Calendar.getInstance()
+        cal.set(year, month -1, day)
+        cal.add(Calendar.DATE, -7)
+
+        var weekago = cal.getTime()
+        var formatter = SimpleDateFormat("yyyyMMdd")
+        Locale.getDefault()
+        return formatter.format(weekago)
+    }
+
+    fun get7DayGoDate(year: Int,month : Int,day : Int) : String{
+        var cal = Calendar.getInstance()
+        cal.set(year, month -1, day)
+        cal.add(Calendar.DATE,+7)
+
+        var weekago = cal.getTime()
+        var formatter = SimpleDateFormat("yyyyMMdd")
+        Locale.getDefault()
+        return formatter.format(weekago)
+    }
+
     fun getDayOfWeek(dateStr: String): String {
         val formatter = SimpleDateFormat("yyyyMMdd")
 
@@ -84,7 +114,6 @@ class DateUtils {
     fun getSunday(y : String, m : String, d : String): String{
         var fomatter= SimpleDateFormat("yyyyMMdd")
         var c = Calendar.getInstance()
-        c.clear()
 
         var y=Integer.parseInt(y)
 
@@ -97,6 +126,22 @@ class DateUtils {
         c.set(Calendar.DATE, d)
         c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         return fomatter.format(c.time)
+    }
 
+    fun getSaturday(y : String, m : String, d : String): String{
+        var fomatter= SimpleDateFormat("yyyyMMdd")
+        var c = Calendar.getInstance()
+
+        var y=Integer.parseInt(y)
+
+        var m=Integer.parseInt(m)-1
+
+        var d=Integer.parseInt(d)
+
+        c.set(Calendar.YEAR, y)
+        c.set(Calendar.MONTH, m)
+        c.set(Calendar.DATE, d)
+        c.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
+        return fomatter.format(c.time)
     }
 }

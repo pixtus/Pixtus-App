@@ -12,9 +12,11 @@ import com.mash.up.pixtus_app.core.HistoryApi
 import com.mash.up.pixtus_app.core.NetworkCore
 import com.mash.up.pixtus_app.ui.history.data.*
 import com.mash.up.pixtus_app.utils.DateUtils
+import com.mash.up.pixtus_app.utils.SharedPreferenceController
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_history_use_tab.*
+import org.jetbrains.anko.support.v4.toast
 
 
 /**
@@ -24,6 +26,8 @@ class HistoryUseTabFragment : Fragment() {
 
     private var prevWeek: Int = 0
     private var presentWeek: String? = ""
+    private var saturday: String? = ""
+    private var sunday: String? = ""
     private val d: Float by lazy { context!!.resources.displayMetrics.density }
     lateinit var historyResponse: HistoryResponse
 
@@ -32,146 +36,166 @@ class HistoryUseTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val historyResponse = HistoryResponse(
-            listOf(
-                MealHistory(
-                    "20190818",
-                    300,
-                    "B"
-                ),
-                MealHistory(
-                    "20190818",
-                    500,
-                    "L"
-                ),
-                MealHistory(
-                    "20190818",
-                    700,
-                    "D"
-                ),
-                MealHistory(
-                    "20190818",
-                    700,
-                    "M"
-                ),
-
-                MealHistory(
-                    "20190819",
-                    400,
-                    "B"
-                ),
-
-                MealHistory(
-                    "20190819",
-                    700,
-                    "L"
-                ),
-                MealHistory(
-                    "20190819",
-                    900,
-                    "D"
-                ),
-                MealHistory(
-                    "20190820",
-                    700,
-                    "B"
-                ),
-                MealHistory(
-                    "20190820",
-                    700,
-                    "L"
-                ),
-                MealHistory(
-                    "20190820",
-                    700,
-                    "D"
-                ),
-                MealHistory(
-                    "20190820",
-                    700,
-                    "M"
-                )
-            ),
-            listOf(
-                WorkoutHistory(
-                    "20190818",
-                    "걷기",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190818",
-                    "수영",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190818",
-                    "달리기",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190818",
-                    "자전거",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190819",
-                    "걷기",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190819",
-                    "수영",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190819",
-                    "자전거",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190819",
-                    "달리기",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190820",
-                    "자전거",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190820",
-                    "걷기",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190820",
-                    "수영",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190821",
-                    "수영",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190822",
-                    "수영",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190823",
-                    "수영",
-                    400
-                ),
-                WorkoutHistory(
-                    "20190824",
-                    "수영",
-                    400
-                )
-            )
+        setOnClickListener()
+        var dateUtils = DateUtils()
+        presentWeek = dateUtils.getWeek()
+        saturday = dateUtils.getSaturday(
+            presentWeek!!.substring(0, 4),
+            presentWeek!!.substring(4, 6),
+            presentWeek!!.substring(6)
         )
+        sunday = dateUtils.getSunday(
+            presentWeek!!.substring(0, 4),
+            presentWeek!!.substring(4, 6),
+            presentWeek!!.substring(6)
+        )
+        tv_week.text = "${sunday!!.substring(0, 4)}년 ${sunday!!.substring(
+            4,
+            6
+        )}월 ${sunday!!.substring(6)}일 - ${saturday!!.substring(6)}일"
+        getHistory(0)
 
-        reformHistoryResponse(historyResponse)
+
+//        val historyResponse = HistoryResponse(
+//            listOf(
+//                MealHistory(
+//                    "20190818",
+//                    300,
+//                    "B"
+//                ),
+//                MealHistory(
+//                    "20190818",
+//                    500,
+//                    "L"
+//                ),
+//                MealHistory(
+//                    "20190818",
+//                    700,
+//                    "D"
+//                ),
+//                MealHistory(
+//                    "20190818",
+//                    700,
+//                    "M"
+//                ),
+//
+//                MealHistory(
+//                    "20190819",
+//                    400,
+//                    "B"
+//                ),
+//
+//                MealHistory(
+//                    "20190819",
+//                    700,
+//                    "L"
+//                ),
+//                MealHistory(
+//                    "20190819",
+//                    900,
+//                    "D"
+//                ),
+//                MealHistory(
+//                    "20190820",
+//                    700,
+//                    "B"
+//                ),
+//                MealHistory(
+//                    "20190820",
+//                    700,
+//                    "L"
+//                ),
+//                MealHistory(
+//                    "20190820",
+//                    700,
+//                    "D"
+//                ),
+//                MealHistory(
+//                    "20190820",
+//                    700,
+//                    "M"
+//                )
+//            ),
+//            listOf(
+//                WorkoutHistory(
+//                    "20190818",
+//                    "걷기",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190818",
+//                    "수영",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190818",
+//                    "달리기",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190818",
+//                    "자전거",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190819",
+//                    "걷기",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190819",
+//                    "수영",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190819",
+//                    "자전거",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190819",
+//                    "달리기",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190820",
+//                    "자전거",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190820",
+//                    "걷기",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190820",
+//                    "수영",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190821",
+//                    "수영",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190822",
+//                    "수영",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190823",
+//                    "수영",
+//                    400
+//                ),
+//                WorkoutHistory(
+//                    "20190824",
+//                    "수영",
+//                    400
+//                )
+//            )
+//        )
+
+        // reformHistoryResponse(historyResponse)
     }
 
     /**
@@ -181,7 +205,7 @@ class HistoryUseTabFragment : Fragment() {
     private fun getHistory(preweek: Int) {
         NetworkCore.getNetworkCore<HistoryApi>()
             .getHistory(
-                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY",
+                SharedPreferenceController.getAuthorization(context!!),
                 preweek
             )
             .subscribeOn(Schedulers.io())
@@ -189,8 +213,13 @@ class HistoryUseTabFragment : Fragment() {
             .subscribe({
                 // 성공했을 때
                 Log.d("list_data", it.toString())
+                initView()
                 historyResponse = it
-                reformHistoryResponse(historyResponse)
+                if(historyResponse.workoutHistory.isEmpty())
+                    toast("소비한 칼로리가 없어요!!!")
+                else
+                    reformHistoryResponse(historyResponse)
+
             }, {
                 // 실패했을 때
                 Log.d("list_data", Log.getStackTraceString(it))
@@ -355,11 +384,11 @@ class HistoryUseTabFragment : Fragment() {
      * History 데이터를 받아서 그래프에 뿌리기
      */
     private fun setGraph(history: History) {
-        tv_total_spend_kcal.text = history.totalUseKcal.toString()
-        tv_total_walk.text = history.totalWalkKcal.toString()
-        tv_total_run.text = history.totalRunKcal.toString()
-        tv_total_swim.text = history.totalSwimKcal.toString()
-        tv_total_bike.text = history.totalBikeKcal.toString()
+        tv_total_spend_kcal.text = "${history.totalUseKcal} Kcal "
+        tv_total_walk.text = "${history.totalWalkKcal} Kcal "
+        tv_total_run.text = "${history.totalRunKcal} Kcal "
+        tv_total_swim.text = "${history.totalSwimKcal} Kcal "
+        tv_total_bike.text = "${history.totalBikeKcal} Kcal "
 
 
         var index = 0
@@ -492,4 +521,109 @@ class HistoryUseTabFragment : Fragment() {
         }
     }
 
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         * @return A new instance of fragment HistoryFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance() =
+            HistoryUseTabFragment()
+    }
+
+    private fun setOnClickListener() {
+        btn_left.setOnClickListener {
+            saturday = DateUtils().get7DayAgoDate(
+                saturday!!.substring(0, 4).toInt(),
+                saturday!!.substring(4, 6).toInt(),
+                saturday!!.substring(6).toInt()
+            )
+            sunday = DateUtils().get7DayAgoDate(
+                sunday!!.substring(0, 4).toInt(),
+                sunday!!.substring(4, 6).toInt(),
+                sunday!!.substring(6).toInt()
+            )
+            tv_week.text = "${sunday!!.substring(0, 4)}년 ${sunday!!.substring(
+                4,
+                6
+            )}월 ${sunday!!.substring(6)}일 - ${saturday!!.substring(6)}일"
+            prevWeek++
+            getHistory(prevWeek)
+        }
+        btn_right.setOnClickListener {
+            if (prevWeek > 0) {
+                prevWeek--
+                getHistory(prevWeek)
+                saturday = DateUtils().get7DayGoDate(
+                    saturday!!.substring(0, 4).toInt(),
+                    saturday!!.substring(4, 6).toInt(),
+                    saturday!!.substring(6).toInt()
+                )
+                sunday = DateUtils().get7DayGoDate(
+                    sunday!!.substring(0, 4).toInt(),
+                    sunday!!.substring(4, 6).toInt(),
+                    sunday!!.substring(6).toInt()
+                )
+                tv_week.text = "${sunday!!.substring(0, 4)}년 ${sunday!!.substring(
+                    4,
+                    6
+                )}월 ${sunday!!.substring(6)}일 - ${saturday!!.substring(6)}일"
+            }
+        }
+    }
+
+    private fun initView() {
+        tv_sun_walk.visibility = View.GONE
+        tv_sun_swim.visibility = View.GONE
+        tv_sun_run.visibility = View.GONE
+        tv_sun_bike.visibility = View.GONE
+
+        tv_mon_walk.visibility = View.GONE
+        tv_mon_swim.visibility = View.GONE
+        tv_mon_run.visibility = View.GONE
+        tv_mon_bike.visibility = View.GONE
+
+        tv_tues_walk.visibility = View.GONE
+        tv_tues_swim.visibility = View.GONE
+        tv_tues_run.visibility = View.GONE
+        tv_tues_bike.visibility = View.GONE
+
+        tv_wedns_walk.visibility = View.GONE
+        tv_wedns_swim.visibility = View.GONE
+        tv_wedns_run.visibility = View.GONE
+        tv_wedns_bike.visibility = View.GONE
+
+        tv_thurs_walk.visibility = View.GONE
+        tv_thurs_swim.visibility = View.GONE
+        tv_thurs_run.visibility = View.GONE
+        tv_thurs_bike.visibility = View.GONE
+
+        tv_fri_walk.visibility = View.GONE
+        tv_fri_swim.visibility = View.GONE
+        tv_fri_run.visibility = View.GONE
+        tv_fri_bike.visibility = View.GONE
+
+        tv_satur_walk.visibility = View.GONE
+        tv_satur_swim.visibility = View.GONE
+        tv_satur_run.visibility = View.GONE
+        tv_satur_bike.visibility = View.GONE
+
+
+        tv_total_spend_kcal.text = "0 Kcal"
+        tv_total_walk.text = "0 Kcal"
+        tv_total_run.text = "0 Kcal"
+        tv_total_bike.text = "0 Kcal"
+        tv_total_swim.text = "0 Kcal"
+
+        setBottomMargin(total_get_kcal_sunday, 0)
+        setBottomMargin(total_get_kcal_monday, 0)
+        setBottomMargin(total_get_kcal_tuesday, 0)
+        setBottomMargin(total_get_kcal_wends, 0)
+        setBottomMargin(total_get_kcal_thurs, 0)
+        setBottomMargin(total_get_kcal_friday, 0)
+        setBottomMargin(total_get_kcal_saturday, 0)
+
+    }
 }
