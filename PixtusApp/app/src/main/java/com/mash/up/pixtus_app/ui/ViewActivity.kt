@@ -19,7 +19,7 @@ class ViewActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
     private var viewPager: ViewPager? = null
     private val fragment1 = MainFragment()
     private val fragment2 = WorkoutFragment()
-    private val fragment3 = MainFragment()
+    private val fragment3 = WorkoutFragment()
     private val fragment4 = WorkoutFragment()
     private val mOnNavigationItemSelectedListener = object : BottomNavigationView.OnNavigationItemSelectedListener {
         override fun onNavigationItemSelected(p0: MenuItem): Boolean {
@@ -32,7 +32,6 @@ class ViewActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
                     startActivity(intent)
                 }
             }
-            //viewPager!!.currentItem = p0.order
             return true
         }
     }
@@ -57,7 +56,6 @@ class ViewActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
                 }
                 return null
             }
-
             override fun getCount(): Int {
                 return 4
             }

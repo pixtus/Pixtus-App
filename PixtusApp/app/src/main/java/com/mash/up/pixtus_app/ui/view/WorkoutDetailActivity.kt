@@ -6,7 +6,6 @@ import android.os.Handler
 import android.os.SystemClock
 import android.support.constraint.ConstraintLayout
 import android.util.Log
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_workout_detail.*
 import android.view.View
 import android.widget.*
@@ -14,8 +13,11 @@ import com.airbnb.lottie.LottieAnimationView
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.core.NetworkCore
 import com.mash.up.pixtus_app.core.PixtusApi
+import com.mash.up.pixtus_app.data.StepData
+import com.mash.up.pixtus_app.utils.SharedPreferenceController
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class WorkoutDetailActivity : AppCompatActivity() {
@@ -42,6 +44,8 @@ class WorkoutDetailActivity : AppCompatActivity() {
     var showExp : ConstraintLayout? = null
     var bar_workout_exp : ProgressBar ?= null
 
+    var stepData = StepData(MillisecondTime.toFloat(), 1)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout_detail)
@@ -59,17 +63,19 @@ class WorkoutDetailActivity : AppCompatActivity() {
 
     fun initUI() {
         val animationView = findViewById<LottieAnimationView>(R.id.lottie_workout_detail)
-        //Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
         if (intent.hasExtra("workout_name")) {
             val str = intent.getStringExtra("workout_name")
             tool_workout_name.text = str
             when (str) {//운동에 따른 이미지
-                "축구" -> animationView.setAnimation("ic_check.json")
+                "축구" -> animationView.setAnimation("pixtus_workout_soccer.json")
                 "자전거" -> animationView.setAnimation("pixtus_workout_bicycle.json")
                 "수영" -> animationView.setAnimation("pixtus_workout_swim.json")
             }
             animationView.loop(true)
             animationView.playAnimation()
+        }
+        if (intent.hasExtra("workout_id")){
+            stepData.exerciseId = intent.getIntExtra("workout_id", 0)
         }
         bindViews()
     }
@@ -112,34 +118,27 @@ class WorkoutDetailActivity : AppCompatActivity() {
             buttonDoneAct?.visibility = View.VISIBLE
             showExp?.visibility = View.VISIBLE
 
-            /*//TODO 서버로 시간 보내기
+            stepData.amount = (MillisecondTime/1000).toFloat()
+
             NetworkCore.getNetworkCore<PixtusApi>()
-                .sendStep(
-                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY",
-                    (MillisecondTime/1000)
+                .sendExercise(
+                    SharedPreferenceController.getAuthorization(this@WorkoutDetailActivity),
+                    stepData
                 )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-//                    getData()
+                    tv_workout_addexp.text = "+ ${it.exp.toString()} exp"
+                    tv_workout_pre_exp.text = it.currExp.toString()
+                    tv_workout_total_exp.text = it.nextExp.toString()
+                    bar_workout_exp!!.progress = ((it.currExp* 100)/it.nextExp)
                 }, {
                     Log.d("send_step", "fail")
-                })*/
-
-
-            Toast.makeText(applicationContext, (MillisecondTime/1000).toString(), Toast.LENGTH_SHORT).show()
-            //TODO 경험치창 보여주기
-
-            //TODO 이후 2.5초 있다가 화면 없애기
-            handler?.postDelayed(finish, 2500)
+                })
+            handler?.postDelayed(finish, 2800)
         }
         handler = Handler()
     }
-
-    fun sendData(){
-
-    }
-
 
     private var finish : Runnable = Runnable { finish() }
 
