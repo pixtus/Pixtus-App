@@ -84,7 +84,7 @@ class StoryActivity : BaseActivity() {
     }
 
     fun moveNextPage() {
-        val intent = Intent(this, CreateStep1Activity::class.java)
+        val intent = Intent(this, ViewActivity::class.java)
         startActivity(intent)
         finish()
     }

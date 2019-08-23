@@ -17,7 +17,6 @@ object NetworkCore {
     init {
         var okHttpClient = OkHttpClient()
             .newBuilder()
-            .addInterceptor(AuthInterceptor())
             .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
             .build()
 
@@ -32,9 +31,9 @@ object NetworkCore {
     inline fun <reified T> getNetworkCore()  = api.create(T::class.java)
 }
 
-class AuthInterceptor : Interceptor{
-    override fun intercept(chain: Interceptor.Chain): Response {
-        var request = chain.request().newBuilder().addHeader("Authorization", "1").build()
-        return chain.proceed(request)
-    }
-}
+//class AuthInterceptor : Interceptor{
+//    override fun intercept(chain: Interceptor.Chain): Response {
+//        var request = chain.request().newBuilder().addHeader("Authorization", "1").build()
+//        return chain.proceed(request)
+//    }
+//}

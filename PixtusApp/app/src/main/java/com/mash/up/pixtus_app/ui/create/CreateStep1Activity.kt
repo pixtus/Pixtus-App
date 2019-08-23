@@ -1,6 +1,5 @@
 package com.mash.up.pixtus_app.ui.create
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,10 +7,8 @@ import android.widget.LinearLayout
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
 import com.mash.up.pixtus_app.utils.showToastMessageString
-
 import kotlinx.android.synthetic.main.activity_create_step.*
-import kotlinx.android.synthetic.main.activity_create_step.edit_height
-import kotlinx.android.synthetic.main.activity_create_step.edit_weight
+import org.jetbrains.anko.startActivity
 
 class CreateStep1Activity : BaseActivity() {
 
@@ -24,11 +21,23 @@ class CreateStep1Activity : BaseActivity() {
 
         tv_nextExp.setOnClickListener {
             if (tv_nextExp.isSelected){
-                val intent = Intent(this, CreateStep2Activity::class.java)
-                intent.putExtra("weight",100)
-                intent.putExtra("height",100)
-                intent.putExtra("sex","남")
-                startActivity(intent)
+                var uid = intent.getStringExtra("uid")
+                var email= intent.getStringExtra("email")
+                var name = intent.getStringExtra("name")
+//                val intent = Intent(this, CreateStep2Activity::class.java)
+//                intent.putExtra("weight",edit_weight.text.toString())
+//                intent.putExtra("height",edit_height.text.toString())
+                var sex = ""
+                if(layout_male.isSelected == true)
+                    sex = "M"
+                else
+                    sex = "W"
+//                intent.putExtra("sex",sex)
+//                startActivity(intent)
+
+
+                startActivity<CreateStep2Activity>("uid" to uid, "email" to email, "weight" to edit_weight.text.toString(), "height" to edit_height.text.toString(),
+                    "sex" to sex, "name" to name)
                 finish()
             } else
                 showToastMessageString("정보를 다 입력해주세요.")
