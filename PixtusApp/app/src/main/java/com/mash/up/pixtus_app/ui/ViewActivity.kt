@@ -11,6 +11,7 @@ import android.view.MenuItem
 import com.example.stepcount.MainFragment
 import com.example.stepcount.WorkoutFragment
 import com.mash.up.pixtus_app.R
+import com.mash.up.pixtus_app.ui.history.fragment.HistoryFragment
 
 
 class ViewActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
@@ -19,8 +20,8 @@ class ViewActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
     private var viewPager: ViewPager? = null
     private val fragment1 = MainFragment()
     private val fragment2 = WorkoutFragment()
-    private val fragment3 = WorkoutFragment()
-    private val fragment4 = WorkoutFragment()
+    private val fragment3 = HistoryFragment.newInstance()
+    private val fragment4 = MainFragment()
     private val mOnNavigationItemSelectedListener = object : BottomNavigationView.OnNavigationItemSelectedListener {
         override fun onNavigationItemSelected(p0: MenuItem): Boolean {
             when(p0.getItemId()){

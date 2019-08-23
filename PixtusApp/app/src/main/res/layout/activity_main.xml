@@ -50,7 +50,8 @@
 					android:fontFamily="@font/notosans_medium"
 					android:text="픽미픽미픽미"
 					android:textColor="@color/colorBlack"
-					android:textSize="16sp" />
+					android:textSize="16sp"
+					android:textStyle="bold"/>
 				
 			</RelativeLayout>
 			

@@ -66,8 +66,7 @@ class MainFragment : Fragment(), SensorEventListener {
         super.onResume()
         sensorManager?.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_UI)
         sensorManagerShake?.registerListener(this, shakeSensor, SensorManager.SENSOR_DELAY_UI)
-        Log.d("요거", "언제 불러지나")
-
+        getData()
     }
 
     override fun onPause() {

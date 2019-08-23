@@ -289,34 +289,36 @@ class HistoryGetTabFragment : Fragment() {
         for (mealHistory in historyResponse.mealHistory) {
             // 해당 요일가져오기
             // dayKcalList[0] ~ [6] 까지는 일월화수목금토를 의미
-            when (dateUtils.getDayOfWeek(mealHistory.dateId)) {
-                "일" -> {
-                    history.dayKcalList[0].mealHistoryList.add(mealHistory)
-                    history.dayKcalList[0].dayTotalGetKacl += mealHistory.kcal
-                }
-                "월" -> {
-                    history.dayKcalList[1].mealHistoryList.add(mealHistory)
-                    history.dayKcalList[1].dayTotalGetKacl += mealHistory.kcal
-                }
-                "화" -> {
-                    history.dayKcalList[2].mealHistoryList.add(mealHistory)
-                    history.dayKcalList[2].dayTotalGetKacl += mealHistory.kcal
-                }
-                "수" -> {
-                    history.dayKcalList[3].mealHistoryList.add(mealHistory)
-                    history.dayKcalList[3].dayTotalGetKacl += mealHistory.kcal
-                }
-                "목" -> {
-                    history.dayKcalList[4].mealHistoryList.add(mealHistory)
-                    history.dayKcalList[4].dayTotalGetKacl += mealHistory.kcal
-                }
-                "금" -> {
-                    history.dayKcalList[5].mealHistoryList.add(mealHistory)
-                    history.dayKcalList[5].dayTotalGetKacl += mealHistory.kcal
-                }
-                "토" -> {
-                    history.dayKcalList[6].mealHistoryList.add(mealHistory)
-                    history.dayKcalList[6].dayTotalGetKacl += mealHistory.kcal
+            if(!mealHistory.dateId.isNullOrEmpty()) {
+                when (dateUtils.getDayOfWeek(mealHistory.dateId)) {
+                    "일" -> {
+                        history.dayKcalList[0].mealHistoryList.add(mealHistory)
+                        history.dayKcalList[0].dayTotalGetKacl += mealHistory.kcal
+                    }
+                    "월" -> {
+                        history.dayKcalList[1].mealHistoryList.add(mealHistory)
+                        history.dayKcalList[1].dayTotalGetKacl += mealHistory.kcal
+                    }
+                    "화" -> {
+                        history.dayKcalList[2].mealHistoryList.add(mealHistory)
+                        history.dayKcalList[2].dayTotalGetKacl += mealHistory.kcal
+                    }
+                    "수" -> {
+                        history.dayKcalList[3].mealHistoryList.add(mealHistory)
+                        history.dayKcalList[3].dayTotalGetKacl += mealHistory.kcal
+                    }
+                    "목" -> {
+                        history.dayKcalList[4].mealHistoryList.add(mealHistory)
+                        history.dayKcalList[4].dayTotalGetKacl += mealHistory.kcal
+                    }
+                    "금" -> {
+                        history.dayKcalList[5].mealHistoryList.add(mealHistory)
+                        history.dayKcalList[5].dayTotalGetKacl += mealHistory.kcal
+                    }
+                    "토" -> {
+                        history.dayKcalList[6].mealHistoryList.add(mealHistory)
+                        history.dayKcalList[6].dayTotalGetKacl += mealHistory.kcal
+                    }
                 }
             }
             history.totalGetKcal += mealHistory.kcal
@@ -335,34 +337,36 @@ class HistoryGetTabFragment : Fragment() {
         for (workOutHistory in historyResponse.workoutHistory) {
             // 해당 요일가져오기
             // dayKcalList[0] ~ [6] 까지는 일월화수목금토를 의미
-            when (dateUtils.getDayOfWeek(workOutHistory.date)) {
-                "일" -> {
-                    history.dayKcalList[0].workoutHistory.add(workOutHistory)
-                    history.dayKcalList[0].dayTotalUseKacl += workOutHistory.totalKcal
-                }
-                "월" -> {
-                    history.dayKcalList[1].workoutHistory.add(workOutHistory)
-                    history.dayKcalList[1].dayTotalUseKacl += workOutHistory.totalKcal
-                }
-                "화" -> {
-                    history.dayKcalList[2].workoutHistory.add(workOutHistory)
-                    history.dayKcalList[2].dayTotalUseKacl += workOutHistory.totalKcal
-                }
-                "수" -> {
-                    history.dayKcalList[3].workoutHistory.add(workOutHistory)
-                    history.dayKcalList[3].dayTotalUseKacl += workOutHistory.totalKcal
-                }
-                "목" -> {
-                    history.dayKcalList[4].workoutHistory.add(workOutHistory)
-                    history.dayKcalList[4].dayTotalUseKacl += workOutHistory.totalKcal
-                }
-                "금" -> {
-                    history.dayKcalList[5].workoutHistory.add(workOutHistory)
-                    history.dayKcalList[5].dayTotalUseKacl += workOutHistory.totalKcal
-                }
-                "토" -> {
-                    history.dayKcalList[6].workoutHistory.add(workOutHistory)
-                    history.dayKcalList[6].dayTotalUseKacl += workOutHistory.totalKcal
+            if(!workOutHistory.date.isNullOrEmpty()) {
+                when (dateUtils.getDayOfWeek(workOutHistory.date)) {
+                    "일" -> {
+                        history.dayKcalList[0].workoutHistory.add(workOutHistory)
+                        history.dayKcalList[0].dayTotalUseKacl += workOutHistory.totalKcal
+                    }
+                    "월" -> {
+                        history.dayKcalList[1].workoutHistory.add(workOutHistory)
+                        history.dayKcalList[1].dayTotalUseKacl += workOutHistory.totalKcal
+                    }
+                    "화" -> {
+                        history.dayKcalList[2].workoutHistory.add(workOutHistory)
+                        history.dayKcalList[2].dayTotalUseKacl += workOutHistory.totalKcal
+                    }
+                    "수" -> {
+                        history.dayKcalList[3].workoutHistory.add(workOutHistory)
+                        history.dayKcalList[3].dayTotalUseKacl += workOutHistory.totalKcal
+                    }
+                    "목" -> {
+                        history.dayKcalList[4].workoutHistory.add(workOutHistory)
+                        history.dayKcalList[4].dayTotalUseKacl += workOutHistory.totalKcal
+                    }
+                    "금" -> {
+                        history.dayKcalList[5].workoutHistory.add(workOutHistory)
+                        history.dayKcalList[5].dayTotalUseKacl += workOutHistory.totalKcal
+                    }
+                    "토" -> {
+                        history.dayKcalList[6].workoutHistory.add(workOutHistory)
+                        history.dayKcalList[6].dayTotalUseKacl += workOutHistory.totalKcal
+                    }
                 }
             }
             history.totalUseKcal += workOutHistory.totalKcal

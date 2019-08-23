@@ -1,7 +1,5 @@
 package com.mash.up.pixtus_app.utils
 
-import android.text.format.DateUtils
-import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
