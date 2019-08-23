@@ -43,7 +43,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
     var showExp : ConstraintLayout? = null
     var bar_workout_exp : ProgressBar ?= null
 
-    var stepData = StepData(MillisecondTime.toFloat(), 0)
+    var stepData = StepData(MillisecondTime.toFloat(), 1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,11 +133,10 @@ class WorkoutDetailActivity : AppCompatActivity() {
                     tv_workout_addexp.text = it.exp.toString()
                     tv_workout_pre_exp.text = it.currExp.toString()
                     tv_workout_total_exp.text = it.nextExp.toString()
-
                 }, {
                     Log.d("send_step", "fail")
                 })
-            handler?.postDelayed(finish, 2500)
+            handler?.postDelayed(finish, 3000)
         }
         handler = Handler()
     }

@@ -60,6 +60,7 @@ class MainFragment : Fragment(), SensorEventListener {
         root!!.tv_date.text = dateFormat.format(Date()).toString()
 
         initUI()
+        getData()
         return root
     }
 
@@ -86,7 +87,7 @@ class MainFragment : Fragment(), SensorEventListener {
                 count++
                 remember = count
             }
-        }else if (event!!.sensor.getType() == Sensor.TYPE_ACCELEROMETER){//TYPE_ACCELEROMETER
+        }else if (event!!.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
             val animationView = root!!.findViewById<LottieAnimationView>(R.id.lottie_main)
             animationView.setAnimation("pixtus_walk_junior.json")
             if(event.values[0] > 3){
@@ -133,18 +134,16 @@ class MainFragment : Fragment(), SensorEventListener {
     fun sendData(){
         remember = preferences!!.getFloat("stepCount", 0.0f)
         Log.d("하하", remember.toString())
-        NetworkCore.getNetworkCore<PixtusApi>()//TODO 이게 이상하다
+        NetworkCore.getNetworkCore<PixtusApi>()
             .sendStep(
                 SharedPreferenceController.getAuthorization(context!!),
-                StepData(remember,0)
+                StepData(remember,1)
             )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Log.d("하하ㅏ하하하", "성공")
                 getData()
             }, {
-                Log.d("send_step", "fail")
             })
     }
 

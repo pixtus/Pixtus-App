@@ -54,14 +54,27 @@
 				
 			</RelativeLayout>
 			
-			<ImageView
+			<ProgressBar
 				android:id="@+id/stats_bar"
+				android:max="100"
+				android:progress="50"
+				style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+				android:progressDrawable="@drawable/progressbar_progressbar1"
 				android:layout_width="250dp"
 				android:layout_height="16dp"
 				android:layout_below="@+id/layout_name"
 				android:layout_centerHorizontal="true"
 				android:layout_marginTop="16dp"
-				android:background="@drawable/bg_test" />
+				android:background="@drawable/bg_test"/>
+			
+			<!--<ImageView-->
+				<!--android:id="@+id/stats_bar"-->
+				<!--android:layout_width="250dp"-->
+				<!--android:layout_height="16dp"-->
+				<!--android:layout_below="@+id/layout_name"-->
+				<!--android:layout_centerHorizontal="true"-->
+				<!--android:layout_marginTop="16dp"-->
+				<!--android:background="@drawable/bg_test" />-->
 			
 			<TextView
 				android:id="@+id/tv_calorie"
