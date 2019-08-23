@@ -128,7 +128,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    tv_workout_addexp.text = "+ ${it.exp.toString()}"
+                    tv_workout_addexp.text = "+ ${it.exp.toString()} exp"
                     tv_workout_pre_exp.text = it.currExp.toString()
                     tv_workout_total_exp.text = it.nextExp.toString()
                     bar_workout_exp!!.progress = ((it.currExp* 100)/it.nextExp)
