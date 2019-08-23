@@ -6,6 +6,7 @@ import android.support.annotation.Nullable
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,6 +50,7 @@ class WorkoutFragment : Fragment() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+
                 root!!.rv_workout_list.apply {
                     layoutManager = LinearLayoutManager(context)
                     adapter = RecyclerViewAdapter(it)

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.view.menu.MenuAdapter
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,7 @@ class RecyclerViewAdapter(val list: List<Exercise>) : RecyclerView.Adapter<Recyc
             }
 //            view.findViewById<ImageView>(R.id.img_workoutlist).setImageResource(WorkOut.image)
             view.findViewById<TextView>(R.id.tv_workout_name).text = Exercise.name
-            view.findViewById<TextView>(R.id.tv_workout_kcal).text = (Exercise.kcal * 60).toString() + "kcal"
+            view.findViewById<TextView>(R.id.tv_workout_kcal).text = (Exercise.measure * 60).toString() + "kcal"
         }
     }
 
