@@ -60,20 +60,7 @@ class MainFragment : Fragment(), SensorEventListener {
         //Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
         var dateFormat = SimpleDateFormat("MM.dd / EEE")
         root!!.tv_date.text = dateFormat.format(Date()).toString()
-        sendData()
 
-        NetworkCore.getNetworkCore<PixtusApi>()
-            .getMain(
-                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY"
-            )
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                setData(it)
-                Log.d("list_data", it.toString())
-            }, {
-                Log.d("list_data", Log.getStackTraceString(it))
-            })
         initUI()
         return root
     }
@@ -104,9 +91,8 @@ class MainFragment : Fragment(), SensorEventListener {
         }else if (event!!.sensor.getType() == Sensor.TYPE_ACCELEROMETER){//TYPE_ACCELEROMETER
             val animationView = root!!.findViewById<LottieAnimationView>(R.id.lottie_main)
             animationView.setAnimation("pixtus_walk_junior.json")
-            if(event.values[0] > 2){
+            if(event.values[0] > 3){
                 animationView.playAnimation()
-                Log.d("TTTTTTTTTTT", event.values[0].toString())
             }
         }
     }
@@ -138,10 +124,8 @@ class MainFragment : Fragment(), SensorEventListener {
             }
         }
 
-//        animationView.loop(true)
         animationView.playAnimation()
         animationView.pauseAnimation()
-//        animationView.playAnimation()
         var sortedList = model.workouts.sortedWith(compareByDescending { it.totalKcal })
         var exercise_recycler = root!!.findViewById(R.id.recycler_exercise) as RecyclerView
         exercise_recycler.adapter = ExerciseAdapter(sortedList)
@@ -157,9 +141,24 @@ class MainFragment : Fragment(), SensorEventListener {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Log.d("send_step", "success")
+                getData()
             }, {
                 Log.d("send_step", "fail")
+            })
+    }
+
+    fun getData(){
+        NetworkCore.getNetworkCore<PixtusApi>()
+            .getMain(
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY"
+            )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                setData(it)
+                Log.d("list_data", it.toString())
+            }, {
+                Log.d("list_data", Log.getStackTraceString(it))
             })
     }
 }
