@@ -40,9 +40,9 @@ class MainFragment : Fragment(), SensorEventListener {
     var shakeSensor: Sensor? = null
     var count = 0f
     var root: View? = null
-    var stepData = StepData(count, 1)
     var preferences:SharedPreferences ?= null
     var editor: SharedPreferences.Editor ?= null
+    var remember: Float = 0.0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,15 +50,12 @@ class MainFragment : Fragment(), SensorEventListener {
         preferences = context!!.getSharedPreferences("STEP_COUNT", Context.MODE_PRIVATE)
         editor = preferences!!.edit()
 
-        val getStep = preferences!!.getFloat("stepCount", 0.0f)
-        Log.d("stepCount", getStep.toString())
         sendData()
     }
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
         root = inflater.inflate(R.layout.activity_main, container, false)
-        //Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
         var dateFormat = SimpleDateFormat("MM.dd / EEE")
         root!!.tv_date.text = dateFormat.format(Date()).toString()
 
@@ -87,8 +84,8 @@ class MainFragment : Fragment(), SensorEventListener {
         if (event!!.sensor.type == Sensor.TYPE_STEP_DETECTOR) {
             if (event.values[0] == 1.0f) {
                 count++
+                remember = count
             }
-            stepData!!.amount = count
         }else if (event!!.sensor.getType() == Sensor.TYPE_ACCELEROMETER){//TYPE_ACCELEROMETER
             val animationView = root!!.findViewById<LottieAnimationView>(R.id.lottie_main)
             animationView.setAnimation("pixtus_walk_junior.json")
@@ -134,14 +131,17 @@ class MainFragment : Fragment(), SensorEventListener {
     }
 
     fun sendData(){
-        NetworkCore.getNetworkCore<PixtusApi>()
+        remember = preferences!!.getFloat("stepCount", 0.0f)
+        Log.d("하하", remember.toString())
+        NetworkCore.getNetworkCore<PixtusApi>()//TODO 이게 이상하다
             .sendStep(
                 SharedPreferenceController.getAuthorization(context!!),
-                stepData
+                StepData(remember,0)
             )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                Log.d("하하ㅏ하하하", "성공")
                 getData()
             }, {
                 Log.d("send_step", "fail")

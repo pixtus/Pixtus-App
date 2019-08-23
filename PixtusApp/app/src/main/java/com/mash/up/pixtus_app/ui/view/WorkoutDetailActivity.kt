@@ -137,9 +137,6 @@ class WorkoutDetailActivity : AppCompatActivity() {
                 }, {
                     Log.d("send_step", "fail")
                 })
-
-
-            Toast.makeText(applicationContext, (MillisecondTime/1000).toString(), Toast.LENGTH_SHORT).show()
             handler?.postDelayed(finish, 2500)
         }
         handler = Handler()
