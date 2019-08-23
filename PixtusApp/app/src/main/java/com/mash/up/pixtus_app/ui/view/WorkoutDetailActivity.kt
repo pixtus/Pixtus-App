@@ -63,7 +63,6 @@ class WorkoutDetailActivity : AppCompatActivity() {
 
     fun initUI() {
         val animationView = findViewById<LottieAnimationView>(R.id.lottie_workout_detail)
-        //Glide.with(this).asGif().load(R.raw.pixel_best).into(iv_workout_detail)
         if (intent.hasExtra("workout_name")) {
             val str = intent.getStringExtra("workout_name")
             tool_workout_name.text = str
@@ -129,10 +128,10 @@ class WorkoutDetailActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    tv_workout_addexp.text = "+ $(it.exp.toString())"
+                    tv_workout_addexp.text = "+ ${it.exp.toString()}"
                     tv_workout_pre_exp.text = it.currExp.toString()
                     tv_workout_total_exp.text = it.nextExp.toString()
-                    bar_workout_exp!!.progress = (it.currExp/it.nextExp) * 100
+                    bar_workout_exp!!.progress = ((it.currExp* 100)/it.nextExp)
                 }, {
                     Log.d("send_step", "fail")
                 })

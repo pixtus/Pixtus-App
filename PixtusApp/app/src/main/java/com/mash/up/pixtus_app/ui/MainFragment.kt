@@ -154,7 +154,8 @@ class MainFragment : Fragment(), SensorEventListener {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 setData(it)
-                stats_bar.setProgress((it.exp/it.nextExp) * 100)
+                stats_bar.progress = ((it.exp * 100)/it.nextExp)
+                Log.d("경험치", ((it.exp * 100)/it.nextExp).toString())
             }, {
             })
     }
