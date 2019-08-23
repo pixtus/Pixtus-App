@@ -16,6 +16,7 @@ import android.support.annotation.Nullable
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.ExerciseAdapter
 import com.mash.up.pixtus_app.R
@@ -95,17 +96,20 @@ class MainFragment : Fragment(), SensorEventListener {
         if (event!!.sensor.type == Sensor.TYPE_STEP_DETECTOR) {
             if (event.values[0] == 1.0f) {
                 count++
-                //TODO 로티 삽입
-//                Glide.with(this).asGif().load(R.raw.walk1).into(root!!.iv_gif)
-//                handler?.postDelayed(setImage, 3000)
+                val animationView = root!!.findViewById<LottieAnimationView>(R.id.lottie_main)
+                animationView.setAnimation("pixtus_walk_junior.json")
+                animationView.loop(true)
+                animationView.playAnimation()
+                handler?.postDelayed(Runnable { animationView.pauseAnimation() }, 3000)
+
+                /*
+                Glide.with(this).asGif().load(R.raw.walk1).into(root!!.iv_gif)
+                handler?.postDelayed(Runnable { Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif) }, 3000)
+                */
                 //view!!.tv_title.text = count.toString()
             }
             stepData!!.amount = count
         }
-    }
-
-    private var setImage: Runnable = Runnable {
-        Glide.with(this).asGif().load(R.raw.nomal1).into(root!!.iv_gif)
     }
 
 
@@ -116,20 +120,25 @@ class MainFragment : Fragment(), SensorEventListener {
     }
 
     fun setData(model: MainResponse) {
+        val animationView = root!!.findViewById<LottieAnimationView>(R.id.lottie_main)
         tv_title.text = model.characterName
         tv_calorie.text = model.exp.toString()
         tv_next_calorie.text = model.nextExp.toString()
         when (model.level) {
             1 -> {
-                Glide.with(this).asGif().load(R.raw.nomal1).into(iv_gif)
+                animationView.setAnimation("pixtus_walk_junior.json")
             }
             2 -> {
-                Glide.with(this).asGif().load(R.raw.pixtus_ani_02_walk).into(iv_gif)
+                animationView.setAnimation("pixtus_walk_senior.json")
             }
             3 -> {
-                Glide.with(this).asGif().load(R.raw.pixtus_ani_03_walk).into(iv_gif)
+                animationView.setAnimation("pixtus_walk_master.json")
             }
         }
+
+        animationView.loop(true)
+        animationView.pauseAnimation()
+//        animationView.playAnimation()
         var sortedList = model.workouts.sortedWith(compareByDescending { it.totalKcal })
         var exercise_recycler = root!!.findViewById(R.id.recycler_exercise) as RecyclerView
         exercise_recycler.adapter = ExerciseAdapter(sortedList)

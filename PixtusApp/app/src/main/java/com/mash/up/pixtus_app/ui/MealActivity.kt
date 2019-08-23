@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import com.airbnb.lottie.LottieAnimationView
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
 import com.mash.up.pixtus_app.utils.showToastMessageString
@@ -30,7 +31,12 @@ class MealActivity : BaseActivity() {
 
         layout_next.setOnClickListener {
             if (layout_next.isSelected) {
+                val animationView = findViewById<LottieAnimationView>(R.id.lottie_meal)
+
+                animationView.setAnimation("ic_check.json")
+                animationView.playAnimation()
                 meal_blur.visibility = View.VISIBLE
+
                 showToastMessageString(mealCnt.toString())
 
                 //TODO mealCnt, uid 담은 Request Body POST
