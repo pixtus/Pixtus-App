@@ -68,7 +68,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
             val str = intent.getStringExtra("workout_name")
             tool_workout_name.text = str
             when (str) {//운동에 따른 이미지
-                "축구" -> animationView.setAnimation("ic_check.json")
+                "축구" -> animationView.setAnimation("pixtus_workout_soccer.json")
                 "자전거" -> animationView.setAnimation("pixtus_workout_bicycle.json")
                 "수영" -> animationView.setAnimation("pixtus_workout_swim.json")
             }
@@ -129,7 +129,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    tv_workout_addexp.text = it.exp.toString()
+                    tv_workout_addexp.text = "+ $(it.exp.toString())"
                     tv_workout_pre_exp.text = it.currExp.toString()
                     tv_workout_total_exp.text = it.nextExp.toString()
                     bar_workout_exp!!.progress = (it.currExp/it.nextExp) * 100

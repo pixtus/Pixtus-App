@@ -34,7 +34,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MainFragment : Fragment(), SensorEventListener {
-    var handler: Handler? = null
     var sensorManager: SensorManager? = null
     var sensorManagerShake: SensorManager ?= null
     var stepDetectorSensor: Sensor? = null
