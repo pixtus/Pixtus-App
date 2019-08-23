@@ -4,8 +4,12 @@ package com.mash.up.pixtus_app.core
 import com.mash.up.pixtus_app.data.Exercise
 import com.mash.up.pixtus_app.data.StepData
 import com.mash.up.pixtus_app.Meal
+import com.mash.up.pixtus_app.ui.login.PostLoginRequest
+import com.mash.up.pixtus_app.ui.login.data.PostLoginResponse
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -49,4 +53,10 @@ interface PixtusApi {
     fun getMain(
         @Header("Authorization") authorization: String
     ) : Single<MainResponse>
+
+    @POST("/user/sign-in") // 리턴타입
+    fun postLogin(
+        @Header("Content-Type") contentType: String,
+        @Body body: PostLoginRequest
+    ) : Observable<Response<PostLoginResponse>>
 }

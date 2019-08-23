@@ -7,7 +7,6 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
-import com.mash.up.pixtus_app.ui.MainActivity
 import com.mash.up.pixtus_app.ui.StoryActivity
 import kotlinx.android.synthetic.main.activity_create_step2.*
 import kotlinx.android.synthetic.main.activity_create_step3.*

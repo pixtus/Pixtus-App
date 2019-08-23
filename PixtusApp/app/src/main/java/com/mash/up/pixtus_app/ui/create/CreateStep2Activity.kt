@@ -12,16 +12,13 @@ import com.mash.up.pixtus_app.base.BaseActivity
 import com.mash.up.pixtus_app.core.CreateAcountApi
 import com.mash.up.pixtus_app.core.NetworkCore
 import com.mash.up.pixtus_app.core.PixtusApi
-import com.mash.up.pixtus_app.ui.MainActivity
 import com.mash.up.pixtus_app.ui.ViewActivity
 import com.mash.up.pixtus_app.ui.create.data.CreateAcoountRequest
 import com.mash.up.pixtus_app.ui.login.PostLoginRequest
 import com.mash.up.pixtus_app.utils.showToastMessageString
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_create_step.*
 import kotlinx.android.synthetic.main.activity_create_step2.*
-import kotlinx.android.synthetic.main.activity_create_step2.tv_next
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -32,10 +29,10 @@ class CreateStep2Activity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_step2)
 
-        tv_next.isSelected = validateStep()
+        tv_nextExp.isSelected = validateStep()
 
-        tv_next.setOnClickListener {
-            if (tv_next.isSelected) {
+        tv_nextExp.setOnClickListener {
+            if (tv_nextExp.isSelected) {
                 var uid = intent.getStringExtra("uid")
                 var email = intent.getStringExtra("email")
                 var weight = intent.getStringExtra("weight")
@@ -59,7 +56,7 @@ class CreateStep2Activity : BaseActivity() {
     }
 
     fun statusText(boolean: Boolean) {
-        tv_next.isSelected = boolean
+        tv_nextExp.isSelected = boolean
     }
 
     fun validateStep(): Boolean = edit_nickname.text.isNotEmpty()

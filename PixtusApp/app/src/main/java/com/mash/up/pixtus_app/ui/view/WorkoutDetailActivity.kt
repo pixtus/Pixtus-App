@@ -112,7 +112,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
             buttonDoneAct?.visibility = View.VISIBLE
             showExp?.visibility = View.VISIBLE
 
-            //TODO 서버로 시간 보내기
+            /*//TODO 서버로 시간 보내기
             NetworkCore.getNetworkCore<PixtusApi>()
                 .sendStep(
                     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY",
@@ -124,7 +124,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
 //                    getData()
                 }, {
                     Log.d("send_step", "fail")
-                })
+                })*/
 
 
             Toast.makeText(applicationContext, (MillisecondTime/1000).toString(), Toast.LENGTH_SHORT).show()

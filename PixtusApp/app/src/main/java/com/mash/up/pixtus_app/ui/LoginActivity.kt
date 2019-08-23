@@ -84,7 +84,7 @@ class LoginActivity : BaseActivity() {
     fun updateUI(acct: GoogleSignInAccount?) {
         if (acct != null) {
             postLogin(acct.id, acct.email, acct.displayName.toString())
-            // TODO: 이름 확인
+            Log.e("요놈요놈요놈", acct.id.toString())
         }
     }
 

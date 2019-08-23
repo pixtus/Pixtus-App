@@ -14,8 +14,8 @@
 		
 		<ImageView
 			android:id="@+id/btn_left"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="17dp"
+			android:layout_height="match_parent"
 			android:src="@drawable/btn_left" />
 		
 		<TextView

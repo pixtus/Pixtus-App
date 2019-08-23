@@ -56,4 +56,5 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.airbnb.android:lottie:2.5.3'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation "org.jetbrains.anko:anko:0.10.8"
 }

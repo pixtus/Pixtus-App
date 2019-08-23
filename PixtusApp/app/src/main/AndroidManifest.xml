@@ -30,8 +30,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.view.WorkoutListActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.MainActivity"
-            android:screenOrientation="portrait"/>
         <activity android:name=".ui.ViewActivity"
             android:screenOrientation="portrait">
         </activity>
