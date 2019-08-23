@@ -6,7 +6,6 @@ import android.os.Handler
 import android.os.SystemClock
 import android.support.constraint.ConstraintLayout
 import android.util.Log
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_workout_detail.*
 import android.view.View
 import android.widget.*
@@ -14,7 +13,6 @@ import com.airbnb.lottie.LottieAnimationView
 import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.core.NetworkCore
 import com.mash.up.pixtus_app.core.PixtusApi
-import com.mash.up.pixtus_app.data.ResponseExercise
 import com.mash.up.pixtus_app.data.StepData
 import com.mash.up.pixtus_app.utils.SharedPreferenceController
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -45,7 +43,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
     var showExp : ConstraintLayout? = null
     var bar_workout_exp : ProgressBar ?= null
 
-    var stepData = StepData(MillisecondTime as Float, 0)
+    var stepData = StepData(MillisecondTime.toFloat(), 0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,7 +120,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
             buttonDoneAct?.visibility = View.VISIBLE
             showExp?.visibility = View.VISIBLE
 
-            stepData.amount = (MillisecondTime/1000) as Float
+            stepData.amount = (MillisecondTime/1000).toFloat()
 
             NetworkCore.getNetworkCore<PixtusApi>()
                 .sendExercise(
@@ -132,9 +130,9 @@ class WorkoutDetailActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    tv_workout_addexp.text = it.addExp.toString()
-                    tv_workout_pre_exp.text = it.originExp.toString()
-                    tv_workout_total_exp.text = it.totalExp.toString()
+                    tv_workout_addexp.text = it.exp.toString()
+                    tv_workout_pre_exp.text = it.currExp.toString()
+                    tv_workout_total_exp.text = it.nextExp.toString()
 
                 }, {
                     Log.d("send_step", "fail")
