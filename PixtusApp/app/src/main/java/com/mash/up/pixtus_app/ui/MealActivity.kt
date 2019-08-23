@@ -11,6 +11,7 @@ import com.mash.up.pixtus_app.R
 import com.mash.up.pixtus_app.base.BaseActivity
 import com.mash.up.pixtus_app.core.NetworkCore
 import com.mash.up.pixtus_app.core.PixtusApi
+import com.mash.up.pixtus_app.utils.SharedPreferenceController
 import com.mash.up.pixtus_app.utils.showToastMessageString
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -48,7 +49,7 @@ class MealActivity : BaseActivity() {
 
                 NetworkCore.getNetworkCore<PixtusApi>()
                     .postMeal(
-                        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY",
+                        SharedPreferenceController.getAuthorization(this@MealActivity),
                         meal
                     )
                     .subscribeOn(Schedulers.io())

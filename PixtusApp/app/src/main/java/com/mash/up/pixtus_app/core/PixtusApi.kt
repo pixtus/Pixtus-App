@@ -4,6 +4,7 @@ package com.mash.up.pixtus_app.core
 import com.mash.up.pixtus_app.data.Exercise
 import com.mash.up.pixtus_app.data.StepData
 import com.mash.up.pixtus_app.Meal
+import com.mash.up.pixtus_app.data.ResponseExercise
 import com.mash.up.pixtus_app.ui.login.PostLoginRequest
 import com.mash.up.pixtus_app.ui.login.data.PostLoginResponse
 import io.reactivex.Completable
@@ -35,6 +36,15 @@ interface PixtusApi {
         @Header("Authorization") authorization: String,
         @Body body: StepData
     ) : Completable
+
+
+    @POST("/workout")
+    fun sendExercise(
+        @Header("Authorization") authorization: String,
+        @Body body: StepData
+    ) : Single<ResponseExercise>
+
+
     /*
     * {
     * "amount": 0,

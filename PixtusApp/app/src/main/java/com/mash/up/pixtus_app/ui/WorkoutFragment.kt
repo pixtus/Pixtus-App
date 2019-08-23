@@ -19,6 +19,7 @@ import com.mash.up.pixtus_app.RecyclerViewAdapter
 import com.mash.up.pixtus_app.WorkOut
 import com.mash.up.pixtus_app.core.NetworkCore
 import com.mash.up.pixtus_app.core.PixtusApi
+import com.mash.up.pixtus_app.utils.SharedPreferenceController
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
@@ -44,7 +45,7 @@ class WorkoutFragment : Fragment() {
 
     fun getExcerciseList() {
         NetworkCore.getNetworkCore<PixtusApi>()
-            .getExcercises("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwidWlkIjoiMTIzNCJ9.KRCUrR_TqDXXfVnAxSIsQ17E8GtvOewPZCh9GOtFJVY")
+            .getExcercises(SharedPreferenceController.getAuthorization(context!!))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
