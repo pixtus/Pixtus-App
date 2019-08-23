@@ -16,6 +16,7 @@ import android.support.annotation.Nullable
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.widget.ProgressBar
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.mash.up.pixtus_app.ExerciseAdapter
@@ -46,10 +47,8 @@ class MainFragment : Fragment(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         preferences = context!!.getSharedPreferences("STEP_COUNT", Context.MODE_PRIVATE)
         editor = preferences!!.edit()
-
         sendData()
     }
 
@@ -68,6 +67,7 @@ class MainFragment : Fragment(), SensorEventListener {
         super.onResume()
         sensorManager?.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_UI)
         sensorManagerShake?.registerListener(this, shakeSensor, SensorManager.SENSOR_DELAY_UI)
+        Log.d("요거", "언제 불러지나")
 
     }
 
@@ -133,7 +133,6 @@ class MainFragment : Fragment(), SensorEventListener {
 
     fun sendData(){
         remember = preferences!!.getFloat("stepCount", 0.0f)
-        Log.d("하하", remember.toString())
         NetworkCore.getNetworkCore<PixtusApi>()
             .sendStep(
                 SharedPreferenceController.getAuthorization(context!!),
@@ -156,9 +155,8 @@ class MainFragment : Fragment(), SensorEventListener {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 setData(it)
-                Log.d("list_data", it.toString())
+                stats_bar.setProgress((it.exp/it.nextExp) * 100)
             }, {
-                Log.d("list_data", Log.getStackTraceString(it))
             })
     }
 }

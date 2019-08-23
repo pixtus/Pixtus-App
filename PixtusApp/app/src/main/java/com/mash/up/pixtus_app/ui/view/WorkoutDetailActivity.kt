@@ -17,6 +17,7 @@ import com.mash.up.pixtus_app.data.StepData
 import com.mash.up.pixtus_app.utils.SharedPreferenceController
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class WorkoutDetailActivity : AppCompatActivity() {
@@ -56,8 +57,6 @@ class WorkoutDetailActivity : AppCompatActivity() {
         buttonDoneAct = findViewById(R.id.btn_workout_done_act)
         showExp = findViewById(R.id.workout_exp)
         bar_workout_exp = findViewById(R.id.bar_workout_exp)
-
-
 
         initUI()
     }
@@ -133,10 +132,11 @@ class WorkoutDetailActivity : AppCompatActivity() {
                     tv_workout_addexp.text = it.exp.toString()
                     tv_workout_pre_exp.text = it.currExp.toString()
                     tv_workout_total_exp.text = it.nextExp.toString()
+                    bar_workout_exp!!.progress = (it.currExp/it.nextExp) * 100
                 }, {
                     Log.d("send_step", "fail")
                 })
-            handler?.postDelayed(finish, 3000)
+            handler?.postDelayed(finish, 2800)
         }
         handler = Handler()
     }
